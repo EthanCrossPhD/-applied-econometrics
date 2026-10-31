@@ -1,0 +1,125 @@
+---
+title: "Inference"
+---
+
+## Learning Objectives
+
+- Understand the distinction between identification and statistical inference
+- Recognize when classical standard errors are invalid
+- Apply robust and clustered standard errors in applied settings
+- Interpret statistical significance in IV and DiD designs
+
+## Key Takeaways
+
+- Identification answers *what* is estimated; inference answers *how precisely*
+- Classical standard errors rely on strong assumptions rarely satisfied in practice
+- Robust and clustered standard errors are essential in applied econometrics
+- Incorrect inference can overturn otherwise credible identification strategies
+
+## Common Pitfalls
+
+- Confusing statistical significance with causal validity
+- Using heteroskedasticity-robust standard errors when clustering is required
+- Clustering at the wrong level
+- Ignoring serial correlation in panel and DiD settings
+
+---
+
+## Why Inference Matters
+
+Identification establishes causal interpretation under assumptions.
+Inference quantifies uncertainty around estimated effects.
+A well-identified estimate with invalid inference can lead to misleading conclusions.
+
+---
+
+## Classical Standard Errors
+
+Classical standard errors assume:
+- homoskedasticity
+- no serial correlation
+- independent observations
+
+These assumptions rarely hold in observational data.
+
+---
+
+## Heteroskedasticity-Robust Standard Errors
+
+Robust standard errors allow for:
+- unknown heteroskedasticity
+- consistent variance estimation under weaker assumptions
+
+They are standard in cross-sectional applications but insufficient in panel settings.
+
+---
+
+## Clustered Standard Errors
+
+Clustering accounts for:
+- within-group correlation
+- serial dependence over time
+
+Correct clustering is dictated by the level of treatment variation.
+Difference-in-Differences and panel regressions typically require clustering at the unit level.
+
+---
+
+## Inference in IV and DiD
+
+Instrumental Variables:
+- weak instruments inflate variance
+- standard errors reflect identification strength
+
+Difference-in-Differences:
+- serial correlation leads to over-rejection
+- clustering is essential for valid inference
+
+---
+
+## Practical Guidance
+
+- Cross-section: use heteroskedasticity-robust standard errors
+- Panel data: cluster at the individual or group level
+- DiD: cluster at the treatment assignment level
+- Small number of clusters requires caution in interpretation
+
+---
+
+## Empirical Illustration
+
+```{r inference-app}
+source("app_ch09_inference.R")
+res <- run_ch09_inference()
+
+se_table <- data.frame(
+  Value = c(
+    round(res$beta_hat, 3),
+    round(res$se$Classical, 3),
+    round(res$se$Robust, 3),
+    round(res$se$Clustered, 3)
+  ),
+  row.names = c(
+    "Estimate",
+    "(Classical SE)",
+    "(Robust SE)",
+    "(Clustered SE)"
+  )
+)
+
+knitr::kable(
+  se_table,
+  col.names = "Value",
+  caption = "Point estimate and alternative standard errors"
+)
+```
+
+The point estimate is identical across specifications, as expected.
+However, the associated standard errors differ substantially.
+Classical standard errors severely understate uncertainty in the presence of within-group correlation.
+Clustered standard errors provide the appropriate basis for inference in this setting.
+
+
+The empirical implications of different inference choices are illustrated using a simple simulation.
+Identical point estimates may lead to different statistical conclusions depending on the standard errors employed.
+

@@ -1,0 +1,142 @@
+---
+title: "Micro Case 3C: Local Average Treatment Effects (LATE)"
+author: "Ethan Cross, PhD"
+date: January 18, 2026
+format:
+  html:
+    toc: true
+---
+
+## 1 Introduction
+
+This micro case illustrates what instrumental variables (IV) estimates identify
+when treatment effects are heterogeneous.
+
+Unlike OLS, which generally estimates an average treatment effect under strong assumptions,
+IV identifies a **Local Average Treatment Effect (LATE)**:
+the average causal effect for individuals whose treatment status is changed by the instrument.
+
+---
+
+## 2 Data Generating Process
+
+We consider a setting with heterogeneous treatment effects and imperfect compliance.
+
+- Individuals differ in their potential gains from treatment
+- The instrument affects treatment take-up, but not everyone complies
+- Treatment effects vary across individuals
+
+This setting highlights that IV does not recover the overall ATE, but a **local** effect.
+
+```{r setup}
+set.seed(123)
+
+n <- 3000
+
+# Instrument
+z <- rbinom(n, 1, 0.5)
+
+# Compliance types
+u <- runif(n)
+
+complier  <- u < 0.5
+always_t  <- u >= 0.5 & u < 0.7
+never_t   <- u >= 0.7
+
+# Treatment assignment
+treat <- ifelse(
+  always_t, 1,
+  ifelse(never_t, 0, z)
+)
+
+# Heterogeneous treatment effects
+tau <- ifelse(complier, 2, 4)
+
+# Outcome
+y <- 5 + tau * treat + rnorm(n)
+
+case3C <- data.frame(y, treat, z, complier)
+```
+
+---
+
+## 3 Compliance Types
+
+The population consists of:
+
+- **Compliers**: take treatment if encouraged
+- **Always-takers**: always treated
+- **Never-takers**: never treated
+
+```{r}
+prop.table(table(
+  ifelse(complier, "Complier",
+         ifelse(always_t, "Always-taker", "Never-taker"))
+))
+```
+
+Only **compliers** contribute to the IV estimand.
+
+---
+
+## 4 OLS Benchmark
+
+OLS averages treatment effects across all treated individuals,
+mixing compliers with always-takers.
+
+```{r}
+summary(lm(y ~ treat, data = case3C))
+```
+
+Because treatment effects are heterogeneous, OLS does not recover a well-defined causal estimand.
+
+---
+
+## 5 IV Estimation
+
+We now estimate the treatment effect using the instrument.
+
+```{r}
+library(AER)
+summary(ivreg(y ~ treat | z, data = case3C))
+```
+
+---
+
+## 6 What Does IV Identify?
+
+The true effects in the population are:
+
+```{r}
+c(
+  True_ATE  = mean(tau),
+  True_LATE = mean(tau[complier])
+)
+```
+
+- **ATE ≠ LATE**
+- IV estimates **LATE**, not the overall average effect
+
+This distinction is crucial for policy interpretation.
+
+---
+
+## 7 Interpretation
+
+Instrumental variables estimate a causal effect that is:
+
+- Local to compliers
+- Instrument-dependent
+- Not necessarily policy-invariant
+
+Understanding who the compliers are is essential for external validity.
+
+---
+
+## 8 Conclusion
+
+This case demonstrates that IV does not generally identify the average treatment effect.
+
+Instead, IV identifies a **Local Average Treatment Effect (LATE)**,
+which may differ substantially from the overall ATE when treatment effects are heterogeneous.
+

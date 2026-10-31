@@ -1,0 +1,10 @@
+---
+title: "Micro Case 3A: Simulated Job Training Program"
+project: false
+---
+
+```{r}
+case3A <- readRDS("data/micro/case3A_simulated.rds")
+str(case3A)
+```
+

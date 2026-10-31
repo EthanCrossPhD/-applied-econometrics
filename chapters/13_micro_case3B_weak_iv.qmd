@@ -1,0 +1,143 @@
+---
+title: "Micro Case 3B: Weak Instruments"
+author: "Ethan Cross, PhD"
+date: last-modified
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup}
+knitr::opts_chunk$set(comment = NA, fig.align = "center")
+```
+
+## Introduction
+
+This micro case illustrates the consequences of using weak instruments
+in instrumental variables estimation.
+
+While instrumental variables can correct for endogeneity,
+their performance critically depends on the strength of the first stage.
+
+## Data Generating Process
+
+In this simulation, treatment is endogenous, but the instrument is only
+weakly correlated with treatment assignment.
+
+```{r dgp}
+set.seed(123)
+
+n <- 2000
+
+# Unobserved ability
+ability <- rnorm(n)
+
+# Weak instrument
+z <- rbinom(n, 1, 0.5)
+
+# Treatment: weak dependence on z
+treat <- 0.3 * z + 0.7 * ability + rnorm(n)
+treat <- as.integer(treat > median(treat))
+
+# Potential outcomes
+y0 <- 10 + ability + rnorm(n)
+y1 <- y0 + 2
+
+# Observed outcome
+y <- y0 + treat * (y1 - y0)
+
+case3B <- data.frame(y, treat, z, ability, y0, y1)
+```
+
+## OLS Benchmark
+
+```{r ols}
+ols <- lm(y ~ treat, data = case3B)
+summary(ols)
+```
+
+## Weak First Stage
+
+```{r first-stage}
+fs <- lm(treat ~ z, data = case3B)
+summary(fs)
+```
+
+## IV with Weak Instrument
+
+We now estimate the causal effect using instrumental variables.
+Because the model is just-identified, the IV estimator is equivalent
+to the Wald estimator.
+
+```{r iv-wald}
+# Wald estimator
+wald <- cov(case3B$y, case3B$z) / cov(case3B$treat, case3B$z)
+wald
+```
+
+```{r iv-2sls}
+# Two-stage least squares
+library(AER)
+iv_2sls <- ivreg(y ~ treat | z, data = case3B)
+summary(iv_2sls)
+```
+
+## Variance Explosion with Weak Instruments
+
+Although the IV estimator is consistent, weak instruments can lead to
+extreme variability in finite samples. To illustrate this, we repeat
+the experiment many times and examine the distribution of the IV
+estimator.
+
+```{r iv-variance}
+set.seed(123)
+
+B <- 500
+iv_estimates <- numeric(B)
+
+for (b in 1:B) {
+
+  ability <- rnorm(n)
+  z <- rbinom(n, 1, 0.5)
+
+  treat <- 0.3 * z + 0.7 * ability + rnorm(n)
+  treat <- as.integer(treat > median(treat))
+
+  y0 <- 10 + ability + rnorm(n)
+  y1 <- y0 + 2
+  y <- y0 + treat * (y1 - y0)
+
+  iv_estimates[b] <- cov(y, z) / cov(treat, z)
+}
+
+hist(
+  iv_estimates,
+  breaks = 40,
+  col = "lightgray",
+  border = "white",
+  main = "Weak IV: Variance Explosion",
+  xlab = "IV estimates"
+)
+
+abline(v = 2, col = "red", lwd = 2)
+```
+
+## True ATE
+
+```{r true-ate}
+mean(case3B$y1 - case3B$y0)
+```
+
+## Conclusion
+
+This case demonstrates that weak instruments lead to imprecise
+and potentially misleading IV estimates.
+
+When instruments are weak, IV estimators may perform worse than
+biased OLS estimators in finite samples.
+

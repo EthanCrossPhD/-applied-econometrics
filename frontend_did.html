@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Difference-in-Differences Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 15px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 0.8rem;
+    }
+    input {
+      width: 100%;
+      padding: 6px;
+      font-size: 1rem;
+      margin-top: 4px;
+    }
+    button {
+      margin-top: 1.2rem;
+      padding: 10px;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 1.2rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .error {
+      color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Difference-in-Differences (DiD)</h1>
+
+<label>Treated group – Pre</label>
+<input id="Y_T_pre" type="number" step="any">
+
+<label>Treated group – Post</label>
+<input id="Y_T_post" type="number" step="any">
+
+<label>Control group – Pre</label>
+<input id="Y_C_pre" type="number" step="any">
+
+<label>Control group – Post</label>
+<input id="Y_C_post" type="number" step="any">
+
+<button onclick="computeATT()">Compute ATT</button>
+
+<div id="result"></div>
+
+<script>
+function computeATT() {
+  const data = {
+    Y_T_pre:  parseFloat(document.getElementById("Y_T_pre").value),
+    Y_T_post: parseFloat(document.getElementById("Y_T_post").value),
+    Y_C_pre:  parseFloat(document.getElementById("Y_C_pre").value),
+    Y_C_post: parseFloat(document.getElementById("Y_C_post").value)
+  };
+
+  if (Object.values(data).some(v => isNaN(v))) {
+    document.getElementById("result").innerHTML =
+      "<span class=\"error\">Please enter all four numbers.</span>";
+    return;
+  }
+
+  fetch("http://127.0.0.1:5000/api/did", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(result => {
+    document.getElementById("result").innerHTML =
+      "ATT = " + result.ATT;
+  })
+  .catch(() => {
+    document.getElementById("result").innerHTML =
+      "<span class=\"error\">Backend not reachable.</span>";
+  });
+}
+</script>
+
+</body>
+</html>
+

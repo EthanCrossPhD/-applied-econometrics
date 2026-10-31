@@ -1,0 +1,238 @@
+---
+title: "Regression Discontinuity Designs"
+---
+
+## Purpose and Intuition of RDD
+
+Regression discontinuity designs (RDD) exploit situations in which treatment assignment is determined by whether an observed running variable crosses a known cutoff. Units just above and just below the cutoff are assumed to be comparable in all respects except for treatment status.
+
+The core idea of RDD is that, in a sufficiently small neighborhood around the cutoff, the assignment mechanism mimics randomization. While treatment is not randomly assigned in the population at large, it is as good as random for units whose value of the running variable lies arbitrarily close to the threshold.
+
+As a result, discontinuities in the conditional expectation of the outcome at the cutoff can be interpreted as causal treatment effects.
+
+Formally, let $X_i$ denote the running variable and let $c$ denote the cutoff. Treatment assignment depends on whether the running variable crosses this threshold. The estimand of interest is the discontinuity in the conditional expectation of the outcome:
+
+$$
+\tau = \lim_{x \downarrow c} E[Y_i \mid X_i = x]
+      - \lim_{x \uparrow c} E[Y_i \mid X_i = x].
+$$
+
+This estimand captures a local average treatment effect at the cutoff rather than a population-wide effect. The local nature of identification is a defining feature of RDD and has important implications for interpretation and external validity.
+
+RDD is particularly attractive in applied work because the source of identification is transparent. Unlike regression adjustment, which relies on functional form assumptions, or difference-in-differences designs, which require parallel trends, RDD relies on a single and conceptually clear condition: in the absence of treatment, the outcome would evolve smoothly through the cutoff.
+
+
+## Sharp and Fuzzy Regression Discontinuity Designs
+
+Regression discontinuity designs come in two closely related variants, depending on how treatment assignment responds to crossing the cutoff: **sharp RDD** and **fuzzy RDD**. The distinction is crucial for both identification and estimation.
+
+### Sharp Regression Discontinuity
+
+\[
+D_i = \mathbf{1}\{X_i \ge c\}.
+\]
+
+In a sharp RDD, the probability of treatment jumps from zero to one at the cutoff. Under continuity of potential outcomes, the causal effect at the threshold is given by the discontinuity in the outcome regression:
+
+\[
+\tau = \lim_{x \downarrow c} E[Y_i \mid X_i = x]
+      - \lim_{x \uparrow c} E[Y_i \mid X_i = x].
+\]
+
+This estimand captures a local treatment effect at the cutoff.
+
+### Fuzzy Regression Discontinuity
+
+In many applications, crossing the cutoff affects the probability of treatment without perfectly determining it.
+
+\[
+\tau = \frac{
+\lim_{x \downarrow c} E[Y_i \mid X_i = x]
+- \lim_{x \uparrow c} E[Y_i \mid X_i = x]
+}{
+\lim_{x \downarrow c} E[D_i \mid X_i = x]
+- \lim_{x \uparrow c} E[D_i \mid X_i = x]
+}.
+\]
+
+This estimand identifies a local average treatment effect for compliers at the cutoff.
+NA
+
+## Graphical Analysis
+
+Graphical analysis is a central component of any regression discontinuity design. Before conducting formal estimation, researchers should visually inspect the relationship between the outcome variable and the running variable around the cutoff.
+
+The purpose of RD plots is not to estimate treatment effects precisely, but to assess the plausibility of the identifying assumptions and to make the source of identification transparent.
+
+In a credible RDD, the conditional expectation of the outcome should evolve smoothly with the running variable on either side of the cutoff, while exhibiting a visible discontinuity at the threshold.
+
+## Estimation and Bandwidth Choice
+
+While graphical analysis provides intuition and a valuable credibility check, causal inference in regression discontinuity designs requires formal estimation. The key challenge is to estimate the discontinuity in the conditional expectation of the outcome at the cutoff while balancing bias and variance.
+
+RDD estimation is inherently local. Observations far from the cutoff may improve precision but risk introducing bias due to misspecification of the functional form. Observations very close to the cutoff are more comparable but yield noisier estimates. The choice of bandwidth reflects this fundamental trade-off.
+
+### Local Polynomial Estimation
+
+The standard approach to RDD estimation is local polynomial regression, estimated separately on each side of the cutoff. In practice, local linear regression is often preferred due to its favorable boundary properties.
+
+Let \(Y_i\) denote the outcome and \(X_i\) the running variable with cutoff \(c\). A local linear RDD estimator solves:
+
+\[
+\min_{\alpha_\ell,\beta_\ell}
+\sum_{i: X_i < c}
+K\!\left(\frac{X_i - c}{h}\right)
+\left(Y_i - \alpha_\ell - \beta_\ell (X_i - c)\right)^2
+\]
+
+and analogously on the right side of the cutoff. The estimated treatment effect is given by the difference in the fitted intercepts at the cutoff.
+
+### Bandwidth Choice: Bias--Variance Trade-off
+
+The bandwidth \(h\) determines how local the comparison is.
+
+- Small bandwidths reduce bias but increase variance.
+- Large bandwidths reduce variance but risk bias from functional form misspecification.
+
+Graphical analysis helps guide reasonable bandwidth ranges, but formal methods are needed for principled selection.
+
+### Data-Driven Bandwidth Selection
+
+Modern RDD practice relies on data-driven bandwidth selectors that minimize asymptotic mean squared error. Among the most widely used are the methods proposed by Imbens and Kalyanaraman (2012) and Calonico, Cattaneo, and Titiunik (2014).
+
+These procedures automatically choose bandwidths that balance bias and variance and are implemented in standard software packages.
+
+### Reporting and Transparency
+
+Good practice in RDD estimation includes reporting the chosen bandwidth and the method used to select it, presenting robustness checks across bandwidths, pairing numerical estimates with graphical evidence, and clearly stating the local nature of the estimand.
+
+RDD estimates are local by construction. Their credibility rests not on complexity, but on transparency.
+
+## Validity Checks and Manipulation Tests
+
+The credibility of a regression discontinuity design hinges on the plausibility of its identifying assumptions. While RDDs are often viewed as transparent and intuitive, they require careful diagnostic checks to rule out alternative explanations for observed discontinuities.
+
+The key identifying assumption is that, in the absence of treatment, the conditional expectation of the outcome and other relevant variables would evolve smoothly through the cutoff. Validity checks in RDD aim to assess whether this assumption is likely to hold in the data.
+
+### Manipulation of the Running Variable
+
+A primary threat to validity arises if individuals can precisely manipulate the running variable in order to sort around the cutoff. If such manipulation occurs, units just above and just below the threshold may no longer be comparable.
+
+One common diagnostic is to examine the density of the running variable around the cutoff. A discontinuity in the density suggests strategic sorting and undermines the credibility of the design.
+
+### Continuity of Covariates
+
+Another important validity check involves testing for discontinuities in predetermined covariates at the cutoff. Since these variables should not be affected by treatment, any systematic jumps may indicate violations of the identifying assumptions.
+
+In a credible RDD, baseline characteristics should evolve smoothly through the threshold, mirroring the continuity required of the outcome in the absence of treatment.
+
+### Placebo and Falsification Tests
+
+Placebo tests provide an additional diagnostic by estimating discontinuities at cutoffs where no treatment is assigned. Significant effects at placebo thresholds cast doubt on the interpretation of the main RDD estimate.
+
+Similarly, researchers may test for treatment effects in periods or outcomes that should not be affected by the intervention. Failure to find such effects strengthens the credibility of the design.
+
+### Limitations of Validity Checks
+
+While validity checks are informative, they cannot conclusively prove identification. Absence of evidence of manipulation or discontinuities in covariates does not guarantee that the identifying assumptions hold.
+
+For this reason, validity checks should be viewed as complementary evidence, to be interpreted alongside substantive knowledge of the institutional context and the graphical and statistical evidence presented earlier.
+
+## Interpretation and External Validity
+
+Regression discontinuity designs identify causal effects at the cutoff of the running variable. As a result, the estimated treatment effect is inherently local and applies only to units whose value of the running variable lies in a neighborhood around the threshold.
+
+This local nature of identification has important implications for interpretation. RDD estimates should not be interpreted as average treatment effects for the entire population, but rather as effects for individuals who are marginal with respect to treatment assignment.
+
+### Local Nature of the Estimand
+
+The RDD estimand captures the causal effect for units at the cutoff. These units may differ systematically from those farther away from the threshold, limiting the external validity of the findings.
+
+In some applications, however, individuals near the cutoff are of particular policy relevance. For example, when eligibility rules are defined by thresholds, policymakers are often interested precisely in the effects for marginal recipients.
+
+### External Validity and Generalization
+
+The limited external validity of RDD does not imply that the design is uninformative. Instead, it highlights the importance of careful interpretation and contextual knowledge.
+
+Researchers may strengthen external validity by combining RDD evidence with results from other designs, by estimating effects at multiple cutoffs, or by studying heterogeneous treatment effects across subgroups.
+
+### Policy Interpretation
+
+RDD results are often well suited for policy evaluation, as they directly speak to the consequences of marginal changes in eligibility or assignment rules.
+
+However, extrapolating RDD estimates beyond the cutoff requires strong assumptions and should be undertaken with caution. Transparency about what is identified—and what is not—is essential for credible policy analysis.
+
+### Summary
+
+Regression discontinuity designs offer a powerful and transparent framework for causal inference when treatment assignment is governed by a known threshold. Their credibility rests on local identification, careful estimation, and thorough validity checks.
+
+When interpreted appropriately, RDDs provide compelling evidence on causal effects at policy-relevant margins, even if their conclusions do not automatically generalize to the broader population.
+
+## Empirical Example: Program Eligibility and Test Score Cutoffs
+
+To illustrate the mechanics and interpretation of regression discontinuity designs, we consider a stylized empirical example in which eligibility for a program is determined by a cutoff in a test score.
+
+Suppose students are eligible for an educational intervention if their standardized test score exceeds a known threshold. Let the test score serve as the running variable, with treatment assignment determined by whether the score crosses the cutoff.
+
+The outcome of interest may be a subsequent academic achievement measure, such as grade point average, test performance in a later period, or educational attainment.
+
+### Design and Assignment Mechanism
+
+Eligibility for the program is determined by a known cutoff in the test score. Students with scores at or above the threshold are offered treatment, while those below are not.
+
+Near the cutoff, students just above and just below the threshold are expected to be similar in observed and unobserved characteristics, except for their treatment status. Under the continuity assumption, differences in outcomes at the cutoff can be attributed to the causal effect of program participation.
+
+This setting naturally lends itself to a sharp regression discontinuity design if eligibility perfectly determines participation, or to a fuzzy design if take-up is incomplete.
+
+### What the RDD Estimates
+
+The regression discontinuity estimand in this setting captures the causal effect of program eligibility for students whose test scores lie in a neighborhood around the cutoff.
+
+Importantly, this effect applies to marginal students near the threshold and should not be interpreted as the average effect for all program participants. The empirical example therefore reinforces the local nature of identification emphasized earlier in the chapter.  
+
+### Graphical Evidence (Interactive Preview)
+
+Graphical evidence plays a central role in understanding and communicating regression discontinuity designs. In this empirical example, the primary diagnostic tool is a plot of the outcome variable against the running variable, with special attention paid to observations near the cutoff.
+
+An RD plot visually displays whether the conditional expectation of the outcome evolves smoothly on either side of the threshold while exhibiting a discontinuous jump at the cutoff. Such a pattern is consistent with the identifying assumptions of the design.
+
+In practice, raw scatterplots are often supplemented with binned averages and local polynomial fits estimated separately on each side of the cutoff. These graphical elements help reduce noise and clarify the underlying relationship without imposing strong global functional form assumptions.
+
+For the purposes of this chapter, the graphical analysis is presented conceptually. In the accompanying interactive handout, readers will be able to adjust key elements of the RD plot—such as the bandwidth, bin width, and polynomial order—and observe how the visual evidence responds to these choices.
+
+This interactive exploration reinforces two core insights. First, RDD evidence is inherently local: conclusions are driven by observations near the cutoff. Second, graphical results are sensitive to tuning parameters, underscoring the importance of transparency and robustness in applied work.
+
+The graphical analysis should be interpreted as a complement to formal estimation rather than as a standalone source of inference.
+
+### Estimation Results (Empirical Illustration)
+
+We now briefly illustrate how formal estimation complements the graphical evidence in this empirical example. The regression discontinuity estimate is obtained using local polynomial regression with a data-driven bandwidth selection procedure.
+
+Consistent with the graphical patterns, the estimated treatment effect indicates a positive and statistically meaningful discontinuity at the cutoff. The magnitude of the effect is economically relevant for students near the eligibility threshold, reinforcing the interpretation of the design as identifying a local causal effect.
+
+To assess robustness, estimates can be computed using alternative bandwidth choices and polynomial orders. In this example, the qualitative conclusions remain stable across a range of reasonable specifications, although point estimates and standard errors vary, reflecting the inherent bias–variance trade-off discussed earlier.
+
+Importantly, these estimates should be interpreted in light of the design’s identifying assumptions and validity checks. The numerical results do not stand alone; they gain credibility from the alignment between graphical evidence, institutional knowledge, and diagnostic tests.
+
+In the interactive handout, readers will be able to modify estimation choices—such as the bandwidth and kernel—and observe how the estimated discontinuity responds to these changes in real time.
+
+### Validity Checks (Empirical Illustration)
+
+To assess the credibility of the regression discontinuity design in this empirical example, several standard validity checks are considered. These diagnostics are designed to evaluate whether the identifying assumptions discussed earlier are plausible in the data.
+
+First, the distribution of the running variable is examined around the cutoff to assess potential manipulation. In a credible design, the density of test scores should evolve smoothly through the threshold, with no visible discontinuity that would suggest strategic sorting.
+
+Second, predetermined covariates—such as prior academic performance or demographic characteristics—are analyzed for discontinuities at the cutoff. The absence of systematic jumps in these variables supports the assumption that students just above and below the threshold are comparable.
+
+Third, placebo tests are conducted by estimating discontinuities at alternative cutoffs where no treatment is assigned. Finding no significant effects at these placebo thresholds strengthens confidence that the observed discontinuity at the true cutoff reflects a causal effect of program eligibility.
+
+Taken together, these checks provide supporting evidence for the validity of the design. While no single diagnostic can conclusively establish identification, the consistency of results across multiple tests enhances the credibility of the empirical findings.
+
+In the interactive handout, these validity checks can be explored dynamically, allowing readers to visualize density plots, covariate continuity, and placebo estimates under different specifications.
+
+### Transition to the Next Chapter
+
+Regression discontinuity designs exploit deterministic assignment rules to achieve credible causal identification at policy-relevant thresholds. Their strength lies in transparent assumptions and local comparisons near a cutoff.
+
+The next chapter extends the discussion of quasi-experimental methods to settings in which treatment assignment varies over time rather than across a threshold. While the identifying assumptions differ, the central challenge remains the same: isolating causal effects in observational data using institutional structure and careful design.
+

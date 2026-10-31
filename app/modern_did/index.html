@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Modern DiD: TWFE vs Callaway–Sant’Anna / Sun–Abraham</title>
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Ubuntu, sans-serif;
+  margin: 2rem;
+  max-width: 960px;
+}
+.panel {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+}
+.status {
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+.ok { background-color: #e6f4ea; color: #137333; }
+.warning { background-color: #fef7e0; color: #a05a00; }
+svg { background: #fafafa; border: 1px solid #ddd; }
+.note {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+.authoritative {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Modern Difference‑in‑Differences</h1>
+
+<div class="panel">
+<button onclick="setView('twfe')">TWFE</button>
+<button onclick="setView('modern')">Callaway–Sant’Anna / Sun–Abraham</button>
+</div>
+
+<div class="panel">
+<svg id="plot" width="720" height="340"></svg>
+</div>
+
+<div class="panel">
+<div id="diagnostic" class="status warning">
+⚠️ TWFE mixes treated units as controls
+</div>
+<div class="note" id="explanation">
+TWFE averages contaminated comparisons under staggered adoption.
+</div>
+<div class="authoritative">
+Modern DiD methods restore valid comparisons; they do not strengthen assumptions.
+</div>
+</div>
+
+<script>
+const svg = document.getElementById("plot");
+const diag = document.getElementById("diagnostic");
+const expl = document.getElementById("explanation");
+
+let view = "twfe";
+
+const cohorts = [
+  {name: "A", g: 0, color: "#1f77b4"},
+  {name: "B", g: 2, color: "#2ca02c"},
+  {name: "C", g: 4, color: "#d62728"}
+];
+
+const T = [...Array(9).keys()].map(d => d - 2);
+
+function scaleX(t){ return 60 + (t + 2) * 70; }
+function scaleY(y){ return 280 - y * 60; }
+
+function drawLine(data, color){
+  const path = data.map((d,i) =>
+    (i===0 ? "M" : "L") + scaleX(d.t) + "," + scaleY(d.y)
+  ).join(" ");
+  return `<path d="${path}" fill="none" stroke="${color}"
+               stroke-width="2"/>`;
+}
+
+function render(){
+  svg.innerHTML = `
+    <line x1="40" y1="280" x2="700" y2="280" stroke="#000"/>
+    <line x1="40" y1="40" x2="40" y2="280" stroke="#000"/>
+  `;
+
+  cohorts.forEach(c => {
+    const data = T.map(t => {
+      let y;
+
+      if (view === "twfe"){
+        // distorted averages
+        y = t < c.g ? 0 : (c.g === 0 ? 0.4 : c.g === 2 ? 0.2 : -0.1);
+      } else {
+        // correct group-time ATT
+        y = t < c.g ? 0 : 1;
+      }
+
+      return {t, y};
+    });
+
+    svg.innerHTML += drawLine(data, c.color);
+
+    svg.innerHTML += `
+      <line x1="${scaleX(c.g)}" y1="40"
+            x2="${scaleX(c.g)}" y2="280"
+            stroke="${c.color}" stroke-dasharray="4,4"/>
+      <text x="${scaleX(c.g)+4}" y="50"
+            font-size="12" fill="${c.color}">
+        Cohort ${c.name}
+      </text>
+    `;
+  });
+
+  if (view === "modern"){
+    diag.textContent = "✅ Only not‑yet‑treated units used as controls";
+    diag.className = "status ok";
+    expl.textContent =
+      "Callaway–Sant’Anna and Sun–Abraham estimate clean group‑time effects before aggregation.";
+  } else {
+    diag.textContent = "⚠️ TWFE mixes treated units as controls";
+    diag.className = "status warning";
+    expl.textContent =
+      "TWFE implicitly compares early‑treated to later‑treated units, distorting estimates.";
+  }
+}
+
+function setView(v){
+  view = v;
+  render();
+}
+
+render();
+</script>
+
+</body>
+</html>
+

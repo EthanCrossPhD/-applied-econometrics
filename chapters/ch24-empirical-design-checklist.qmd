@@ -1,0 +1,172 @@
+---
+title: "Empirical Design Checklist: From Research Question to Credible Causal Inference"
+---
+
+## Purpose of This Chapter
+
+This chapter provides a unified empirical design checklist that synthesizes the methods covered throughout this book.
+
+Rather than focusing on a specific estimator, the goal is to offer a systematic framework for moving from a research question to a credible causal design. The checklist is intended to be used when designing a new project, evaluating existing empirical work, or interpreting applied research results.
+
+---
+
+## Research Question and Causal Parameter
+
+Every empirical project begins with a research question, but credible inference requires translating that question into a well-defined causal parameter.
+
+Key questions include:
+
+- What is the treatment or intervention?
+- Who is treated, and relative to whom?
+- When does treatment occur?
+- What is the outcome of interest?
+- What counterfactual outcome is being considered?
+
+Clarity about the estimand is essential before any discussion of data or estimation.
+
+---
+
+## Data Structure
+
+The structure of the data constrains the set of feasible identification strategies.
+
+Important considerations include:
+
+- Cross-sectional, repeated cross-sectional, or panel data
+- Level of observation versus level of treatment
+- Timing and frequency of observations
+- Presence of untreated or not-yet-treated units
+
+A mismatch between the research question and the data structure is a common source of invalid empirical designs.
+
+---
+
+## Identification Strategy
+
+Identification comes from assumptions, not from estimation techniques.
+
+Common identification strategies include:
+
+- Selection on observables
+- Difference-in-Differences
+- Instrumental Variables
+- Regression Discontinuity Designs
+- Synthetic Control and panel-based causal methods
+
+The chosen strategy should be justified by institutional knowledge and the data-generating process.
+
+---
+
+## Assumptions: Explicit and Implicit
+
+Each identification strategy relies on assumptions that must be stated clearly.
+
+Examples include:
+
+- Parallel trends
+- Exclusion restrictions
+- No anticipation
+- Continuity at a cutoff
+- Stable Unit Treatment Value Assumption (SUTVA)
+
+Empirical credibility depends on whether these assumptions are plausible in the context under study.
+
+---
+
+## Threats to Identification
+
+Even well-designed studies face potential threats to identification.
+
+Common threats include:
+
+- Time-varying confounders
+- Changes in sample composition
+- Spillovers and general equilibrium effects
+- Endogenous policy timing
+- Functional form dependence
+
+Identifying and discussing these threats is a central component of applied work.
+
+---
+
+## Estimation Choices
+
+Once identification is established, estimation choices should follow logically.
+
+Researchers should be explicit about:
+
+- Why a particular estimator is used
+- Which comparisons drive identification
+- How units and time periods are weighted
+- Sensitivity to alternative specifications
+
+Estimation should support identification, not replace it.
+
+---
+
+## Inference
+
+Valid inference requires aligning standard errors with the source of identifying variation.
+
+Key issues include:
+
+- Appropriate clustering level
+- Number of clusters
+- Serial correlation
+- Finite-sample concerns
+
+Inference choices should be justified with reference to the empirical design.
+
+---
+
+## Diagnostics and Falsification
+
+Credible empirical work includes diagnostics that probe the identifying assumptions.
+
+Common tools include:
+
+- Placebo tests
+- Event-study analyses
+- Balance and pre-trend tests
+- Sensitivity and robustness checks
+
+These exercises strengthen the interpretation of causal estimates.
+
+---
+
+## Interpretation and External Validity
+
+Empirical results should be interpreted in light of the design.
+
+Important questions include:
+
+- To whom does the estimated effect apply?
+- Which margins of variation identify the effect?
+- How policy-relevant is the estimate?
+- What limits external validity?
+
+Clear interpretation prevents overgeneralization.
+
+---
+
+## A One-Page Empirical Design Checklist
+
+Before finalizing an empirical analysis, a researcher should be able to answer the following questions:
+
+1. What is the causal question and estimand?
+2. What is the source of identifying variation?
+3. Which assumptions are required?
+4. What threatens identification?
+5. Why is the chosen estimator appropriate?
+6. How is inference conducted?
+7. How should the results be interpreted?
+
+If any of these questions cannot be answered clearly, the empirical design should be reconsidered.
+
+---
+
+## Concluding Remarks
+
+Applied econometrics is fundamentally about design.
+
+Careful attention to identification, assumptions, and interpretation is more important than the choice of estimator. This checklist provides a general framework for disciplined empirical work and serves as a bridge to more advanced causal methods beyond Difference-in-Differences.

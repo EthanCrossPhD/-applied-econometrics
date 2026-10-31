@@ -1,0 +1,103 @@
+---
+title: "Difference-in-Differences: Event Study"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Motivation
+
+While the parallel trends assumption is fundamentally untestable, event-study designs allow researchers to assess its plausibility by examining pre-treatment dynamics.
+
+An event study extends the difference-in-differences framework by estimating dynamic treatment effects relative to the timing of the intervention.
+
+## Event Study Specification
+
+Let $k$ index time relative to treatment, with $k = 0$ denoting the treatment period.
+
+The event-study regression can be written as:
+
+$$
+Y_{it} = \alpha + \sum_{k \neq -1} \delta_k \mathbf{1}(t - T_i = k) + \mu_i + \lambda_t + u_{it}
+$$
+
+where $k = -1$ is the omitted baseline period.
+
+Under parallel trends, the coefficients $\delta_k$ for $k < 0$ should be close to zero.
+
+## Simulated Panel Data
+
+We illustrate the event-study design using simulated panel data.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(dplyr)
+
+set.seed(123)
+
+n_units <- 50
+time_periods <- -4:4
+
+panel_data <- expand.grid(
+  id = 1:n_units,
+  time = time_periods
+) %>%
+  mutate(
+    treated = ifelse(id <= n_units / 2, 1, 0),
+    treatment_time = 0,
+    event_time = time - treatment_time,
+    outcome = 5 + 0.5 * time +
+      treated * ifelse(event_time >= 0, 2 + 0.5 * event_time, 0) +
+      rnorm(n(), sd = 0.5)
+  )
+```
+
+## Event Study Estimation
+
+We estimate the event-study regression using indicator variables for event time.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(fixest)
+
+panel_data <- panel_data %>%
+  mutate(event_time = factor(event_time))
+
+es_model <- feols(
+  outcome ~ i(event_time, treated, ref = "-1") | id + time,
+  data = panel_data
+)
+
+summary(es_model)
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-cap: "Event-study estimates with 95% confidence intervals"
+
+library(fixest)
+
+coefplot(es_model,
+         ref.line = 0,
+         xlab = "Event Time",
+         ylab = "Estimated Effect")
+```
+
+```
+
+## Graphical Presentation of Event-Study Estimates
+
+
+## Interpretation
+
+The absence of significant pre-treatment effects supports the plausibility of the parallel trends assumption.
+
+Post-treatment coefficients trace out the dynamic causal effects of the intervention over time.
+
+
+

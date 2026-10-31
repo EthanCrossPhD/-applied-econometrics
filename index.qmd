@@ -1,0 +1,27 @@
+---
+fig-align: center
+tbl-cap-location: top
+---
+
+
+
+# Applied Econometrics
+
+## About this book
+
+This book provides a modern, applied introduction to econometrics with a focus on
+empirical practice rather than formal theory.
+
+The material is designed for:
+- graduate students
+- policy analysts
+- applied researchers
+- practitioners working with real data
+
+Each chapter combines:
+- clear economic intuition
+- reproducible empirical examples
+- optional interactive tools for deeper exploration
+
+The book can be read sequentially or used as a reference.
+

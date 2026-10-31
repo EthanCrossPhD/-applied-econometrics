@@ -1,0 +1,62 @@
+# Simple OLS
+
+```{r setup}
+library(tidyverse)
+library(broom)
+
+source("R/run_simple_ols.R")
+
+res <- run_simple_ols()
+fig_path  <- res$figpath
+table_out <- res$table
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  comment = "",
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+::: {.callout-tip}
+### Learning objectives
+- Understand the assumptions underlying the linear regression model
+- Interpret OLS coefficients in economic terms
+- Distinguish between statistical and economic significance
+:::
+
+::: {.callout-important}
+### Key takeaways
+- Ordinary Least Squares provides unbiased estimates under standard assumptions
+- Coefficients measure marginal effects ceteris paribus
+- Model interpretation depends critically on correct specification
+:::
+
+::: {.callout-warning}
+### Common pitfalls
+- Interpreting correlation as causation
+- Ignoring omitted variable bias
+- Overemphasizing statistical significance without economic reasoning
+:::
+
+## Motivation
+Why linear regression remains the workhorse of applied econometrics.
+
+## Model
+We consider the standard linear regression model.
+
+## Interpretation
+Economic meaning of coefficients and assumptions.
+
+## Empirical example
+
+```{r, fig-ols-fit, fig.cap="OLS fitted line"}
+knitr::include_graphics(fig_path)
+
+```{r, tbl-ols}
+knitr::kable(
+  table_out,
+  caption = "OLS coefficient estimates",
+  align = "l"
+)
+```

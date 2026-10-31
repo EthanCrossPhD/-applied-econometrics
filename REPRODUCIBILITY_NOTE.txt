@@ -1,0 +1,24 @@
+Applied Econometrics — Reproducibility Notes
+===========================================
+
+This project uses {renv} for dependency management.
+
+IMPORTANT WORKFLOW RULES
+------------------------
+
+• Whenever you install, update, or remove an R package:
+    renv::snapshot(type = "all")
+
+• On a new machine or after cloning the project:
+    renv::restore()
+
+• Do NOT rely on the global R library.
+• Do NOT delete renv.lock or the renv/ directory.
+
+Notes
+-----
+- Some packages may appear as "recorded but not used" in renv::status().
+  This is normal for large Quarto projects and can be safely ignored
+  as long as renv::restore() reports a synchronized library.
+
+R version: 4.5.2

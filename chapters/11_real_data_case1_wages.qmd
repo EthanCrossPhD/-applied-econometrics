@@ -1,0 +1,93 @@
+---
+title: "Real Data Case 1: Wage Determination"
+number-sections: true
+---
+
+## Research Question
+
+How do education and labor market experience affect wages?
+This chapter illustrates how standard econometric issues arise in real data and how appropriate modeling choices improve inference.
+
+## Data Description
+
+We use the `wage1` dataset from the `wooldridge` package.
+The data are a cross-section of individuals and include information on hourly wages, education, and labor market experience.
+
+```{r}
+library(wooldridge)
+data(wage1)
+
+summary(wage1[, c("wage", "educ", "exper", "tenure")])
+```
+
+## Naive OLS in Levels
+
+We begin with a simple linear regression of wages on years of education.
+
+```{r}
+ols_levels <- lm(wage ~ educ, data = wage1)
+summary(ols_levels)
+```
+
+While the estimated coefficient on education is positive, this specification is problematic due to the strong right skewness of wages and non-constant variance.
+
+## Functional Form: Log Wages
+
+A standard transformation is to model the logarithm of wages.
+
+```{r}
+ols_log <- lm(log(wage) ~ educ + exper + I(exper^2), data = wage1)
+summary(ols_log)
+```
+
+In this specification, the coefficient on education can be interpreted as the approximate percentage increase in wages associated with an additional year of schooling.
+
+## Heteroskedasticity
+
+We examine residuals from the log-wage regression.
+
+```{r}
+plot(fitted(ols_log), resid(ols_log),
+     xlab = "Fitted values",
+     ylab = "Residuals",
+     main = "Residuals vs Fitted Values")
+abline(h = 0, col = "red")
+```
+
+Although the log transformation reduces heteroskedasticity, some variance heterogeneity remains.
+
+## Robust Inference
+
+We compare classical and heteroskedasticity-robust standard errors.
+
+```{r}
+X <- model.matrix(ols_log)
+u <- resid(ols_log)
+XtX_inv <- solve(crossprod(X))
+
+meat_white <- crossprod(X * u)
+vcov_white <- XtX_inv %*% meat_white %*% XtX_inv
+
+se_classical <- summary(ols_log)$coefficients[, "Std. Error"]
+se_robust <- sqrt(diag(vcov_white))
+
+se_table <- data.frame(
+  Classical_SE = round(se_classical, 4),
+  Robust_SE = round(se_robust, 4)
+)
+
+knitr::kable(
+  se_table,
+  caption = "Classical and Robust Standard Errors"
+)
+```
+
+Robust standard errors are slightly larger, indicating that classical inference may understate uncertainty.
+
+## Lessons Learned
+
+- Functional form choices have substantial implications for interpretation and inference.
+- Log transformations often stabilize variance in wage regressions.
+- Heteroskedasticity is pervasive in cross-sectional data.
+- Robust standard errors should be standard practice in applied work.
+

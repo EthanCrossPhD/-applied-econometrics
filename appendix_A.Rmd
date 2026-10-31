@@ -1,0 +1,104 @@
+---
+title: "Appendix A. Formal MMT Transmission Framework"
+output:
+  word_document:
+    fig_caption: true
+---
+
+## A.1 Monetary Sovereignty and the Decoupling Axiom
+
+Modern Monetary Theory (MMT) posits that the relationship between public debt and interest rates is decoupled under sovereign monetary regimes. Formally:
+
+$$
+r_t = \alpha + \beta_1 d_t + \beta_2 \pi_t
+$$
+
+where $r_t$ is the policy interest rate, $d_t$ the government debt-to-GDP ratio, $\pi_t$ the inflation rate, $\alpha$ the baseline policy-rate level, $\beta_1$ the sensitivity of the policy rate to debt (expected $\approx 0$ under sovereignty), and $\beta_2$ the sensitivity to inflation.
+
+The MMT *decoupling condition* implies
+
+$$
+\frac{\partial r_t}{\partial d_t} \approx 0,
+$$
+
+indicating that the fiscal stance and monetary policy are institutionally independent when the state issues its own currency.
+
+## A.2 Tourism FX Buffers and Functional Sovereignty
+
+In open, tourism-dependent economies such as Croatia, foreign-currency inflows act as functional extensions of monetary capacity. Changes in reserves are driven by tourism inflows according to:
+
+$$
+\Delta R_t = \omega f_t
+$$
+
+where $\Delta R_t$ is the change in reserves, $f_t$ the tourism foreign-exchange inflows, and $\omega$ the elasticity of reserves to those inflows.
+
+During the sovereign kuna period, sterilization operations maintained nominal stability by offsetting reserve growth through adjustments in the monetary base:
+
+$$
+\Delta r_t = \lambda\left(\Delta R_t - \Delta M_t\right)
+$$
+
+where $\Delta r_t$ is the change in the policy rate, $\Delta M_t$ the change in the monetary base, and $\lambda > 0$ the sterilization coefficient. A higher $\lambda$ denotes stronger monetary control, limiting liquidity spillovers from FX inflows into domestic prices.
+
+## A.3 Sectoral Inflation Structure and Spread Definition
+
+Inflation transmission is sectorally differentiated. Let the sectoral inflation vector be:
+
+$$
+\pi_t^{\text{sec}} = \left\{\, \pi_t^{A},\ \pi_t^{C},\ \pi_t^{U} \,\right\}
+$$
+
+where $\pi_t^{A}$ is inflation in **asset-based goods** (housing, land, vehicles), $\pi_t^{C}$ inflation in **consumables** (food, transport, tourism, clothing), and $\pi_t^{U}$ inflation in **utilities / administered prices** (energy, water, heating).
+
+The asset–consumption spread is defined as:
+
+$$
+S_t^{A-C} = \pi_t^{A} - \pi_t^{C}
+$$
+
+Under sovereign conditions (high $\lambda$ and $\omega$), sterilization keeps the spread close to zero or slightly positive: excess liquidity is absorbed by asset prices rather than consumer goods. Under euro integration (low $\lambda$ and $\omega$), the spread tends to become negative, reflecting the dominance of consumer inflation over asset inflation.
+
+## A.4 Euro Adoption and Reduced Buffer Sensitivity
+
+After euro adoption, reserve accumulation operates primarily through non-euro inflows:
+
+$$
+\Delta R_t = \omega^{\text{non-eu}} f_t^{\text{non-eu}}
+$$
+
+Since most tourism inflows are now euro-denominated, $\omega^{\text{non-eu}} \ll \omega$, and reserve changes have negligible impact on domestic liquidity control. The sterilization coefficient effectively approaches zero, $\lambda \to 0$, implying the disappearance of the policy capacity to offset external liquidity effects.
+
+## A.5 Regime Transition Equations
+
+The MMT transmission mechanism evolves across three functional regimes.
+
+**1. Sovereign Regime (Kuna Period):**
+
+$$
+\omega_{\text{sov}} > 0,\quad \lambda_{\text{sov}} > 0 \;\Longrightarrow\; S_t^{A-C} \gtrsim 0
+$$
+
+**2. FX-Buffered Hybrid Regime:**
+
+$$
+\omega_{\text{hyb}} \downarrow,\quad \lambda_{\text{hyb}} \downarrow \;\Longrightarrow\; \text{mild divergence in inflation channels}
+$$
+
+**3. Euro-Externalized Regime:**
+
+$$
+\omega_{\text{eu}} \to 0,\quad \lambda_{\text{eu}} \to 0 \;\Longrightarrow\; S_t^{A-C} < 0
+$$
+
+## A.6 Transmission Summary and Visualization
+
+*Note:* Arrows indicate the decline in sterilization capacity ($\lambda$) and FX-buffer elasticity ($\omega$) across successive regimes. Asset–consumption spreads $S_t^{A-C}$ invert as functional sovereignty diminishes.
+
+**Description.** Figure A1 illustrates the structural evolution of Croatia's inflation transmission mechanism across three monetary regimes.
+
+- **Sovereign Regime.** High sterilization ($\lambda_{\text{sov}}\uparrow$) and strong FX-buffer elasticity ($\omega_{\text{sov}}\uparrow$). The spread $S_t^{A-C}$ remains balanced or positive; inflation is directed into asset markets, stabilizing consumer prices.
+- **FX-Buffered Hybrid Regime.** Partial decoupling as euroization deepens. Moderate $\lambda_{\text{hyb}}$ and $\omega_{\text{hyb}}$; the spread fluctuates but remains contained.
+- **Euro-Externalized Regime.** Sterilization collapses ($\lambda_{\text{eu}}\to 0$); FX buffers lose effectiveness ($\omega_{\text{eu}}\to 0$); the spread inverts ($S_t^{A-C} < 0$).
+
+**Interpretation.** The transition path shows how diminishing functional sovereignty reshapes the structural composition of inflation — shifting from policy-anchored asset inflation toward externally driven consumer-price volatility.

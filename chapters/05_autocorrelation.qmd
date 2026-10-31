@@ -1,0 +1,40 @@
+# Autocorrelation
+
+::: {.callout-tip}
+### Learning Objectives
+- Understand what autocorrelation is and why it commonly appears in time series data
+- Recognize how autocorrelation affects efficiency and inference
+- Learn standard approaches to dealing with serial correlation
+:::
+
+::: {.callout-important}
+### Key Takeaways
+- Autocorrelation does not bias OLS coefficients under strict exogeneity
+- Standard errors are invalid in the presence of serial correlation
+- Correcting for autocorrelation is essential for valid inference
+:::
+
+::: {.callout-warning}
+### Common Pitfalls
+- Assuming independent errors in time series regressions
+- Ignoring serial correlation in panel data with time dimension
+- Applying corrections without understanding the data-generating process
+:::
+
+## Motivation
+
+Why autocorrelation matters in applied econometrics.
+
+## Model
+
+Formal setup and identifying assumptions.
+
+## Interpretation
+
+How to interpret estimates in practice.
+
+## Empirical example
+
+```{r, fig-autocorrelation, fig.cap="Autocorrelation in regression residuals", fig.width=7, fig.height=5}
+source("app_ch8_autocorrelation.R")
+```

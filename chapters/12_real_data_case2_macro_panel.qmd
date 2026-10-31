@@ -1,0 +1,164 @@
+---
+title: "Real Data Case 2: Government Consumption and Economic Growth"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Introduction
+Government spending plays a central role in macroeconomic policy.
+While higher public consumption may stabilize the business cycle and
+provide essential public services, it may also crowd out private
+investment and reduce long-run economic growth.
+This case study examines the empirical relationship between government
+consumption and economic growth using a macroeconomic panel dataset
+covering a large number of countries over several decades.
+The goal is to demonstrate the use of **fixed effects panel regression**
+to control for unobserved heterogeneity across countries and common
+global shocks over time.
+
+---
+
+## Research Question
+Does higher government consumption as a share of GDP correlate with
+lower economic growth once country and year fixed effects are taken
+into account?
+
+---
+
+## Setup
+```{r}
+library(dplyr)
+library(fixest)
+# Load prepared panel data
+df <- readRDS("data/macro_panel.rds")
+# Quick sanity check
+summary(df)
+library(ggplot2)
+```
+
+---
+
+## Data Description
+The dataset is constructed from the **World Development Indicators (WDI)**
+and contains annual observations for many countries over the period
+1990–2022.
+### Key Variables
+- **Economic growth:** annual growth rate of real GDP per capita (%)
+- **Government consumption:** general government final consumption expenditure as a percentage of GDP
+Observations with missing values in the main variables are excluded.
+Global aggregates and artificial regions are removed from the sample.
+
+---
+
+## Empirical Strategy
+We estimate the following fixed effects panel regression model:
+$$
+\text{Growth}_{it}
+= \beta \cdot \text{GovExp}_{it}
++ \alpha_i
++ \gamma_t
++ \varepsilon_{it}
+$$
+where:
+- \( \alpha_i \) are **country fixed effects**
+- \( \gamma_t \) are **year fixed effects**
+Standard errors are clustered at the country level.
+This specification controls for time-invariant country characteristics
+(such as geography, institutions, or long-run development levels) as
+well as common global shocks affecting all countries in a given year.
+
+---
+
+
+## Visual Evidence
+
+```{r fig-within, fig.cap="Within-country relationship between government consumption and economic growth"}
+df_within <- df |>
+  group_by(country) |>
+  mutate(
+    growth_dm = growth - mean(growth, na.rm = TRUE),
+    govexp_dm = govexp - mean(govexp, na.rm = TRUE)
+  ) |>
+  ungroup()
+
+ggplot(df_within, aes(govexp_dm, growth_dm)) +
+  geom_point(alpha = 0.15, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+  labs(
+    x = "Government consumption (demeaned)",
+    y = "GDP per capita growth (demeaned)"
+  ) +
+  theme_minimal()
+```
+
+## Baseline Fixed Effects Model
+
+```{r}
+fe_baseline <- feols(
+  growth ~ govexp | country + year,
+  data = df,
+  cluster = "country"
+)
+summary(fe_baseline)
+```
+
+
+## Robustness: Lagged Government Consumption
+
+To assess the sensitivity of the results to potential reverse causality, we re-estimate the fixed effects model using lagged government consumption.
+
+```{r fe-lag}
+fe_lag <- feols(
+  growth ~ l(govexp, 1) | country + year,
+  data = df,
+  cluster = "country",
+  panel.id = ~ country + year
+)
+
+summary(fe_lag)
+```
+
+Using lagged government consumption yields a coefficient of similar sign but smaller magnitude. This suggests that the negative association is not driven solely by contemporaneous reverse causality, although the estimate remains statistically imprecise. Overall, the qualitative conclusions of the baseline specification are unchanged.
+
+---
+
+## Results
+
+Quantitatively, the point estimate implies that a one‑percentage‑point increase in government consumption (as a share of GDP) is associated with approximately a 0.12 percentage point lower GDP per capita growth rate within a country. The estimate is not statistically significant at conventional levels, so the magnitude should be interpreted cautiously.
+
+
+
+The estimated coefficient on government consumption captures the
+within-country association between changes in government consumption
+and changes in economic growth, net of global time effects.
+A negative coefficient suggests that increases in government
+consumption are associated with lower growth rates within countries
+over time, although statistical significance must be carefully
+evaluated.
+Clustering standard errors at the country level accounts for serial
+correlation and heteroskedasticity within countries.
+
+---
+
+## Interpretation and Caveats
+
+It is important to emphasize that this analysis identifies correlation, not causation. Potential concerns include:
+
+- reverse causality (growth downturns may raise government spending)
+- omitted time-varying country-specific factors
+- measurement error in macroeconomic aggregates
+
+Nevertheless, the fixed effects framework provides a useful baseline for understanding empirical patterns in cross-country panel data.
+
+## Concluding Remarks
+
+This case study illustrates how fixed effects panel models can be used to study macroeconomic relationships using multi-country data.
+
+By controlling for country and year fixed effects, the analysis isolates within-country variation and highlights how accounting for unobserved heterogeneity can substantially alter naive cross-sectional relationships. While the results do not support a statistically significant association between government consumption and economic growth, the exercise demonstrates a clean and reproducible workflow for applied macroeconometric analysis using real-world data.
+

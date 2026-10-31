@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>25&nbsp; Regression Discontinuity Designs – Applied Econometrics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/26-event-studies-and-dynamic-treatment-effects.html" rel="next">
+<link href="../chapters/ch24-empirical-design-checklist.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/25-regression-discontinuity-designs.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Regression Discontinuity Designs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Applied Econometrics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Applied Econometrics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01_simple_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple OLS</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02_multiple_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple OLS</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03_functional_forms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functional Forms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04_heteroskedasticity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Heteroskedasticity</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05_autocorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Autocorrelation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06_panel_fixed_effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Panel Data and Fixed Effects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07_instrumental_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Instrumental Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08_difference_in_differences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Difference-in-Differences</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11_real_data_case1_wages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Real Data Case 1: Wage Determination</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12_real_data_case2_macro_panel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Real Data Case 2: Government Consumption and Economic Growth</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13_micro_case3A_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Micro Case 3A: Simulated Job Training Program</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13_micro_case3B_weak_iv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Micro Case 3B: Weak Instruments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13_micro_case3C_late.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Micro Case 3C: Local Average Treatment Effects (LATE)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/13_micro_case3D_invalid_instruments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Micro Case 3D: Invalid and Multiple Instruments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/14_diff_in_diff_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Difference-in-Differences: Intuition</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/15_diff_in_diff_canonical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Difference-in-Differences: Canonical 2×2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/16_event_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Difference-in-Differences: Event Study</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/17_placebo_tests_did.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Difference-in-Differences: Placebo and Falsification Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/21_staggered_adoption_twfe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Difference-in-Differences: Staggered Adoption and TWFE Bias</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/22_modern_did_estimators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Modern Difference-in-Differences Estimators</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ch23-did-summary-decision-tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Difference-in-Differences: Summary and Decision Tree</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ch24-empirical-design-checklist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Empirical Design Checklist: From Research Question to Credible Causal Inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/25-regression-discontinuity-designs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Regression Discontinuity Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/26-event-studies-and-dynamic-treatment-effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Event Studies and Dynamic Treatment Effects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/27-synthetic-control-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Synthetic Control Methods</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#purpose-and-intuition-of-rdd" id="toc-purpose-and-intuition-of-rdd" class="nav-link active" data-scroll-target="#purpose-and-intuition-of-rdd"><span class="header-section-number">25.1</span> Purpose and Intuition of RDD</a></li>
+  <li><a href="#sharp-and-fuzzy-regression-discontinuity-designs" id="toc-sharp-and-fuzzy-regression-discontinuity-designs" class="nav-link" data-scroll-target="#sharp-and-fuzzy-regression-discontinuity-designs"><span class="header-section-number">25.2</span> Sharp and Fuzzy Regression Discontinuity Designs</a>
+  <ul class="collapse">
+  <li><a href="#sharp-regression-discontinuity" id="toc-sharp-regression-discontinuity" class="nav-link" data-scroll-target="#sharp-regression-discontinuity"><span class="header-section-number">25.2.1</span> Sharp Regression Discontinuity</a></li>
+  <li><a href="#fuzzy-regression-discontinuity" id="toc-fuzzy-regression-discontinuity" class="nav-link" data-scroll-target="#fuzzy-regression-discontinuity"><span class="header-section-number">25.2.2</span> Fuzzy Regression Discontinuity</a></li>
+  </ul></li>
+  <li><a href="#graphical-analysis" id="toc-graphical-analysis" class="nav-link" data-scroll-target="#graphical-analysis"><span class="header-section-number">25.3</span> Graphical Analysis</a></li>
+  <li><a href="#estimation-and-bandwidth-choice" id="toc-estimation-and-bandwidth-choice" class="nav-link" data-scroll-target="#estimation-and-bandwidth-choice"><span class="header-section-number">25.4</span> Estimation and Bandwidth Choice</a>
+  <ul class="collapse">
+  <li><a href="#local-polynomial-estimation" id="toc-local-polynomial-estimation" class="nav-link" data-scroll-target="#local-polynomial-estimation"><span class="header-section-number">25.4.1</span> Local Polynomial Estimation</a></li>
+  <li><a href="#bandwidth-choice-biasvariance-trade-off" id="toc-bandwidth-choice-biasvariance-trade-off" class="nav-link" data-scroll-target="#bandwidth-choice-biasvariance-trade-off"><span class="header-section-number">25.4.2</span> Bandwidth Choice: Bias–Variance Trade-off</a></li>
+  <li><a href="#data-driven-bandwidth-selection" id="toc-data-driven-bandwidth-selection" class="nav-link" data-scroll-target="#data-driven-bandwidth-selection"><span class="header-section-number">25.4.3</span> Data-Driven Bandwidth Selection</a></li>
+  <li><a href="#reporting-and-transparency" id="toc-reporting-and-transparency" class="nav-link" data-scroll-target="#reporting-and-transparency"><span class="header-section-number">25.4.4</span> Reporting and Transparency</a></li>
+  </ul></li>
+  <li><a href="#validity-checks-and-manipulation-tests" id="toc-validity-checks-and-manipulation-tests" class="nav-link" data-scroll-target="#validity-checks-and-manipulation-tests"><span class="header-section-number">25.5</span> Validity Checks and Manipulation Tests</a>
+  <ul class="collapse">
+  <li><a href="#manipulation-of-the-running-variable" id="toc-manipulation-of-the-running-variable" class="nav-link" data-scroll-target="#manipulation-of-the-running-variable"><span class="header-section-number">25.5.1</span> Manipulation of the Running Variable</a></li>
+  <li><a href="#continuity-of-covariates" id="toc-continuity-of-covariates" class="nav-link" data-scroll-target="#continuity-of-covariates"><span class="header-section-number">25.5.2</span> Continuity of Covariates</a></li>
+  <li><a href="#placebo-and-falsification-tests" id="toc-placebo-and-falsification-tests" class="nav-link" data-scroll-target="#placebo-and-falsification-tests"><span class="header-section-number">25.5.3</span> Placebo and Falsification Tests</a></li>
+  <li><a href="#limitations-of-validity-checks" id="toc-limitations-of-validity-checks" class="nav-link" data-scroll-target="#limitations-of-validity-checks"><span class="header-section-number">25.5.4</span> Limitations of Validity Checks</a></li>
+  </ul></li>
+  <li><a href="#interpretation-and-external-validity" id="toc-interpretation-and-external-validity" class="nav-link" data-scroll-target="#interpretation-and-external-validity"><span class="header-section-number">25.6</span> Interpretation and External Validity</a>
+  <ul class="collapse">
+  <li><a href="#local-nature-of-the-estimand" id="toc-local-nature-of-the-estimand" class="nav-link" data-scroll-target="#local-nature-of-the-estimand"><span class="header-section-number">25.6.1</span> Local Nature of the Estimand</a></li>
+  <li><a href="#external-validity-and-generalization" id="toc-external-validity-and-generalization" class="nav-link" data-scroll-target="#external-validity-and-generalization"><span class="header-section-number">25.6.2</span> External Validity and Generalization</a></li>
+  <li><a href="#policy-interpretation" id="toc-policy-interpretation" class="nav-link" data-scroll-target="#policy-interpretation"><span class="header-section-number">25.6.3</span> Policy Interpretation</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">25.6.4</span> Summary</a></li>
+  </ul></li>
+  <li><a href="#empirical-example-program-eligibility-and-test-score-cutoffs" id="toc-empirical-example-program-eligibility-and-test-score-cutoffs" class="nav-link" data-scroll-target="#empirical-example-program-eligibility-and-test-score-cutoffs"><span class="header-section-number">25.7</span> Empirical Example: Program Eligibility and Test Score Cutoffs</a>
+  <ul class="collapse">
+  <li><a href="#design-and-assignment-mechanism" id="toc-design-and-assignment-mechanism" class="nav-link" data-scroll-target="#design-and-assignment-mechanism"><span class="header-section-number">25.7.1</span> Design and Assignment Mechanism</a></li>
+  <li><a href="#what-the-rdd-estimates" id="toc-what-the-rdd-estimates" class="nav-link" data-scroll-target="#what-the-rdd-estimates"><span class="header-section-number">25.7.2</span> What the RDD Estimates</a></li>
+  <li><a href="#graphical-evidence-interactive-preview" id="toc-graphical-evidence-interactive-preview" class="nav-link" data-scroll-target="#graphical-evidence-interactive-preview"><span class="header-section-number">25.7.3</span> Graphical Evidence (Interactive Preview)</a></li>
+  <li><a href="#estimation-results-empirical-illustration" id="toc-estimation-results-empirical-illustration" class="nav-link" data-scroll-target="#estimation-results-empirical-illustration"><span class="header-section-number">25.7.4</span> Estimation Results (Empirical Illustration)</a></li>
+  <li><a href="#validity-checks-empirical-illustration" id="toc-validity-checks-empirical-illustration" class="nav-link" data-scroll-target="#validity-checks-empirical-illustration"><span class="header-section-number">25.7.5</span> Validity Checks (Empirical Illustration)</a></li>
+  <li><a href="#transition-to-the-next-chapter" id="toc-transition-to-the-next-chapter" class="nav-link" data-scroll-target="#transition-to-the-next-chapter"><span class="header-section-number">25.7.6</span> Transition to the Next Chapter</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Regression Discontinuity Designs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="purpose-and-intuition-of-rdd" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="purpose-and-intuition-of-rdd"><span class="header-section-number">25.1</span> Purpose and Intuition of RDD</h2>
+<p>Regression discontinuity designs (RDD) exploit situations in which treatment assignment is determined by whether an observed running variable crosses a known cutoff. Units just above and just below the cutoff are assumed to be comparable in all respects except for treatment status.</p>
+<p>The core idea of RDD is that, in a sufficiently small neighborhood around the cutoff, the assignment mechanism mimics randomization. While treatment is not randomly assigned in the population at large, it is as good as random for units whose value of the running variable lies arbitrarily close to the threshold.</p>
+<p>As a result, discontinuities in the conditional expectation of the outcome at the cutoff can be interpreted as causal treatment effects.</p>
+<p>Formally, let <span class="math inline">\(X_i\)</span> denote the running variable and let <span class="math inline">\(c\)</span> denote the cutoff. Treatment assignment depends on whether the running variable crosses this threshold. The estimand of interest is the discontinuity in the conditional expectation of the outcome:</p>
+<p><span class="math display">\[
+\tau = \lim_{x \downarrow c} E[Y_i \mid X_i = x]
+      - \lim_{x \uparrow c} E[Y_i \mid X_i = x].
+\]</span></p>
+<p>This estimand captures a local average treatment effect at the cutoff rather than a population-wide effect. The local nature of identification is a defining feature of RDD and has important implications for interpretation and external validity.</p>
+<p>RDD is particularly attractive in applied work because the source of identification is transparent. Unlike regression adjustment, which relies on functional form assumptions, or difference-in-differences designs, which require parallel trends, RDD relies on a single and conceptually clear condition: in the absence of treatment, the outcome would evolve smoothly through the cutoff.</p>
+</section>
+<section id="sharp-and-fuzzy-regression-discontinuity-designs" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="sharp-and-fuzzy-regression-discontinuity-designs"><span class="header-section-number">25.2</span> Sharp and Fuzzy Regression Discontinuity Designs</h2>
+<p>Regression discontinuity designs come in two closely related variants, depending on how treatment assignment responds to crossing the cutoff: <strong>sharp RDD</strong> and <strong>fuzzy RDD</strong>. The distinction is crucial for both identification and estimation.</p>
+<section id="sharp-regression-discontinuity" class="level3" data-number="25.2.1">
+<h3 data-number="25.2.1" class="anchored" data-anchor-id="sharp-regression-discontinuity"><span class="header-section-number">25.2.1</span> Sharp Regression Discontinuity</h3>
+<p>[ D_i = {X_i c}. ]</p>
+<p>In a sharp RDD, the probability of treatment jumps from zero to one at the cutoff. Under continuity of potential outcomes, the causal effect at the threshold is given by the discontinuity in the outcome regression:</p>
+<p>[ = <em>{x c} E[Y_i X_i = x] - </em>{x c} E[Y_i X_i = x]. ]</p>
+<p>This estimand captures a local treatment effect at the cutoff.</p>
+</section>
+<section id="fuzzy-regression-discontinuity" class="level3" data-number="25.2.2">
+<h3 data-number="25.2.2" class="anchored" data-anchor-id="fuzzy-regression-discontinuity"><span class="header-section-number">25.2.2</span> Fuzzy Regression Discontinuity</h3>
+<p>In many applications, crossing the cutoff affects the probability of treatment without perfectly determining it.</p>
+<p>[ = . ]</p>
+<p>This estimand identifies a local average treatment effect for compliers at the cutoff. NA</p>
+</section>
+</section>
+<section id="graphical-analysis" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="graphical-analysis"><span class="header-section-number">25.3</span> Graphical Analysis</h2>
+<p>Graphical analysis is a central component of any regression discontinuity design. Before conducting formal estimation, researchers should visually inspect the relationship between the outcome variable and the running variable around the cutoff.</p>
+<p>The purpose of RD plots is not to estimate treatment effects precisely, but to assess the plausibility of the identifying assumptions and to make the source of identification transparent.</p>
+<p>In a credible RDD, the conditional expectation of the outcome should evolve smoothly with the running variable on either side of the cutoff, while exhibiting a visible discontinuity at the threshold.</p>
+</section>
+<section id="estimation-and-bandwidth-choice" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="estimation-and-bandwidth-choice"><span class="header-section-number">25.4</span> Estimation and Bandwidth Choice</h2>
+<p>While graphical analysis provides intuition and a valuable credibility check, causal inference in regression discontinuity designs requires formal estimation. The key challenge is to estimate the discontinuity in the conditional expectation of the outcome at the cutoff while balancing bias and variance.</p>
+<p>RDD estimation is inherently local. Observations far from the cutoff may improve precision but risk introducing bias due to misspecification of the functional form. Observations very close to the cutoff are more comparable but yield noisier estimates. The choice of bandwidth reflects this fundamental trade-off.</p>
+<section id="local-polynomial-estimation" class="level3" data-number="25.4.1">
+<h3 data-number="25.4.1" class="anchored" data-anchor-id="local-polynomial-estimation"><span class="header-section-number">25.4.1</span> Local Polynomial Estimation</h3>
+<p>The standard approach to RDD estimation is local polynomial regression, estimated separately on each side of the cutoff. In practice, local linear regression is often preferred due to its favorable boundary properties.</p>
+<p>Let (Y_i) denote the outcome and (X_i) the running variable with cutoff (c). A local linear RDD estimator solves:</p>
+<p>[ <em>{</em>,<em>} </em>{i: X_i &lt; c} K!() (Y_i - <em>- </em>(X_i - c))^2 ]</p>
+<p>and analogously on the right side of the cutoff. The estimated treatment effect is given by the difference in the fitted intercepts at the cutoff.</p>
+</section>
+<section id="bandwidth-choice-biasvariance-trade-off" class="level3" data-number="25.4.2">
+<h3 data-number="25.4.2" class="anchored" data-anchor-id="bandwidth-choice-biasvariance-trade-off"><span class="header-section-number">25.4.2</span> Bandwidth Choice: Bias–Variance Trade-off</h3>
+<p>The bandwidth (h) determines how local the comparison is.</p>
+<ul>
+<li>Small bandwidths reduce bias but increase variance.</li>
+<li>Large bandwidths reduce variance but risk bias from functional form misspecification.</li>
+</ul>
+<p>Graphical analysis helps guide reasonable bandwidth ranges, but formal methods are needed for principled selection.</p>
+</section>
+<section id="data-driven-bandwidth-selection" class="level3" data-number="25.4.3">
+<h3 data-number="25.4.3" class="anchored" data-anchor-id="data-driven-bandwidth-selection"><span class="header-section-number">25.4.3</span> Data-Driven Bandwidth Selection</h3>
+<p>Modern RDD practice relies on data-driven bandwidth selectors that minimize asymptotic mean squared error. Among the most widely used are the methods proposed by Imbens and Kalyanaraman (2012) and Calonico, Cattaneo, and Titiunik (2014).</p>
+<p>These procedures automatically choose bandwidths that balance bias and variance and are implemented in standard software packages.</p>
+</section>
+<section id="reporting-and-transparency" class="level3" data-number="25.4.4">
+<h3 data-number="25.4.4" class="anchored" data-anchor-id="reporting-and-transparency"><span class="header-section-number">25.4.4</span> Reporting and Transparency</h3>
+<p>Good practice in RDD estimation includes reporting the chosen bandwidth and the method used to select it, presenting robustness checks across bandwidths, pairing numerical estimates with graphical evidence, and clearly stating the local nature of the estimand.</p>
+<p>RDD estimates are local by construction. Their credibility rests not on complexity, but on transparency.</p>
+</section>
+</section>
+<section id="validity-checks-and-manipulation-tests" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="validity-checks-and-manipulation-tests"><span class="header-section-number">25.5</span> Validity Checks and Manipulation Tests</h2>
+<p>The credibility of a regression discontinuity design hinges on the plausibility of its identifying assumptions. While RDDs are often viewed as transparent and intuitive, they require careful diagnostic checks to rule out alternative explanations for observed discontinuities.</p>
+<p>The key identifying assumption is that, in the absence of treatment, the conditional expectation of the outcome and other relevant variables would evolve smoothly through the cutoff. Validity checks in RDD aim to assess whether this assumption is likely to hold in the data.</p>
+<section id="manipulation-of-the-running-variable" class="level3" data-number="25.5.1">
+<h3 data-number="25.5.1" class="anchored" data-anchor-id="manipulation-of-the-running-variable"><span class="header-section-number">25.5.1</span> Manipulation of the Running Variable</h3>
+<p>A primary threat to validity arises if individuals can precisely manipulate the running variable in order to sort around the cutoff. If such manipulation occurs, units just above and just below the threshold may no longer be comparable.</p>
+<p>One common diagnostic is to examine the density of the running variable around the cutoff. A discontinuity in the density suggests strategic sorting and undermines the credibility of the design.</p>
+</section>
+<section id="continuity-of-covariates" class="level3" data-number="25.5.2">
+<h3 data-number="25.5.2" class="anchored" data-anchor-id="continuity-of-covariates"><span class="header-section-number">25.5.2</span> Continuity of Covariates</h3>
+<p>Another important validity check involves testing for discontinuities in predetermined covariates at the cutoff. Since these variables should not be affected by treatment, any systematic jumps may indicate violations of the identifying assumptions.</p>
+<p>In a credible RDD, baseline characteristics should evolve smoothly through the threshold, mirroring the continuity required of the outcome in the absence of treatment.</p>
+</section>
+<section id="placebo-and-falsification-tests" class="level3" data-number="25.5.3">
+<h3 data-number="25.5.3" class="anchored" data-anchor-id="placebo-and-falsification-tests"><span class="header-section-number">25.5.3</span> Placebo and Falsification Tests</h3>
+<p>Placebo tests provide an additional diagnostic by estimating discontinuities at cutoffs where no treatment is assigned. Significant effects at placebo thresholds cast doubt on the interpretation of the main RDD estimate.</p>
+<p>Similarly, researchers may test for treatment effects in periods or outcomes that should not be affected by the intervention. Failure to find such effects strengthens the credibility of the design.</p>
+</section>
+<section id="limitations-of-validity-checks" class="level3" data-number="25.5.4">
+<h3 data-number="25.5.4" class="anchored" data-anchor-id="limitations-of-validity-checks"><span class="header-section-number">25.5.4</span> Limitations of Validity Checks</h3>
+<p>While validity checks are informative, they cannot conclusively prove identification. Absence of evidence of manipulation or discontinuities in covariates does not guarantee that the identifying assumptions hold.</p>
+<p>For this reason, validity checks should be viewed as complementary evidence, to be interpreted alongside substantive knowledge of the institutional context and the graphical and statistical evidence presented earlier.</p>
+</section>
+</section>
+<section id="interpretation-and-external-validity" class="level2" data-number="25.6">
+<h2 data-number="25.6" class="anchored" data-anchor-id="interpretation-and-external-validity"><span class="header-section-number">25.6</span> Interpretation and External Validity</h2>
+<p>Regression discontinuity designs identify causal effects at the cutoff of the running variable. As a result, the estimated treatment effect is inherently local and applies only to units whose value of the running variable lies in a neighborhood around the threshold.</p>
+<p>This local nature of identification has important implications for interpretation. RDD estimates should not be interpreted as average treatment effects for the entire population, but rather as effects for individuals who are marginal with respect to treatment assignment.</p>
+<section id="local-nature-of-the-estimand" class="level3" data-number="25.6.1">
+<h3 data-number="25.6.1" class="anchored" data-anchor-id="local-nature-of-the-estimand"><span class="header-section-number">25.6.1</span> Local Nature of the Estimand</h3>
+<p>The RDD estimand captures the causal effect for units at the cutoff. These units may differ systematically from those farther away from the threshold, limiting the external validity of the findings.</p>
+<p>In some applications, however, individuals near the cutoff are of particular policy relevance. For example, when eligibility rules are defined by thresholds, policymakers are often interested precisely in the effects for marginal recipients.</p>
+</section>
+<section id="external-validity-and-generalization" class="level3" data-number="25.6.2">
+<h3 data-number="25.6.2" class="anchored" data-anchor-id="external-validity-and-generalization"><span class="header-section-number">25.6.2</span> External Validity and Generalization</h3>
+<p>The limited external validity of RDD does not imply that the design is uninformative. Instead, it highlights the importance of careful interpretation and contextual knowledge.</p>
+<p>Researchers may strengthen external validity by combining RDD evidence with results from other designs, by estimating effects at multiple cutoffs, or by studying heterogeneous treatment effects across subgroups.</p>
+</section>
+<section id="policy-interpretation" class="level3" data-number="25.6.3">
+<h3 data-number="25.6.3" class="anchored" data-anchor-id="policy-interpretation"><span class="header-section-number">25.6.3</span> Policy Interpretation</h3>
+<p>RDD results are often well suited for policy evaluation, as they directly speak to the consequences of marginal changes in eligibility or assignment rules.</p>
+<p>However, extrapolating RDD estimates beyond the cutoff requires strong assumptions and should be undertaken with caution. Transparency about what is identified—and what is not—is essential for credible policy analysis.</p>
+</section>
+<section id="summary" class="level3" data-number="25.6.4">
+<h3 data-number="25.6.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">25.6.4</span> Summary</h3>
+<p>Regression discontinuity designs offer a powerful and transparent framework for causal inference when treatment assignment is governed by a known threshold. Their credibility rests on local identification, careful estimation, and thorough validity checks.</p>
+<p>When interpreted appropriately, RDDs provide compelling evidence on causal effects at policy-relevant margins, even if their conclusions do not automatically generalize to the broader population.</p>
+</section>
+</section>
+<section id="empirical-example-program-eligibility-and-test-score-cutoffs" class="level2" data-number="25.7">
+<h2 data-number="25.7" class="anchored" data-anchor-id="empirical-example-program-eligibility-and-test-score-cutoffs"><span class="header-section-number">25.7</span> Empirical Example: Program Eligibility and Test Score Cutoffs</h2>
+<p>To illustrate the mechanics and interpretation of regression discontinuity designs, we consider a stylized empirical example in which eligibility for a program is determined by a cutoff in a test score.</p>
+<p>Suppose students are eligible for an educational intervention if their standardized test score exceeds a known threshold. Let the test score serve as the running variable, with treatment assignment determined by whether the score crosses the cutoff.</p>
+<p>The outcome of interest may be a subsequent academic achievement measure, such as grade point average, test performance in a later period, or educational attainment.</p>
+<section id="design-and-assignment-mechanism" class="level3" data-number="25.7.1">
+<h3 data-number="25.7.1" class="anchored" data-anchor-id="design-and-assignment-mechanism"><span class="header-section-number">25.7.1</span> Design and Assignment Mechanism</h3>
+<p>Eligibility for the program is determined by a known cutoff in the test score. Students with scores at or above the threshold are offered treatment, while those below are not.</p>
+<p>Near the cutoff, students just above and just below the threshold are expected to be similar in observed and unobserved characteristics, except for their treatment status. Under the continuity assumption, differences in outcomes at the cutoff can be attributed to the causal effect of program participation.</p>
+<p>This setting naturally lends itself to a sharp regression discontinuity design if eligibility perfectly determines participation, or to a fuzzy design if take-up is incomplete.</p>
+</section>
+<section id="what-the-rdd-estimates" class="level3" data-number="25.7.2">
+<h3 data-number="25.7.2" class="anchored" data-anchor-id="what-the-rdd-estimates"><span class="header-section-number">25.7.2</span> What the RDD Estimates</h3>
+<p>The regression discontinuity estimand in this setting captures the causal effect of program eligibility for students whose test scores lie in a neighborhood around the cutoff.</p>
+<p>Importantly, this effect applies to marginal students near the threshold and should not be interpreted as the average effect for all program participants. The empirical example therefore reinforces the local nature of identification emphasized earlier in the chapter.</p>
+</section>
+<section id="graphical-evidence-interactive-preview" class="level3" data-number="25.7.3">
+<h3 data-number="25.7.3" class="anchored" data-anchor-id="graphical-evidence-interactive-preview"><span class="header-section-number">25.7.3</span> Graphical Evidence (Interactive Preview)</h3>
+<p>Graphical evidence plays a central role in understanding and communicating regression discontinuity designs. In this empirical example, the primary diagnostic tool is a plot of the outcome variable against the running variable, with special attention paid to observations near the cutoff.</p>
+<p>An RD plot visually displays whether the conditional expectation of the outcome evolves smoothly on either side of the threshold while exhibiting a discontinuous jump at the cutoff. Such a pattern is consistent with the identifying assumptions of the design.</p>
+<p>In practice, raw scatterplots are often supplemented with binned averages and local polynomial fits estimated separately on each side of the cutoff. These graphical elements help reduce noise and clarify the underlying relationship without imposing strong global functional form assumptions.</p>
+<p>For the purposes of this chapter, the graphical analysis is presented conceptually. In the accompanying interactive handout, readers will be able to adjust key elements of the RD plot—such as the bandwidth, bin width, and polynomial order—and observe how the visual evidence responds to these choices.</p>
+<p>This interactive exploration reinforces two core insights. First, RDD evidence is inherently local: conclusions are driven by observations near the cutoff. Second, graphical results are sensitive to tuning parameters, underscoring the importance of transparency and robustness in applied work.</p>
+<p>The graphical analysis should be interpreted as a complement to formal estimation rather than as a standalone source of inference.</p>
+</section>
+<section id="estimation-results-empirical-illustration" class="level3" data-number="25.7.4">
+<h3 data-number="25.7.4" class="anchored" data-anchor-id="estimation-results-empirical-illustration"><span class="header-section-number">25.7.4</span> Estimation Results (Empirical Illustration)</h3>
+<p>We now briefly illustrate how formal estimation complements the graphical evidence in this empirical example. The regression discontinuity estimate is obtained using local polynomial regression with a data-driven bandwidth selection procedure.</p>
+<p>Consistent with the graphical patterns, the estimated treatment effect indicates a positive and statistically meaningful discontinuity at the cutoff. The magnitude of the effect is economically relevant for students near the eligibility threshold, reinforcing the interpretation of the design as identifying a local causal effect.</p>
+<p>To assess robustness, estimates can be computed using alternative bandwidth choices and polynomial orders. In this example, the qualitative conclusions remain stable across a range of reasonable specifications, although point estimates and standard errors vary, reflecting the inherent bias–variance trade-off discussed earlier.</p>
+<p>Importantly, these estimates should be interpreted in light of the design’s identifying assumptions and validity checks. The numerical results do not stand alone; they gain credibility from the alignment between graphical evidence, institutional knowledge, and diagnostic tests.</p>
+<p>In the interactive handout, readers will be able to modify estimation choices—such as the bandwidth and kernel—and observe how the estimated discontinuity responds to these changes in real time.</p>
+</section>
+<section id="validity-checks-empirical-illustration" class="level3" data-number="25.7.5">
+<h3 data-number="25.7.5" class="anchored" data-anchor-id="validity-checks-empirical-illustration"><span class="header-section-number">25.7.5</span> Validity Checks (Empirical Illustration)</h3>
+<p>To assess the credibility of the regression discontinuity design in this empirical example, several standard validity checks are considered. These diagnostics are designed to evaluate whether the identifying assumptions discussed earlier are plausible in the data.</p>
+<p>First, the distribution of the running variable is examined around the cutoff to assess potential manipulation. In a credible design, the density of test scores should evolve smoothly through the threshold, with no visible discontinuity that would suggest strategic sorting.</p>
+<p>Second, predetermined covariates—such as prior academic performance or demographic characteristics—are analyzed for discontinuities at the cutoff. The absence of systematic jumps in these variables supports the assumption that students just above and below the threshold are comparable.</p>
+<p>Third, placebo tests are conducted by estimating discontinuities at alternative cutoffs where no treatment is assigned. Finding no significant effects at these placebo thresholds strengthens confidence that the observed discontinuity at the true cutoff reflects a causal effect of program eligibility.</p>
+<p>Taken together, these checks provide supporting evidence for the validity of the design. While no single diagnostic can conclusively establish identification, the consistency of results across multiple tests enhances the credibility of the empirical findings.</p>
+<p>In the interactive handout, these validity checks can be explored dynamically, allowing readers to visualize density plots, covariate continuity, and placebo estimates under different specifications.</p>
+</section>
+<section id="transition-to-the-next-chapter" class="level3" data-number="25.7.6">
+<h3 data-number="25.7.6" class="anchored" data-anchor-id="transition-to-the-next-chapter"><span class="header-section-number">25.7.6</span> Transition to the Next Chapter</h3>
+<p>Regression discontinuity designs exploit deterministic assignment rules to achieve credible causal identification at policy-relevant thresholds. Their strength lies in transparent assumptions and local comparisons near a cutoff.</p>
+<p>The next chapter extends the discussion of quasi-experimental methods to settings in which treatment assignment varies over time rather than across a threshold. While the identifying assumptions differ, the central challenge remains the same: isolating causal effects in observational data using institutional structure and careful design.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/ch24-empirical-design-checklist.html" class="pagination-link" aria-label="Empirical Design Checklist: From Research Question to Credible Causal Inference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Empirical Design Checklist: From Research Question to Credible Causal Inference</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/26-event-studies-and-dynamic-treatment-effects.html" class="pagination-link" aria-label="Event Studies and Dynamic Treatment Effects">
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Event Studies and Dynamic Treatment Effects</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

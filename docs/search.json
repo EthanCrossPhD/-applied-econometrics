@@ -1,0 +1,1622 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Applied Econometrics",
+    "section": "",
+    "text": "1 Applied Econometrics",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Applied Econometrics</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#about-this-book",
+    "href": "index.html#about-this-book",
+    "title": "Applied Econometrics",
+    "section": "1.1 About this book",
+    "text": "1.1 About this book\nThis book provides a modern, applied introduction to econometrics with a focus on empirical practice rather than formal theory.\nThe material is designed for: - graduate students - policy analysts - applied researchers - practitioners working with real data\nEach chapter combines: - clear economic intuition - reproducible empirical examples - optional interactive tools for deeper exploration\nThe book can be read sequentially or used as a reference.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Applied Econometrics</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01_simple_ols.html",
+    "href": "chapters/01_simple_ols.html",
+    "title": "2  Simple OLS",
+    "section": "",
+    "text": "2.1 Motivation\nWhy linear regression remains the workhorse of applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01_simple_ols.html#model",
+    "href": "chapters/01_simple_ols.html#model",
+    "title": "2  Simple OLS",
+    "section": "2.2 Model",
+    "text": "2.2 Model\nWe consider the standard linear regression model.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01_simple_ols.html#interpretation",
+    "href": "chapters/01_simple_ols.html#interpretation",
+    "title": "2  Simple OLS",
+    "section": "2.3 Interpretation",
+    "text": "2.3 Interpretation\nEconomic meaning of coefficients and assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01_simple_ols.html#empirical-example",
+    "href": "chapters/01_simple_ols.html#empirical-example",
+    "title": "2  Simple OLS",
+    "section": "2.4 Empirical example",
+    "text": "2.4 Empirical example\n\n\n\n\n\n\n\n\nFigure 2.1: OLS fitted line\n\n\n\n\n\n\n\n\n\nTable 2.1: OLS coefficient estimates\n\n\n\n\n\n\nTerm\nEstimate\nStd. Error\np-value\n\n\n\n\n(Intercept)\n0.897\n0.098\n0\n\n\nx\n1.948\n0.107\n0",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02_multiple_ols.html",
+    "href": "chapters/02_multiple_ols.html",
+    "title": "3  Multiple OLS",
+    "section": "",
+    "text": "3.1 Motivation\nWhy multiple OLS matter in applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multiple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02_multiple_ols.html#model",
+    "href": "chapters/02_multiple_ols.html#model",
+    "title": "3  Multiple OLS",
+    "section": "3.2 Model",
+    "text": "3.2 Model\nFormal setup and identifying assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multiple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02_multiple_ols.html#interpretation",
+    "href": "chapters/02_multiple_ols.html#interpretation",
+    "title": "3  Multiple OLS",
+    "section": "3.3 Interpretation",
+    "text": "3.3 Interpretation\nHow to interpret estimates in practice.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multiple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02_multiple_ols.html#empirical-example",
+    "href": "chapters/02_multiple_ols.html#empirical-example",
+    "title": "3  Multiple OLS",
+    "section": "3.4 Empirical example",
+    "text": "3.4 Empirical example\nsource(“app_ch4_multiple_ols.R”)\nknitr::kable( summary(model)$coefficients, caption = “Multiple OLS coefficient estimates”, digits = 3 )",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multiple OLS</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03_functional_forms.html",
+    "href": "chapters/03_functional_forms.html",
+    "title": "4  Functional Forms",
+    "section": "",
+    "text": "4.1 Motivation\nWhy functional forms matter in applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functional Forms</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03_functional_forms.html#model",
+    "href": "chapters/03_functional_forms.html#model",
+    "title": "4  Functional Forms",
+    "section": "4.2 Model",
+    "text": "4.2 Model\nFormal setup and identifying assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functional Forms</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03_functional_forms.html#interpretation",
+    "href": "chapters/03_functional_forms.html#interpretation",
+    "title": "4  Functional Forms",
+    "section": "4.3 Interpretation",
+    "text": "4.3 Interpretation\nHow to interpret estimates in practice.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functional Forms</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03_functional_forms.html#empirical-example",
+    "href": "chapters/03_functional_forms.html#empirical-example",
+    "title": "4  Functional Forms",
+    "section": "4.4 Empirical example",
+    "text": "4.4 Empirical example",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functional Forms</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04_heteroskedasticity.html",
+    "href": "chapters/04_heteroskedasticity.html",
+    "title": "5  Heteroskedasticity",
+    "section": "",
+    "text": "5.1 Motivation\nWhy heteroskedasticity matters in applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Heteroskedasticity</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04_heteroskedasticity.html#model",
+    "href": "chapters/04_heteroskedasticity.html#model",
+    "title": "5  Heteroskedasticity",
+    "section": "5.2 Model",
+    "text": "5.2 Model\nFormal setup and identifying assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Heteroskedasticity</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04_heteroskedasticity.html#interpretation",
+    "href": "chapters/04_heteroskedasticity.html#interpretation",
+    "title": "5  Heteroskedasticity",
+    "section": "5.3 Interpretation",
+    "text": "5.3 Interpretation\nHow to interpret estimates in practice.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Heteroskedasticity</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04_heteroskedasticity.html#empirical-example",
+    "href": "chapters/04_heteroskedasticity.html#empirical-example",
+    "title": "5  Heteroskedasticity",
+    "section": "5.4 Empirical example",
+    "text": "5.4 Empirical example",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Heteroskedasticity</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05_autocorrelation.html",
+    "href": "chapters/05_autocorrelation.html",
+    "title": "6  Autocorrelation",
+    "section": "",
+    "text": "6.1 Motivation\nWhy autocorrelation matters in applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05_autocorrelation.html#model",
+    "href": "chapters/05_autocorrelation.html#model",
+    "title": "6  Autocorrelation",
+    "section": "6.2 Model",
+    "text": "6.2 Model\nFormal setup and identifying assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05_autocorrelation.html#interpretation",
+    "href": "chapters/05_autocorrelation.html#interpretation",
+    "title": "6  Autocorrelation",
+    "section": "6.3 Interpretation",
+    "text": "6.3 Interpretation\nHow to interpret estimates in practice.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05_autocorrelation.html#empirical-example",
+    "href": "chapters/05_autocorrelation.html#empirical-example",
+    "title": "6  Autocorrelation",
+    "section": "6.4 Empirical example",
+    "text": "6.4 Empirical example",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06_panel_fixed_effects.html",
+    "href": "chapters/06_panel_fixed_effects.html",
+    "title": "7  Panel Data and Fixed Effects",
+    "section": "",
+    "text": "7.1 Motivation",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Panel Data and Fixed Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06_panel_fixed_effects.html#fixed-effects-vs.-pooled-ols",
+    "href": "chapters/06_panel_fixed_effects.html#fixed-effects-vs.-pooled-ols",
+    "title": "7  Panel Data and Fixed Effects",
+    "section": "7.2 Fixed Effects vs. Pooled OLS",
+    "text": "7.2 Fixed Effects vs. Pooled OLS\n\nWhy panel data and fixed effects matter in applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Panel Data and Fixed Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06_panel_fixed_effects.html#model",
+    "href": "chapters/06_panel_fixed_effects.html#model",
+    "title": "7  Panel Data and Fixed Effects",
+    "section": "7.3 Model",
+    "text": "7.3 Model\nFormal setup and identifying assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Panel Data and Fixed Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06_panel_fixed_effects.html#interpretation",
+    "href": "chapters/06_panel_fixed_effects.html#interpretation",
+    "title": "7  Panel Data and Fixed Effects",
+    "section": "7.4 Interpretation",
+    "text": "7.4 Interpretation\nHow to interpret estimates in practice.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Panel Data and Fixed Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07_instrumental_variables.html",
+    "href": "chapters/07_instrumental_variables.html",
+    "title": "8  Instrumental Variables",
+    "section": "",
+    "text": "8.1 Motivation\nWhy instrumental variables matter in applied econometrics.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Instrumental Variables</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07_instrumental_variables.html#model",
+    "href": "chapters/07_instrumental_variables.html#model",
+    "title": "8  Instrumental Variables",
+    "section": "8.2 Model",
+    "text": "8.2 Model\nFormal setup and identifying assumptions.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Instrumental Variables</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07_instrumental_variables.html#interpretation",
+    "href": "chapters/07_instrumental_variables.html#interpretation",
+    "title": "8  Instrumental Variables",
+    "section": "8.3 Interpretation",
+    "text": "8.3 Interpretation\nHow to interpret estimates in practice.\n\nThe figure compares OLS and IV estimates in the presence of endogeneity. OLS overstates the causal effect because the regressor is correlated with the error term. IV estimation corrects this bias by using only exogenous variation induced by the instrument.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Instrumental Variables</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07_instrumental_variables.html#empirical-example",
+    "href": "chapters/07_instrumental_variables.html#empirical-example",
+    "title": "8  Instrumental Variables",
+    "section": "8.4 Empirical example",
+    "text": "8.4 Empirical example\nThe empirical implementation of instrumental variables is demonstrated using simulated data in the accompanying application.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Instrumental Variables</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08_difference_in_differences.html",
+    "href": "chapters/08_difference_in_differences.html",
+    "title": "9  Difference-in-Differences",
+    "section": "",
+    "text": "9.1 Motivation\nWhy comparing before–after differences across groups can identify causal effects.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Difference-in-Differences</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08_difference_in_differences.html#setup",
+    "href": "chapters/08_difference_in_differences.html#setup",
+    "title": "9  Difference-in-Differences",
+    "section": "9.2 Setup",
+    "text": "9.2 Setup\nThe basic two-group, two-period Difference-in-Differences framework.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Difference-in-Differences</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08_difference_in_differences.html#identification",
+    "href": "chapters/08_difference_in_differences.html#identification",
+    "title": "9  Difference-in-Differences",
+    "section": "9.3 Identification",
+    "text": "9.3 Identification\nThe parallel trends assumption and its implications.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Difference-in-Differences</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08_difference_in_differences.html#interpretation",
+    "href": "chapters/08_difference_in_differences.html#interpretation",
+    "title": "9  Difference-in-Differences",
+    "section": "9.4 Interpretation",
+    "text": "9.4 Interpretation\n\nThe figure illustrates the logic of Difference-in-Differences. Absent treatment, treated and control groups would have followed parallel trends. The DiD estimator is the vertical difference between the observed and counterfactual outcomes.\nHow to interpret the DiD estimator in practice.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Difference-in-Differences</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08_difference_in_differences.html#empirical-example",
+    "href": "chapters/08_difference_in_differences.html#empirical-example",
+    "title": "9  Difference-in-Differences",
+    "section": "9.5 Empirical example",
+    "text": "9.5 Empirical example\nThe empirical implementation of Difference-in-Differences is demonstrated using simulated data in the accompanying application.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Difference-in-Differences</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html",
+    "href": "chapters/09_inference.html",
+    "title": "10  Inference",
+    "section": "",
+    "text": "10.1 Learning Objectives",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#learning-objectives",
+    "href": "chapters/09_inference.html#learning-objectives",
+    "title": "10  Inference",
+    "section": "",
+    "text": "Understand the distinction between identification and statistical inference\nRecognize when classical standard errors are invalid\nApply robust and clustered standard errors in applied settings\nInterpret statistical significance in IV and DiD designs",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#key-takeaways",
+    "href": "chapters/09_inference.html#key-takeaways",
+    "title": "10  Inference",
+    "section": "10.2 Key Takeaways",
+    "text": "10.2 Key Takeaways\n\nIdentification answers what is estimated; inference answers how precisely\nClassical standard errors rely on strong assumptions rarely satisfied in practice\nRobust and clustered standard errors are essential in applied econometrics\nIncorrect inference can overturn otherwise credible identification strategies",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#common-pitfalls",
+    "href": "chapters/09_inference.html#common-pitfalls",
+    "title": "10  Inference",
+    "section": "10.3 Common Pitfalls",
+    "text": "10.3 Common Pitfalls\n\nConfusing statistical significance with causal validity\nUsing heteroskedasticity-robust standard errors when clustering is required\nClustering at the wrong level\nIgnoring serial correlation in panel and DiD settings",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#why-inference-matters",
+    "href": "chapters/09_inference.html#why-inference-matters",
+    "title": "10  Inference",
+    "section": "10.4 Why Inference Matters",
+    "text": "10.4 Why Inference Matters\nIdentification establishes causal interpretation under assumptions. Inference quantifies uncertainty around estimated effects. A well-identified estimate with invalid inference can lead to misleading conclusions.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#classical-standard-errors",
+    "href": "chapters/09_inference.html#classical-standard-errors",
+    "title": "10  Inference",
+    "section": "10.5 Classical Standard Errors",
+    "text": "10.5 Classical Standard Errors\nClassical standard errors assume: - homoskedasticity - no serial correlation - independent observations\nThese assumptions rarely hold in observational data.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#heteroskedasticity-robust-standard-errors",
+    "href": "chapters/09_inference.html#heteroskedasticity-robust-standard-errors",
+    "title": "10  Inference",
+    "section": "10.6 Heteroskedasticity-Robust Standard Errors",
+    "text": "10.6 Heteroskedasticity-Robust Standard Errors\nRobust standard errors allow for: - unknown heteroskedasticity - consistent variance estimation under weaker assumptions\nThey are standard in cross-sectional applications but insufficient in panel settings.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#clustered-standard-errors",
+    "href": "chapters/09_inference.html#clustered-standard-errors",
+    "title": "10  Inference",
+    "section": "10.7 Clustered Standard Errors",
+    "text": "10.7 Clustered Standard Errors\nClustering accounts for: - within-group correlation - serial dependence over time\nCorrect clustering is dictated by the level of treatment variation. Difference-in-Differences and panel regressions typically require clustering at the unit level.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#inference-in-iv-and-did",
+    "href": "chapters/09_inference.html#inference-in-iv-and-did",
+    "title": "10  Inference",
+    "section": "10.8 Inference in IV and DiD",
+    "text": "10.8 Inference in IV and DiD\nInstrumental Variables: - weak instruments inflate variance - standard errors reflect identification strength\nDifference-in-Differences: - serial correlation leads to over-rejection - clustering is essential for valid inference",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#practical-guidance",
+    "href": "chapters/09_inference.html#practical-guidance",
+    "title": "10  Inference",
+    "section": "10.9 Practical Guidance",
+    "text": "10.9 Practical Guidance\n\nCross-section: use heteroskedasticity-robust standard errors\nPanel data: cluster at the individual or group level\nDiD: cluster at the treatment assignment level\nSmall number of clusters requires caution in interpretation",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09_inference.html#empirical-illustration",
+    "href": "chapters/09_inference.html#empirical-illustration",
+    "title": "10  Inference",
+    "section": "10.10 Empirical Illustration",
+    "text": "10.10 Empirical Illustration\n\n\n\nPoint estimate and alternative standard errors\n\n\n\nValue\n\n\n\n\nEstimate\n1.047\n\n\n(Classical SE)\n0.053\n\n\n(Robust SE)\n0.049\n\n\n(Clustered SE)\n0.051\n\n\n\n\n\nThe point estimate is identical across specifications, as expected. However, the associated standard errors differ substantially. Classical standard errors severely understate uncertainty in the presence of within-group correlation. Clustered standard errors provide the appropriate basis for inference in this setting.\nThe empirical implications of different inference choices are illustrated using a simple simulation. Identical point estimates may lead to different statistical conclusions depending on the standard errors employed.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html",
+    "href": "chapters/11_real_data_case1_wages.html",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "",
+    "text": "11.1 Research Question\nHow do education and labor market experience affect wages? This chapter illustrates how standard econometric issues arise in real data and how appropriate modeling choices improve inference.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html#data-description",
+    "href": "chapters/11_real_data_case1_wages.html#data-description",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "11.2 Data Description",
+    "text": "11.2 Data Description\nWe use the wage1 dataset from the wooldridge package. The data are a cross-section of individuals and include information on hourly wages, education, and labor market experience.\n\n\n      wage             educ           exper           tenure      \n Min.   : 0.530   Min.   : 0.00   Min.   : 1.00   Min.   : 0.000  \n 1st Qu.: 3.330   1st Qu.:12.00   1st Qu.: 5.00   1st Qu.: 0.000  \n Median : 4.650   Median :12.00   Median :13.50   Median : 2.000  \n Mean   : 5.896   Mean   :12.56   Mean   :17.02   Mean   : 5.105  \n 3rd Qu.: 6.880   3rd Qu.:14.00   3rd Qu.:26.00   3rd Qu.: 7.000  \n Max.   :24.980   Max.   :18.00   Max.   :51.00   Max.   :44.000",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html#naive-ols-in-levels",
+    "href": "chapters/11_real_data_case1_wages.html#naive-ols-in-levels",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "11.3 Naive OLS in Levels",
+    "text": "11.3 Naive OLS in Levels\nWe begin with a simple linear regression of wages on years of education.\n\n\n\nCall:\nlm(formula = wage ~ educ, data = wage1)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3396 -2.1501 -0.9674  1.1921 16.6085 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.90485    0.68497  -1.321    0.187    \neduc         0.54136    0.05325  10.167   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.378 on 524 degrees of freedom\nMultiple R-squared:  0.1648,    Adjusted R-squared:  0.1632 \nF-statistic: 103.4 on 1 and 524 DF,  p-value: &lt; 2.2e-16\n\n\nWhile the estimated coefficient on education is positive, this specification is problematic due to the strong right skewness of wages and non-constant variance.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html#functional-form-log-wages",
+    "href": "chapters/11_real_data_case1_wages.html#functional-form-log-wages",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "11.4 Functional Form: Log Wages",
+    "text": "11.4 Functional Form: Log Wages\nA standard transformation is to model the logarithm of wages.\n\n\n\nCall:\nlm(formula = log(wage) ~ educ + exper + I(exper^2), data = wage1)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.96387 -0.29375 -0.04009  0.29497  1.30216 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.1279975  0.1059323   1.208    0.227    \neduc         0.0903658  0.0074680  12.100  &lt; 2e-16 ***\nexper        0.0410089  0.0051965   7.892 1.77e-14 ***\nI(exper^2)  -0.0007136  0.0001158  -6.164 1.42e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4459 on 522 degrees of freedom\nMultiple R-squared:  0.3003,    Adjusted R-squared:  0.2963 \nF-statistic: 74.67 on 3 and 522 DF,  p-value: &lt; 2.2e-16\n\n\nIn this specification, the coefficient on education can be interpreted as the approximate percentage increase in wages associated with an additional year of schooling.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html#heteroskedasticity",
+    "href": "chapters/11_real_data_case1_wages.html#heteroskedasticity",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "11.5 Heteroskedasticity",
+    "text": "11.5 Heteroskedasticity\nWe examine residuals from the log-wage regression.\n\n\n\n\n\n\n\n\n\nAlthough the log transformation reduces heteroskedasticity, some variance heterogeneity remains.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html#robust-inference",
+    "href": "chapters/11_real_data_case1_wages.html#robust-inference",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "11.6 Robust Inference",
+    "text": "11.6 Robust Inference\nWe compare classical and heteroskedasticity-robust standard errors.\n\n\n\nClassical and Robust Standard Errors\n\n\n\nClassical_SE\nRobust_SE\n\n\n\n\n(Intercept)\n0.1059\n0.1067\n\n\neduc\n0.0075\n0.0078\n\n\nexper\n0.0052\n0.0050\n\n\nI(exper^2)\n0.0001\n0.0001\n\n\n\n\n\nRobust standard errors are slightly larger, indicating that classical inference may understate uncertainty.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11_real_data_case1_wages.html#lessons-learned",
+    "href": "chapters/11_real_data_case1_wages.html#lessons-learned",
+    "title": "11  Real Data Case 1: Wage Determination",
+    "section": "11.7 Lessons Learned",
+    "text": "11.7 Lessons Learned\n\nFunctional form choices have substantial implications for interpretation and inference.\nLog transformations often stabilize variance in wage regressions.\nHeteroskedasticity is pervasive in cross-sectional data.\nRobust standard errors should be standard practice in applied work.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Real Data Case 1: Wage Determination</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html",
+    "href": "chapters/12_real_data_case2_macro_panel.html",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "",
+    "text": "12.1 Introduction\nGovernment spending plays a central role in macroeconomic policy. While higher public consumption may stabilize the business cycle and provide essential public services, it may also crowd out private investment and reduce long-run economic growth. This case study examines the empirical relationship between government consumption and economic growth using a macroeconomic panel dataset covering a large number of countries over several decades. The goal is to demonstrate the use of fixed effects panel regression to control for unobserved heterogeneity across countries and common global shocks over time.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#research-question",
+    "href": "chapters/12_real_data_case2_macro_panel.html#research-question",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.2 Research Question",
+    "text": "12.2 Research Question\nDoes higher government consumption as a share of GDP correlate with lower economic growth once country and year fixed effects are taken into account?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#setup",
+    "href": "chapters/12_real_data_case2_macro_panel.html#setup",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.3 Setup",
+    "text": "12.3 Setup\n\n\nCode\nlibrary(dplyr)\nlibrary(fixest)\n# Load prepared panel data\ndf &lt;- readRDS(\"data/macro_panel.rds\")\n# Quick sanity check\nsummary(df)\n\n\n   country             iso2c                year          growth        \n Length:6343        Length:6343        Min.   :1990   Min.   :-64.4236  \n Class :character   Class :character   1st Qu.:1999   1st Qu.:  0.0821  \n Mode  :character   Mode  :character   Median :2007   Median :  2.1955  \n                                       Mean   :2007   Mean   :  1.9950  \n                                       3rd Qu.:2015   3rd Qu.:  4.2941  \n                                       Max.   :2022   Max.   : 91.7814  \n     govexp       \n Min.   :  2.014  \n 1st Qu.: 11.842  \n Median : 15.653  \n Mean   : 16.656  \n 3rd Qu.: 19.453  \n Max.   :147.735  \n\n\nCode\nlibrary(ggplot2)",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#data-description",
+    "href": "chapters/12_real_data_case2_macro_panel.html#data-description",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.4 Data Description",
+    "text": "12.4 Data Description\nThe dataset is constructed from the World Development Indicators (WDI) and contains annual observations for many countries over the period 1990–2022. ### Key Variables - Economic growth: annual growth rate of real GDP per capita (%) - Government consumption: general government final consumption expenditure as a percentage of GDP Observations with missing values in the main variables are excluded. Global aggregates and artificial regions are removed from the sample.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#empirical-strategy",
+    "href": "chapters/12_real_data_case2_macro_panel.html#empirical-strategy",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.5 Empirical Strategy",
+    "text": "12.5 Empirical Strategy\nWe estimate the following fixed effects panel regression model: \\[\n\\text{Growth}_{it}\n= \\beta \\cdot \\text{GovExp}_{it}\n+ \\alpha_i\n+ \\gamma_t\n+ \\varepsilon_{it}\n\\] where: - ( _i ) are country fixed effects - ( _t ) are year fixed effects Standard errors are clustered at the country level. This specification controls for time-invariant country characteristics (such as geography, institutions, or long-run development levels) as well as common global shocks affecting all countries in a given year.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#visual-evidence",
+    "href": "chapters/12_real_data_case2_macro_panel.html#visual-evidence",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.6 Visual Evidence",
+    "text": "12.6 Visual Evidence\n\n\nCode\ndf_within &lt;- df |&gt;\n  group_by(country) |&gt;\n  mutate(\n    growth_dm = growth - mean(growth, na.rm = TRUE),\n    govexp_dm = govexp - mean(govexp, na.rm = TRUE)\n  ) |&gt;\n  ungroup()\n\nggplot(df_within, aes(govexp_dm, growth_dm)) +\n  geom_point(alpha = 0.15, color = \"steelblue\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"darkred\") +\n  labs(\n    x = \"Government consumption (demeaned)\",\n    y = \"GDP per capita growth (demeaned)\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nFigure 12.1: Within-country relationship between government consumption and economic growth",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#baseline-fixed-effects-model",
+    "href": "chapters/12_real_data_case2_macro_panel.html#baseline-fixed-effects-model",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.7 Baseline Fixed Effects Model",
+    "text": "12.7 Baseline Fixed Effects Model\n\n\nCode\nfe_baseline &lt;- feols(\n  growth ~ govexp | country + year,\n  data = df,\n  cluster = \"country\"\n)\nsummary(fe_baseline)\n\n\nOLS estimation, Dep. Var.: growth\nObservations: 6,343\nFixed-effects: country: 216,  year: 33\nStandard-errors: Clustered (country) \n        Estimate Std. Error t value Pr(&gt;|t|) \ngovexp -0.115942   0.090347 -1.2833  0.20077 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 4.8657     Adj. R2: 0.181602\n               Within R2: 0.006879",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#robustness-lagged-government-consumption",
+    "href": "chapters/12_real_data_case2_macro_panel.html#robustness-lagged-government-consumption",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.8 Robustness: Lagged Government Consumption",
+    "text": "12.8 Robustness: Lagged Government Consumption\nTo assess the sensitivity of the results to potential reverse causality, we re-estimate the fixed effects model using lagged government consumption.\n\n\nCode\nfe_lag &lt;- feols(\n  growth ~ l(govexp, 1) | country + year,\n  data = df,\n  cluster = \"country\",\n  panel.id = ~ country + year\n)\n\nsummary(fe_lag)\n\n\nOLS estimation, Dep. Var.: growth\nObservations: 6,122\nFixed-effects: country: 216,  year: 32\nStandard-errors: Clustered (country) \n             Estimate Std. Error  t value Pr(&gt;|t|) \nl(govexp, 1) 0.012475   0.065537 0.190356  0.84921 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 4.71988     Adj. R2: 0.186805\n                Within R2: 8.209e-5\n\n\nUsing lagged government consumption yields a coefficient of similar sign but smaller magnitude. This suggests that the negative association is not driven solely by contemporaneous reverse causality, although the estimate remains statistically imprecise. Overall, the qualitative conclusions of the baseline specification are unchanged.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#results",
+    "href": "chapters/12_real_data_case2_macro_panel.html#results",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.9 Results",
+    "text": "12.9 Results\nQuantitatively, the point estimate implies that a one‑percentage‑point increase in government consumption (as a share of GDP) is associated with approximately a 0.12 percentage point lower GDP per capita growth rate within a country. The estimate is not statistically significant at conventional levels, so the magnitude should be interpreted cautiously.\nThe estimated coefficient on government consumption captures the within-country association between changes in government consumption and changes in economic growth, net of global time effects. A negative coefficient suggests that increases in government consumption are associated with lower growth rates within countries over time, although statistical significance must be carefully evaluated. Clustering standard errors at the country level accounts for serial correlation and heteroskedasticity within countries.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#interpretation-and-caveats",
+    "href": "chapters/12_real_data_case2_macro_panel.html#interpretation-and-caveats",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.10 Interpretation and Caveats",
+    "text": "12.10 Interpretation and Caveats\nIt is important to emphasize that this analysis identifies correlation, not causation. Potential concerns include:\n\nreverse causality (growth downturns may raise government spending)\nomitted time-varying country-specific factors\nmeasurement error in macroeconomic aggregates\n\nNevertheless, the fixed effects framework provides a useful baseline for understanding empirical patterns in cross-country panel data.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/12_real_data_case2_macro_panel.html#concluding-remarks",
+    "href": "chapters/12_real_data_case2_macro_panel.html#concluding-remarks",
+    "title": "12  Real Data Case 2: Government Consumption and Economic Growth",
+    "section": "12.11 Concluding Remarks",
+    "text": "12.11 Concluding Remarks\nThis case study illustrates how fixed effects panel models can be used to study macroeconomic relationships using multi-country data.\nBy controlling for country and year fixed effects, the analysis isolates within-country variation and highlights how accounting for unobserved heterogeneity can substantially alter naive cross-sectional relationships. While the results do not support a statistically significant association between government consumption and economic growth, the exercise demonstrates a clean and reproducible workflow for applied macroeconometric analysis using real-world data.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Real Data Case 2: Government Consumption and Economic Growth</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html",
+    "href": "chapters/13_micro_case3A_simulation.html",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "",
+    "text": "'data.frame':   2000 obs. of  8 variables:\n $ y       : num  12.6 12.5 9.2 10.2 14.6 ...\n $ y_iv    : num  12.6 14.5 11.2 10.2 14.6 ...\n $ treat   : int  1 0 0 0 1 0 1 1 0 1 ...\n $ treat_iv: int  1 1 1 0 1 0 0 0 0 0 ...\n $ z       : int  0 1 1 1 1 0 0 0 0 0 ...\n $ ability : num  0.586 0.709 -0.109 -0.453 0.606 ...\n $ y0      : num  10.6 12.5 9.2 10.2 12.6 ...\n $ y1      : num  12.6 14.5 11.2 12.2 14.6 ...",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html",
+    "href": "chapters/13_micro_case3B_weak_iv.html",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "",
+    "text": "14.1 Introduction\nThis micro case illustrates the consequences of using weak instruments in instrumental variables estimation.\nWhile instrumental variables can correct for endogeneity, their performance critically depends on the strength of the first stage.",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#data-generating-process",
+    "href": "chapters/13_micro_case3B_weak_iv.html#data-generating-process",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.2 Data Generating Process",
+    "text": "14.2 Data Generating Process\nIn this simulation, treatment is endogenous, but the instrument is only weakly correlated with treatment assignment.\n\n\nCode\nset.seed(123)\n\nn &lt;- 2000\n\n# Unobserved ability\nability &lt;- rnorm(n)\n\n# Weak instrument\nz &lt;- rbinom(n, 1, 0.5)\n\n# Treatment: weak dependence on z\ntreat &lt;- 0.3 * z + 0.7 * ability + rnorm(n)\ntreat &lt;- as.integer(treat &gt; median(treat))\n\n# Potential outcomes\ny0 &lt;- 10 + ability + rnorm(n)\ny1 &lt;- y0 + 2\n\n# Observed outcome\ny &lt;- y0 + treat * (y1 - y0)\n\ncase3B &lt;- data.frame(y, treat, z, ability, y0, y1)",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#ols-benchmark",
+    "href": "chapters/13_micro_case3B_weak_iv.html#ols-benchmark",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.3 OLS Benchmark",
+    "text": "14.3 OLS Benchmark\n\n\nCode\nols &lt;- lm(y ~ treat, data = case3B)\nsummary(ols)\n\n\n\nCall:\nlm(formula = y ~ treat, data = case3B)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.1293 -0.9127 -0.0046  0.8726  4.2710 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  9.54861    0.04197  227.51   &lt;2e-16 ***\ntreat        2.96295    0.05935   49.92   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.327 on 1998 degrees of freedom\nMultiple R-squared:  0.555, Adjusted R-squared:  0.5548 \nF-statistic:  2492 on 1 and 1998 DF,  p-value: &lt; 2.2e-16",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#weak-first-stage",
+    "href": "chapters/13_micro_case3B_weak_iv.html#weak-first-stage",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.4 Weak First Stage",
+    "text": "14.4 Weak First Stage\n\n\nCode\nfs &lt;- lm(treat ~ z, data = case3B)\nsummary(fs)\n\n\n\nCall:\nlm(formula = treat ~ z, data = case3B)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.54481 -0.45678 -0.00079  0.45519  0.54322 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.45678    0.01562  29.247  &lt; 2e-16 ***\nz            0.08803    0.02229   3.949  8.1e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4983 on 1998 degrees of freedom\nMultiple R-squared:  0.007747,  Adjusted R-squared:  0.00725 \nF-statistic:  15.6 on 1 and 1998 DF,  p-value: 8.104e-05",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#iv-with-weak-instrument",
+    "href": "chapters/13_micro_case3B_weak_iv.html#iv-with-weak-instrument",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.5 IV with Weak Instrument",
+    "text": "14.5 IV with Weak Instrument\nWe now estimate the causal effect using instrumental variables. Because the model is just-identified, the IV estimator is equivalent to the Wald estimator.\n\n\nCode\n# Wald estimator\nwald &lt;- cov(case3B$y, case3B$z) / cov(case3B$treat, case3B$z)\nwald\n\n\n[1] 0.9224495\n\n\n\n\nCode\n# Two-stage least squares\nlibrary(AER)\niv_2sls &lt;- ivreg(y ~ treat | z, data = case3B)\nsummary(iv_2sls)\n\n\n\nCall:\nivreg(formula = y ~ treat | z, data = case3B)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.12208 -1.16304  0.02414  1.14403  5.29122 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  10.5689     0.4270  24.750   &lt;2e-16 ***\ntreat         0.9224     0.8508   1.084    0.278    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.674 on 1998 degrees of freedom\nMultiple R-Squared: 0.2918, Adjusted R-squared: 0.2914 \nWald test: 1.176 on 1 and 1998 DF,  p-value: 0.2784",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#variance-explosion-with-weak-instruments",
+    "href": "chapters/13_micro_case3B_weak_iv.html#variance-explosion-with-weak-instruments",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.6 Variance Explosion with Weak Instruments",
+    "text": "14.6 Variance Explosion with Weak Instruments\nAlthough the IV estimator is consistent, weak instruments can lead to extreme variability in finite samples. To illustrate this, we repeat the experiment many times and examine the distribution of the IV estimator.\n\n\nCode\nset.seed(123)\n\nB &lt;- 500\niv_estimates &lt;- numeric(B)\n\nfor (b in 1:B) {\n\n  ability &lt;- rnorm(n)\n  z &lt;- rbinom(n, 1, 0.5)\n\n  treat &lt;- 0.3 * z + 0.7 * ability + rnorm(n)\n  treat &lt;- as.integer(treat &gt; median(treat))\n\n  y0 &lt;- 10 + ability + rnorm(n)\n  y1 &lt;- y0 + 2\n  y &lt;- y0 + treat * (y1 - y0)\n\n  iv_estimates[b] &lt;- cov(y, z) / cov(treat, z)\n}\n\nhist(\n  iv_estimates,\n  breaks = 40,\n  col = \"lightgray\",\n  border = \"white\",\n  main = \"Weak IV: Variance Explosion\",\n  xlab = \"IV estimates\"\n)\n\nabline(v = 2, col = \"red\", lwd = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#true-ate",
+    "href": "chapters/13_micro_case3B_weak_iv.html#true-ate",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.7 True ATE",
+    "text": "14.7 True ATE\n\n\nCode\nmean(case3B$y1 - case3B$y0)\n\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3B_weak_iv.html#conclusion",
+    "href": "chapters/13_micro_case3B_weak_iv.html#conclusion",
+    "title": "14  Micro Case 3B: Weak Instruments",
+    "section": "14.8 Conclusion",
+    "text": "14.8 Conclusion\nThis case demonstrates that weak instruments lead to imprecise and potentially misleading IV estimates.\nWhen instruments are weak, IV estimators may perform worse than biased OLS estimators in finite samples.",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Micro Case 3B: Weak Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html",
+    "href": "chapters/13_micro_case3C_late.html",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "",
+    "text": "15.1 1 Introduction\nThis micro case illustrates what instrumental variables (IV) estimates identify when treatment effects are heterogeneous.\nUnlike OLS, which generally estimates an average treatment effect under strong assumptions, IV identifies a Local Average Treatment Effect (LATE): the average causal effect for individuals whose treatment status is changed by the instrument.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#data-generating-process",
+    "href": "chapters/13_micro_case3C_late.html#data-generating-process",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.2 2 Data Generating Process",
+    "text": "15.2 2 Data Generating Process\nWe consider a setting with heterogeneous treatment effects and imperfect compliance.\n\nIndividuals differ in their potential gains from treatment\nThe instrument affects treatment take-up, but not everyone complies\nTreatment effects vary across individuals\n\nThis setting highlights that IV does not recover the overall ATE, but a local effect.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#compliance-types",
+    "href": "chapters/13_micro_case3C_late.html#compliance-types",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.3 3 Compliance Types",
+    "text": "15.3 3 Compliance Types\nThe population consists of:\n\nCompliers: take treatment if encouraged\nAlways-takers: always treated\nNever-takers: never treated\n\n\n\n\nAlways-taker     Complier  Never-taker \n   0.1993333    0.5040000    0.2966667 \n\n\nOnly compliers contribute to the IV estimand.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#ols-benchmark",
+    "href": "chapters/13_micro_case3C_late.html#ols-benchmark",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.4 4 OLS Benchmark",
+    "text": "15.4 4 OLS Benchmark\nOLS averages treatment effects across all treated individuals, mixing compliers with always-takers.\n\n\n\nCall:\nlm(formula = y ~ treat, data = case3C)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4929 -0.8200 -0.0119  0.8026  4.1046 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  5.01599    0.02927  171.38   &lt;2e-16 ***\ntreat        2.85100    0.04378   65.13   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.192 on 2998 degrees of freedom\nMultiple R-squared:  0.5859,    Adjusted R-squared:  0.5858 \nF-statistic:  4242 on 1 and 2998 DF,  p-value: &lt; 2.2e-16\n\n\nBecause treatment effects are heterogeneous, OLS does not recover a well-defined causal estimand.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#iv-estimation",
+    "href": "chapters/13_micro_case3C_late.html#iv-estimation",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.5 5 IV Estimation",
+    "text": "15.5 5 IV Estimation\nWe now estimate the treatment effect using the instrument.\n\n\n\nCall:\nivreg(formula = y ~ treat | z, data = case3C)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.6978 -0.8888 -0.1105  0.7769  4.6238 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  5.43565    0.04861  111.81   &lt;2e-16 ***\ntreat        1.91216    0.09536   20.05   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.28 on 2998 degrees of freedom\nMultiple R-Squared: 0.5224, Adjusted R-squared: 0.5222 \nWald test: 402.1 on 1 and 2998 DF,  p-value: &lt; 2.2e-16",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#what-does-iv-identify",
+    "href": "chapters/13_micro_case3C_late.html#what-does-iv-identify",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.6 6 What Does IV Identify?",
+    "text": "15.6 6 What Does IV Identify?\nThe true effects in the population are:\n\n\n True_ATE True_LATE \n    2.992     2.000 \n\n\n\nATE ≠ LATE\nIV estimates LATE, not the overall average effect\n\nThis distinction is crucial for policy interpretation.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#interpretation",
+    "href": "chapters/13_micro_case3C_late.html#interpretation",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.7 7 Interpretation",
+    "text": "15.7 7 Interpretation\nInstrumental variables estimate a causal effect that is:\n\nLocal to compliers\nInstrument-dependent\nNot necessarily policy-invariant\n\nUnderstanding who the compliers are is essential for external validity.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3C_late.html#conclusion",
+    "href": "chapters/13_micro_case3C_late.html#conclusion",
+    "title": "15  Micro Case 3C: Local Average Treatment Effects (LATE)",
+    "section": "15.8 8 Conclusion",
+    "text": "15.8 8 Conclusion\nThis case demonstrates that IV does not generally identify the average treatment effect.\nInstead, IV identifies a Local Average Treatment Effect (LATE), which may differ substantially from the overall ATE when treatment effects are heterogeneous.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Micro Case 3C: Local Average Treatment Effects (LATE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "",
+    "text": "16.1 1 Introduction\nThis micro case illustrates the risks associated with using multiple instruments when some of them may be invalid. While adding instruments can increase precision, invalid instruments can reintroduce bias into IV estimators.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#data-generating-process",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#data-generating-process",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.2 2 Data Generating Process",
+    "text": "16.2 2 Data Generating Process\nWe simulate a setting with one valid instrument and one invalid instrument. The invalid instrument directly affects the outcome, violating the exclusion restriction.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#ols-benchmark",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#ols-benchmark",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.3 3 OLS Benchmark",
+    "text": "16.3 3 OLS Benchmark\n\n\n\nCall:\nlm(formula = y ~ treat, data = case3D)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.2688 -1.0632  0.0023  1.0827  4.8458 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  5.37867    0.04081  131.79   &lt;2e-16 ***\ntreat        2.77144    0.05772   48.02   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.581 on 2998 degrees of freedom\nMultiple R-squared:  0.4347,    Adjusted R-squared:  0.4346 \nF-statistic:  2306 on 1 and 2998 DF,  p-value: &lt; 2.2e-16",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#iv-with-a-valid-instrument",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#iv-with-a-valid-instrument",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.4 4 IV with a Valid Instrument",
+    "text": "16.4 4 IV with a Valid Instrument\nUsing only the valid instrument recovers the causal effect.\n\n\n\nCall:\nivreg(formula = y ~ treat | z1, data = case3D)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.63495 -1.08608 -0.02773  1.12271  5.21193 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   5.7448     0.1057   54.36   &lt;2e-16 ***\ntreat         2.0392     0.2029   10.05   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.622 on 2998 degrees of freedom\nMultiple R-Squared: 0.4044, Adjusted R-squared: 0.4042 \nWald test:   101 on 1 and 2998 DF,  p-value: &lt; 2.2e-16",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#iv-with-multiple-instruments-one-invalid",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#iv-with-multiple-instruments-one-invalid",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.5 5 IV with Multiple Instruments (One Invalid)",
+    "text": "16.5 5 IV with Multiple Instruments (One Invalid)\nWe now include both instruments, one of which violates the exclusion restriction.\n\n\n\nCall:\nivreg(formula = y ~ treat | z1 + z2, data = case3D)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.61331 -1.08383 -0.01373  1.11914  5.19029 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   5.7232     0.1054   54.32   &lt;2e-16 ***\ntreat         2.0824     0.2023   10.29   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.618 on 2998 degrees of freedom\nMultiple R-Squared: 0.4079, Adjusted R-squared: 0.4077 \nWald test:   106 on 1 and 2998 DF,  p-value: &lt; 2.2e-16",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#overidentification-test",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#overidentification-test",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.6 6 Overidentification Test",
+    "text": "16.6 6 Overidentification Test\nThe Sargan test evaluates whether the instruments are jointly valid. Rejection suggests at least one invalid instrument, but non-rejection does not guarantee validity.\n\n\n\nCall:\nivreg(formula = y ~ treat | z1 + z2, data = case3D)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-5.61331 -1.08383 -0.01373  1.11914  5.19029 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   5.7232     0.1054   54.32   &lt;2e-16 ***\ntreat         2.0824     0.2023   10.29   &lt;2e-16 ***\n\nDiagnostic tests:\n                  df1  df2 statistic  p-value    \nWeak instruments    2 2997    139.72  &lt; 2e-16 ***\nWu-Hausman          1 2997     13.34 0.000264 ***\nSargan              1   NA    739.82  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.618 on 2998 degrees of freedom\nMultiple R-Squared: 0.4079, Adjusted R-squared: 0.4077 \nWald test:   106 on 1 and 2998 DF,  p-value: &lt; 2.2e-16 \n\n\nNote.\nThe Sargan test is based on a chi-square distribution and therefore does not have a denominator degrees of freedom (unlike F-tests), which is why df2 is reported as NA.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#interpretation",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#interpretation",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.7 7 Interpretation",
+    "text": "16.7 7 Interpretation\nAdding invalid instruments can bias IV estimates, even when the model is overidentified. Overidentification tests are useful diagnostics, but they cannot confirm instrument validity.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3D_invalid_instruments.html#conclusion",
+    "href": "chapters/13_micro_case3D_invalid_instruments.html#conclusion",
+    "title": "16  Micro Case 3D: Invalid and Multiple Instruments",
+    "section": "16.8 8 Conclusion",
+    "text": "16.8 8 Conclusion\nThis case demonstrates that more instruments are not necessarily better. Instrument validity is more important than instrument quantity.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Micro Case 3D: Invalid and Multiple Instruments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14_diff_in_diff_intro.html",
+    "href": "chapters/14_diff_in_diff_intro.html",
+    "title": "17  Difference-in-Differences: Intuition",
+    "section": "",
+    "text": "17.1 Motivation\nDifference-in-differences (DiD) is a causal inference method used when treatment is assigned at a group level and varies over time.\nThe key idea is simple:\nwe compare changes over time, not levels.",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Difference-in-Differences: Intuition</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14_diff_in_diff_intro.html#basic-setup",
+    "href": "chapters/14_diff_in_diff_intro.html#basic-setup",
+    "title": "17  Difference-in-Differences: Intuition",
+    "section": "17.2 Basic Setup",
+    "text": "17.2 Basic Setup\nConsider two groups: - a treated group - a control group\nAnd two time periods: - before treatment - after treatment\nThe DiD estimator compares the change in outcomes for the treated group to the change in outcomes for the control group.",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Difference-in-Differences: Intuition</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/14_diff_in_diff_intro.html#parallel-trends-assumption",
+    "href": "chapters/14_diff_in_diff_intro.html#parallel-trends-assumption",
+    "title": "17  Difference-in-Differences: Intuition",
+    "section": "17.3 Parallel Trends Assumption",
+    "text": "17.3 Parallel Trends Assumption\n\n\n\n\n\nParallel trends assumption: treated and control groups evolve similarly before treatment",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Difference-in-Differences: Intuition</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15_diff_in_diff_canonical.html",
+    "href": "chapters/15_diff_in_diff_canonical.html",
+    "title": "18  Difference-in-Differences: Canonical 2×2",
+    "section": "",
+    "text": "18.1 Setup\nWe consider the canonical difference-in-differences setup with: - two groups (treated and control) - two time periods (before and after treatment)\nTreatment affects only the treated group in the post-treatment period.",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Difference-in-Differences: Canonical 2×2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15_diff_in_diff_canonical.html#the-did-estimator",
+    "href": "chapters/15_diff_in_diff_canonical.html#the-did-estimator",
+    "title": "18  Difference-in-Differences: Canonical 2×2",
+    "section": "18.2 The DiD Estimator",
+    "text": "18.2 The DiD Estimator\nThe DiD estimator is defined as:\n\\[\n\\text{DiD} = (\\bar Y_{T,post} - \\bar Y_{T,pre}) - (\\bar Y_{C,post} - \\bar Y_{C,pre})\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Difference-in-Differences: Canonical 2×2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15_diff_in_diff_canonical.html#graphical-illustration",
+    "href": "chapters/15_diff_in_diff_canonical.html#graphical-illustration",
+    "title": "18  Difference-in-Differences: Canonical 2×2",
+    "section": "18.3 Graphical Illustration",
+    "text": "18.3 Graphical Illustration\n\n\n\n\n\nCanonical 2×2 DiD: treatment affects only the treated group after intervention",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Difference-in-Differences: Canonical 2×2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15_diff_in_diff_canonical.html#the-22-table-and-manual-did-calculation",
+    "href": "chapters/15_diff_in_diff_canonical.html#the-22-table-and-manual-did-calculation",
+    "title": "18  Difference-in-Differences: Canonical 2×2",
+    "section": "18.4 The 2×2 Table and Manual DiD Calculation",
+    "text": "18.4 The 2×2 Table and Manual DiD Calculation\nWe now compute the difference-in-differences estimator using group means.\n\n\n\n\n\ngroup\nAfter\nBefore\n\n\n\n\nControl\n6\n5\n\n\nTreated\n9\n6\n\n\n\n\n\n[1] 2\n\n\nThe difference-in-differences estimate is therefore 2.",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Difference-in-Differences: Canonical 2×2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15_diff_in_diff_canonical.html#inference-in-difference-in-differences",
+    "href": "chapters/15_diff_in_diff_canonical.html#inference-in-difference-in-differences",
+    "title": "18  Difference-in-Differences: Canonical 2×2",
+    "section": "18.5 Inference in Difference-in-Differences",
+    "text": "18.5 Inference in Difference-in-Differences\nIn the canonical 2×2 design, the DiD regression is fully saturated. As a result, the treatment effect is exactly identified, but standard errors are not defined.\nThis illustrates an important point: in the 2×2 case, difference-in-differences is an algebraic identity rather than a statistical model.\nMeaningful inference requires additional units or time periods, which we consider in later sections.",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Difference-in-Differences: Canonical 2×2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/15_diff_in_diff_canonical.html#parallel-trends-assumption",
+    "href": "chapters/15_diff_in_diff_canonical.html#parallel-trends-assumption",
+    "title": "18  Difference-in-Differences: Canonical 2×2",
+    "section": "18.6 Parallel Trends Assumption",
+    "text": "18.6 Parallel Trends Assumption\nThe key identifying assumption underlying difference-in-differences is the parallel trends assumption.\nIn the absence of treatment, the average outcomes of the treated and control groups would have followed the same time trend.\nFormally, the assumption requires:\n\\[\nE[Y_{0t}^T - Y_{0,t-1}^T] = E[Y_{0t}^C - Y_{0,t-1}^C]\n\\]\nwhere \\(Y_{0t}\\) denotes the potential outcome without treatment.\nThis assumption is fundamentally untestable, but its plausibility can be assessed using pre-treatment data.\n\n18.6.1 Graphical Illustration of Parallel Trends\n\n\n\n\n\nParallel trends before treatment and divergence after treatment",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Difference-in-Differences: Canonical 2×2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16_event_study.html",
+    "href": "chapters/16_event_study.html",
+    "title": "19  Difference-in-Differences: Event Study",
+    "section": "",
+    "text": "19.1 Motivation\nWhile the parallel trends assumption is fundamentally untestable, event-study designs allow researchers to assess its plausibility by examining pre-treatment dynamics.\nAn event study extends the difference-in-differences framework by estimating dynamic treatment effects relative to the timing of the intervention.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Difference-in-Differences: Event Study</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16_event_study.html#event-study-specification",
+    "href": "chapters/16_event_study.html#event-study-specification",
+    "title": "19  Difference-in-Differences: Event Study",
+    "section": "19.2 Event Study Specification",
+    "text": "19.2 Event Study Specification\nLet \\(k\\) index time relative to treatment, with \\(k = 0\\) denoting the treatment period.\nThe event-study regression can be written as:\n\\[\nY_{it} = \\alpha + \\sum_{k \\neq -1} \\delta_k \\mathbf{1}(t - T_i = k) + \\mu_i + \\lambda_t + u_{it}\n\\]\nwhere \\(k = -1\\) is the omitted baseline period.\nUnder parallel trends, the coefficients \\(\\delta_k\\) for \\(k &lt; 0\\) should be close to zero.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Difference-in-Differences: Event Study</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16_event_study.html#simulated-panel-data",
+    "href": "chapters/16_event_study.html#simulated-panel-data",
+    "title": "19  Difference-in-Differences: Event Study",
+    "section": "19.3 Simulated Panel Data",
+    "text": "19.3 Simulated Panel Data\nWe illustrate the event-study design using simulated panel data.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Difference-in-Differences: Event Study</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16_event_study.html#event-study-estimation",
+    "href": "chapters/16_event_study.html#event-study-estimation",
+    "title": "19  Difference-in-Differences: Event Study",
+    "section": "19.4 Event Study Estimation",
+    "text": "19.4 Event Study Estimation\nWe estimate the event-study regression using indicator variables for event time.\n\n\nOLS estimation, Dep. Var.: outcome\nObservations: 450\nFixed-effects: id: 50,  time: 9\nStandard-errors: IID \n                        Estimate Std. Error   t value  Pr(&gt;|t|)    \nevent_time::-4:treated -0.244170   0.199698 -1.222693   0.22220    \nevent_time::-3:treated -0.312603   0.199698 -1.565377   0.11832    \nevent_time::-2:treated -0.199344   0.199698 -0.998228   0.31880    \nevent_time::0:treated   1.939583   0.199698  9.712563 &lt; 2.2e-16 ***\nevent_time::1:treated   2.246835   0.199698 11.251147 &lt; 2.2e-16 ***\nevent_time::2:treated   2.800487   0.199698 14.023587 &lt; 2.2e-16 ***\nevent_time::3:treated   3.496236   0.199698 17.507586 &lt; 2.2e-16 ***\nevent_time::4:treated   3.829440   0.199698 19.176124 &lt; 2.2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.461184     Adj. R2: 0.957163\n                 Within R2: 0.752809\n\n\n\n\n\n\n\nEvent-study estimates with 95% confidence intervals\n\n\n\n\n```",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Difference-in-Differences: Event Study</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16_event_study.html#graphical-presentation-of-event-study-estimates",
+    "href": "chapters/16_event_study.html#graphical-presentation-of-event-study-estimates",
+    "title": "19  Difference-in-Differences: Event Study",
+    "section": "19.5 Graphical Presentation of Event-Study Estimates",
+    "text": "19.5 Graphical Presentation of Event-Study Estimates",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Difference-in-Differences: Event Study</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/16_event_study.html#interpretation",
+    "href": "chapters/16_event_study.html#interpretation",
+    "title": "19  Difference-in-Differences: Event Study",
+    "section": "19.6 Interpretation",
+    "text": "19.6 Interpretation\nThe absence of significant pre-treatment effects supports the plausibility of the parallel trends assumption.\nPost-treatment coefficients trace out the dynamic causal effects of the intervention over time.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Difference-in-Differences: Event Study</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html",
+    "href": "chapters/17_placebo_tests_did.html",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "",
+    "text": "20.1 Motivation\nDifference-in-differences estimates rely on identifying assumptions that cannot be directly tested. Placebo and falsification tests provide indirect evidence on whether a DiD design is credible.\nThe key idea is simple: if we detect treatment effects where none should exist, the research design is likely invalid.",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html#time-placebo-tests",
+    "href": "chapters/17_placebo_tests_did.html#time-placebo-tests",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "20.2 Time-Placebo Tests",
+    "text": "20.2 Time-Placebo Tests\nA time-placebo test assigns the treatment to a period before the actual intervention. Under a valid parallel trends assumption, the estimated placebo effect should be close to zero.",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html#simulated-panel-data",
+    "href": "chapters/17_placebo_tests_did.html#simulated-panel-data",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "20.3 Simulated Panel Data",
+    "text": "20.3 Simulated Panel Data",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html#correct-did-specification",
+    "href": "chapters/17_placebo_tests_did.html#correct-did-specification",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "20.4 Correct DiD Specification",
+    "text": "20.4 Correct DiD Specification\nWe first estimate the DiD model using the correct treatment timing.\n\n\nOLS estimation, Dep. Var.: outcome\nObservations: 660\nFixed-effects: id: 60,  time: 11\nStandard-errors: IID \n             Estimate Std. Error t value  Pr(&gt;|t|)    \ntreated:post  2.08489    0.09476 22.0016 &lt; 2.2e-16 ***\n... 2 variables were removed because of collinearity (treated and post)\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.572562     Adj. R2: 0.905324\n                 Within R2: 0.451109",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html#time-placebo-did",
+    "href": "chapters/17_placebo_tests_did.html#time-placebo-did",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "20.5 Time-Placebo DiD",
+    "text": "20.5 Time-Placebo DiD\nWe now assign the treatment to an earlier (placebo) period.\n\n\nOLS estimation, Dep. Var.: outcome\nObservations: 660\nFixed-effects: id: 60,  time: 11\nStandard-errors: IID \n                     Estimate Std. Error t value   Pr(&gt;|t|)    \ntreated:placebo_post  1.22947    0.15716 7.82306 2.3968e-14 ***\n... 2 variables were removed because of collinearity (treated and\nplacebo_post)\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.735553     Adj. R2: 0.843749\n                 Within R2: 0.094125",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html#interpretation",
+    "href": "chapters/17_placebo_tests_did.html#interpretation",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "20.6 Interpretation",
+    "text": "20.6 Interpretation\nIn a credible design, the placebo DiD coefficient should be statistically insignificant and close to zero.\nA significant placebo effect indicates a violation of the parallel trends assumption or other design flaws.",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/17_placebo_tests_did.html#relation-to-event-studies",
+    "href": "chapters/17_placebo_tests_did.html#relation-to-event-studies",
+    "title": "20  Difference-in-Differences: Placebo and Falsification Tests",
+    "section": "20.7 Relation to Event Studies",
+    "text": "20.7 Relation to Event Studies\nPlacebo tests are closely related to event-study diagnostics. Both examine whether treatment effects appear before the actual intervention.",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Difference-in-Differences: Placebo and Falsification Tests</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html",
+    "href": "chapters/21_staggered_adoption_twfe.html",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "",
+    "text": "21.1 Motivation\nMany empirical settings feature staggered adoption, where different units receive treatment at different points in time. The standard two-way fixed effects (TWFE) DiD estimator is commonly applied in such settings.\nHowever, recent research shows that TWFE may produce biased and misleading estimates under staggered treatment timing.",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html#simulated-panel-with-staggered-treatment",
+    "href": "chapters/21_staggered_adoption_twfe.html#simulated-panel-with-staggered-treatment",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "21.2 Simulated Panel with Staggered Treatment",
+    "text": "21.2 Simulated Panel with Staggered Treatment",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html#two-way-fixed-effects-did",
+    "href": "chapters/21_staggered_adoption_twfe.html#two-way-fixed-effects-did",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "21.3 Two-Way Fixed Effects DiD",
+    "text": "21.3 Two-Way Fixed Effects DiD\nWe estimate the standard TWFE DiD regression using unit and time fixed effects.\n\n\nOLS estimation, Dep. Var.: outcome\nObservations: 1,080\nFixed-effects: id: 90,  time: 12\nStandard-errors: IID \n        Estimate Std. Error t value  Pr(&gt;|t|)    \ntreated  2.05456   0.078174 26.2817 &lt; 2.2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.658408     Adj. R2: 0.869068\n                 Within R2: 0.413925",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html#why-twfe-can-be-misleading",
+    "href": "chapters/21_staggered_adoption_twfe.html#why-twfe-can-be-misleading",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "21.4 Why TWFE Can Be Misleading",
+    "text": "21.4 Why TWFE Can Be Misleading\nWith staggered adoption, treated units serve as controls for later-treated units. As a result, the TWFE estimator implicitly compares already-treated units to newly treated units.\nThis can induce negative or inappropriate weights, even when treatment effects are homogeneous.",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html#intuition-forbidden-comparisons",
+    "href": "chapters/21_staggered_adoption_twfe.html#intuition-forbidden-comparisons",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "21.5 Intuition: Forbidden Comparisons",
+    "text": "21.5 Intuition: Forbidden Comparisons\nComparisons between treated and not-yet-treated units are valid. Comparisons where treated units act as controls for other treated units are not.\nTWFE does not distinguish between these comparisons.",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html#implications",
+    "href": "chapters/21_staggered_adoption_twfe.html#implications",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "21.6 Implications",
+    "text": "21.6 Implications\nEvent-study plots based on TWFE may also be misleading in staggered settings.\nThis motivates the use of modern DiD estimators designed for staggered adoption.",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/21_staggered_adoption_twfe.html#looking-ahead",
+    "href": "chapters/21_staggered_adoption_twfe.html#looking-ahead",
+    "title": "21  Difference-in-Differences: Staggered Adoption and TWFE Bias",
+    "section": "21.7 Looking Ahead",
+    "text": "21.7 Looking Ahead\nThe limitations of the two-way fixed effects estimator in staggered adoption settings raise an important question: how should difference-in-differences be implemented when treatment timing varies across units?\nRecent methodological advances propose alternative estimators that explicitly account for treatment timing and avoid the forbidden comparisons implicit in TWFE.\nThe next chapter introduces these modern difference-in-differences estimators and shows how they resolve the problems highlighted here.",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Difference-in-Differences: Staggered Adoption and TWFE Bias</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html",
+    "href": "chapters/22_modern_did_estimators.html",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "",
+    "text": "22.1 Motivation\nThe problems of the two-way fixed effects estimator under staggered adoption motivate alternative approaches to difference-in-differences that explicitly account for treatment timing.\nThese modern estimators construct comparisons only between treated and not-yet-treated units, thereby avoiding the forbidden comparisons embedded in TWFE.\nIn this chapter, we introduce two influential approaches:",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#motivation",
+    "href": "chapters/22_modern_did_estimators.html#motivation",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "",
+    "text": "Callaway and Sant’Anna (2021)\nSun and Abraham (2021)",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#data-generating-process",
+    "href": "chapters/22_modern_did_estimators.html#data-generating-process",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "22.2 Data Generating Process",
+    "text": "22.2 Data Generating Process\nWe use the same staggered adoption setting as in the previous chapter to highlight the contrast with TWFE.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#callaway-and-santanna-2021",
+    "href": "chapters/22_modern_did_estimators.html#callaway-and-santanna-2021",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "22.3 Callaway and Sant’Anna (2021)",
+    "text": "22.3 Callaway and Sant’Anna (2021)\nThe estimator proposed by Callaway and Sant’Anna constructs group-time average treatment effects, comparing treated units only to units that are not yet treated.\n\n\n\nCall:\natt_gt(yname = \"outcome\", tname = \"time\", idname = \"id\", gname = \"treat_time\", \n    data = panel, control_group = \"notyettreated\")\n\nReference: Callaway, Brantly and Pedro H.C. Sant'Anna.  \"Difference-in-Differences with Multiple Time Periods.\" Journal of Econometrics, Vol. 225, No. 2, pp. 200-230, 2021. &lt;https://doi.org/10.1016/j.jeconom.2020.12.001&gt;, &lt;https://arxiv.org/abs/1803.09015&gt; \n\nGroup-Time Average Treatment Effects:\n Group Time ATT(g,t) Std. Error [95% Simult.  Conf. Band]  \n     5    2   0.0487     0.1891       -0.5042      0.6016  \n     5    3   0.0792     0.1931       -0.4854      0.6437  \n     5    4   0.2265     0.2248       -0.4309      0.8838  \n     5    5   1.8505     0.2031        1.2565      2.4445 *\n     5    6   1.8897     0.1960        1.3166      2.4628 *\n     5    7   1.9281     0.2110        1.3111      2.5452 *\n     5    8   1.5616     0.2716        0.7673      2.3560 *\n     5    9   1.8705     0.2440        1.1571      2.5840 *\n     5   10   1.3398     0.2581        0.5849      2.0947 *\n     5   11   2.0027     0.2894        1.1565      2.8489 *\n     5   12   1.7193     0.2304        1.0454      2.3931 *\n     8    2  -0.2822     0.2158       -0.9133      0.3489  \n     8    3   0.0638     0.1970       -0.5123      0.6398  \n     8    4   0.0551     0.2213       -0.5919      0.7021  \n     8    5  -0.3259     0.2569       -1.0771      0.4252  \n     8    6   0.1350     0.2641       -0.6374      0.9074  \n     8    7   0.0619     0.2589       -0.6952      0.8189  \n     8    8   1.7821     0.2711        0.9893      2.5748 *\n     8    9   2.0363     0.2387        1.3384      2.7343 *\n     8   10   2.0419     0.2988        1.1682      2.9156 *\n     8   11   1.9441     0.2430        1.2336      2.6546 *\n     8   12   2.0221     0.2234        1.3689      2.6753 *\n---\nSignif. codes: `*' confidence band does not cover 0\n\nP-value for pre-test of parallel trends assumption:  0.67967\nControl Group:  Not Yet Treated,  Anticipation Periods:  0\nEstimation Method:  Doubly Robust\n\n\nWe can aggregate these group-time effects into an overall average treatment effect.\n\n\n\nCall:\naggte(MP = cs_att, type = \"simple\")\n\nReference: Callaway, Brantly and Pedro H.C. Sant'Anna.  \"Difference-in-Differences with Multiple Time Periods.\" Journal of Econometrics, Vol. 225, No. 2, pp. 200-230, 2021. &lt;https://doi.org/10.1016/j.jeconom.2020.12.001&gt;, &lt;https://arxiv.org/abs/1803.09015&gt; \n\n    ATT    Std. Error     [ 95%  Conf. Int.]  \n 1.8453         0.156     1.5395      2.1511 *\n\n\n---\nSignif. codes: `*' confidence band does not cover 0\n\nControl Group:  Not Yet Treated,  Anticipation Periods:  0\nEstimation Method:  Doubly Robust",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#sun-and-abraham-2021",
+    "href": "chapters/22_modern_did_estimators.html#sun-and-abraham-2021",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "22.4 Sun and Abraham (2021)",
+    "text": "22.4 Sun and Abraham (2021)\nSun and Abraham propose an interaction-weighted event-study estimator that isolates clean comparisons between treated and not-yet-treated units.\n\n\nOLS estimation, Dep. Var.: outcome\nObservations: 1,080\nFixed-effects: id: 90,  time: 12\nStandard-errors: IID \n          Estimate Std. Error   t value   Pr(&gt;|t|)    \ntime::-7  0.110622   0.252687  0.437784 6.6164e-01    \ntime::-6 -0.233228   0.252687 -0.922992 3.5624e-01    \ntime::-5 -0.095411   0.252687 -0.377584 7.0582e-01    \ntime::-4 -0.117249   0.154739 -0.757722 4.4880e-01    \ntime::-3 -0.341847   0.178677 -1.913216 5.6019e-02 .  \ntime::-2 -0.200295   0.178677 -1.120994 2.6257e-01    \ntime::0   1.734806   0.178677  9.709192  &lt; 2.2e-16 ***\ntime::1   1.915276   0.178677 10.719224  &lt; 2.2e-16 ***\ntime::2   1.952744   0.154739 12.619635  &lt; 2.2e-16 ***\ntime::3   1.752852   0.178677  9.810185  &lt; 2.2e-16 ***\ntime::4   1.946316   0.178677 10.892951  &lt; 2.2e-16 ***\ntime::5   1.339799   0.252687  5.302206 1.4211e-07 ***\ntime::6   2.002652   0.252687  7.925427 6.3004e-15 ***\ntime::7   1.719264   0.252687  6.803926 1.7927e-11 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nRMSE: 0.651415     Adj. R2: 0.869022\n                 Within R2: 0.426309",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#comparison-with-twfe",
+    "href": "chapters/22_modern_did_estimators.html#comparison-with-twfe",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "22.5 Comparison with TWFE",
+    "text": "22.5 Comparison with TWFE\nUnlike the standard TWFE estimator, both approaches explicitly respect treatment timing and exclude comparisons between already-treated units.\nAs a result, the estimated treatment effects align with the true data generating process.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#practical-guidance",
+    "href": "chapters/22_modern_did_estimators.html#practical-guidance",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "22.6 Practical Guidance",
+    "text": "22.6 Practical Guidance\n\nUse TWFE only in canonical two-group, two-period settings.\nIn staggered adoption designs, prefer modern DiD estimators.\nAlways make treatment timing explicit.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/22_modern_did_estimators.html#conclusion",
+    "href": "chapters/22_modern_did_estimators.html#conclusion",
+    "title": "22  Modern Difference-in-Differences Estimators",
+    "section": "22.7 Conclusion",
+    "text": "22.7 Conclusion\nModern difference-in-differences estimators resolve the fundamental problems of TWFE in staggered adoption settings and have become the standard tools in applied work.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Modern Difference-in-Differences Estimators</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html",
+    "href": "chapters/ch23-did-summary-decision-tree.html",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "",
+    "text": "23.1 Purpose of This Chapter\nThis chapter summarizes the core lessons from the Difference-in-Differences (DiD) block and provides a practical decision tree for choosing an appropriate DiD estimator in applied work.\nRather than introducing new estimators, the goal is to help researchers map their empirical design to the correct identification strategy and avoid common pitfalls, especially in settings with multiple time periods and staggered treatment adoption.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#what-difference-in-differences-identifies",
+    "href": "chapters/ch23-did-summary-decision-tree.html#what-difference-in-differences-identifies",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.2 What Difference-in-Differences Identifies",
+    "text": "23.2 What Difference-in-Differences Identifies\nDifference-in-Differences does not identify a generic treatment effect. Instead, it identifies average causal effects under specific comparison structures.\nAt its core, DiD relies on comparing changes over time between treated units and an appropriate control group.\nThe key identifying assumption is a version of the parallel trends assumption: in the absence of treatment, treated and control units would have followed the same outcome evolution.\nWho is used as a control group and when the comparison is made determines which causal parameter is identified.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#key-design-dimensions-in-did",
+    "href": "chapters/ch23-did-summary-decision-tree.html#key-design-dimensions-in-did",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.3 Key Design Dimensions in DiD",
+    "text": "23.3 Key Design Dimensions in DiD\nBefore choosing an estimator, an applied researcher should answer four design questions.\n\n23.3.1 Number of Time Periods\n\nTwo periods only\nMore than two periods\n\n\n\n23.3.2 Treatment Timing\n\nAll treated units receive treatment at the same time\nTreatment adoption is staggered across units\n\n\n\n23.3.3 Treatment Effect Heterogeneity\n\nConstant treatment effects\nEffects vary across cohorts or over time\n\n\n\n23.3.4 Anticipation and Dynamics\n\nNo anticipation\nPossible anticipation effects\nDynamic treatment effects\n\nThese features determine whether standard two-way fixed effects estimators are valid.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#the-did-decision-tree",
+    "href": "chapters/ch23-did-summary-decision-tree.html#the-did-decision-tree",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.4 The DiD Decision Tree",
+    "text": "23.4 The DiD Decision Tree\n\n23.4.1 Step 1: Is the design 2×2?\nOne treated group, one control group, one pre-treatment period, and one post-treatment period.\nYes → Canonical DiD or TWFE is appropriate.\nNo → Proceed to Step 2.\n\n\n\n23.4.2 Step 2: Are there multiple time periods with staggered treatment adoption?\nYes → Standard TWFE is generally invalid due to forbidden comparisons. Proceed to Step 3.\nNo → TWFE may still be valid under strong homogeneity assumptions.\n\n\n\n23.4.3 Step 3: Do treatment effects vary across cohorts or over time?\nYes → Use modern DiD estimators: - Callaway and Sant’Anna (2021) - Sun and Abraham (2021)\nNo → TWFE may approximate an average effect, but caution is required.\n\n\n\n23.4.4 Step 4: Is an event-study interpretation desired?\nYes → Use interaction-weighted event-study estimators (Sun and Abraham).\nNo → Use aggregated group-time effects (Callaway and Sant’Anna).",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#recommended-estimators-by-design",
+    "href": "chapters/ch23-did-summary-decision-tree.html#recommended-estimators-by-design",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.5 Recommended Estimators by Design",
+    "text": "23.5 Recommended Estimators by Design\n\n\n\n\n\n\n\n\nDesign Feature\nRecommended Estimator\nKey Reference\n\n\n\n\nCanonical 2×2\nTWFE / DiD\nCard & Krueger (1994)\n\n\nStaggered adoption\nNot TWFE\nGoodman-Bacon (2021)\n\n\nStaggered + heterogeneity\nCallaway–Sant’Anna\nCallaway & Sant’Anna (2021)\n\n\nDynamic effects\nSun–Abraham\nSun & Abraham (2021)",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#common-mistakes-in-applied-did",
+    "href": "chapters/ch23-did-summary-decision-tree.html#common-mistakes-in-applied-did",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.6 Common Mistakes in Applied DiD",
+    "text": "23.6 Common Mistakes in Applied DiD\n\nUsing TWFE with staggered adoption without justification.\nInterpreting TWFE event studies as causal dynamics.\nRelying on placebo tests alone.\nIgnoring treatment timing.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#a-practical-workflow-for-applied-work",
+    "href": "chapters/ch23-did-summary-decision-tree.html#a-practical-workflow-for-applied-work",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.7 A Practical Workflow for Applied Work",
+    "text": "23.7 A Practical Workflow for Applied Work\n\nExplicitly describe treatment timing.\nClassify the design using the decision tree.\nChoose an estimator consistent with the design.\nAssess identifying assumptions.\nReport clearly which causal parameter is estimated.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch23-did-summary-decision-tree.html#concluding-remarks",
+    "href": "chapters/ch23-did-summary-decision-tree.html#concluding-remarks",
+    "title": "23  Difference-in-Differences: Summary and Decision Tree",
+    "section": "23.8 Concluding Remarks",
+    "text": "23.8 Concluding Remarks\nModern Difference-in-Differences methods emphasize a simple principle:\nIdentification comes from design, not from regression mechanics.\nMatching the estimator to the empirical design is essential for credible causal inference.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Difference-in-Differences: Summary and Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html",
+    "href": "chapters/ch24-empirical-design-checklist.html",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "",
+    "text": "24.1 Purpose of This Chapter\nThis chapter provides a unified empirical design checklist that synthesizes the methods covered throughout this book.\nRather than focusing on a specific estimator, the goal is to offer a systematic framework for moving from a research question to a credible causal design. The checklist is intended to be used when designing a new project, evaluating existing empirical work, or interpreting applied research results.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#research-question-and-causal-parameter",
+    "href": "chapters/ch24-empirical-design-checklist.html#research-question-and-causal-parameter",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.2 Research Question and Causal Parameter",
+    "text": "24.2 Research Question and Causal Parameter\nEvery empirical project begins with a research question, but credible inference requires translating that question into a well-defined causal parameter.\nKey questions include:\n\nWhat is the treatment or intervention?\nWho is treated, and relative to whom?\nWhen does treatment occur?\nWhat is the outcome of interest?\nWhat counterfactual outcome is being considered?\n\nClarity about the estimand is essential before any discussion of data or estimation.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#data-structure",
+    "href": "chapters/ch24-empirical-design-checklist.html#data-structure",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.3 Data Structure",
+    "text": "24.3 Data Structure\nThe structure of the data constrains the set of feasible identification strategies.\nImportant considerations include:\n\nCross-sectional, repeated cross-sectional, or panel data\nLevel of observation versus level of treatment\nTiming and frequency of observations\nPresence of untreated or not-yet-treated units\n\nA mismatch between the research question and the data structure is a common source of invalid empirical designs.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#identification-strategy",
+    "href": "chapters/ch24-empirical-design-checklist.html#identification-strategy",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.4 Identification Strategy",
+    "text": "24.4 Identification Strategy\nIdentification comes from assumptions, not from estimation techniques.\nCommon identification strategies include:\n\nSelection on observables\nDifference-in-Differences\nInstrumental Variables\nRegression Discontinuity Designs\nSynthetic Control and panel-based causal methods\n\nThe chosen strategy should be justified by institutional knowledge and the data-generating process.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#assumptions-explicit-and-implicit",
+    "href": "chapters/ch24-empirical-design-checklist.html#assumptions-explicit-and-implicit",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.5 Assumptions: Explicit and Implicit",
+    "text": "24.5 Assumptions: Explicit and Implicit\nEach identification strategy relies on assumptions that must be stated clearly.\nExamples include:\n\nParallel trends\nExclusion restrictions\nNo anticipation\nContinuity at a cutoff\nStable Unit Treatment Value Assumption (SUTVA)\n\nEmpirical credibility depends on whether these assumptions are plausible in the context under study.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#threats-to-identification",
+    "href": "chapters/ch24-empirical-design-checklist.html#threats-to-identification",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.6 Threats to Identification",
+    "text": "24.6 Threats to Identification\nEven well-designed studies face potential threats to identification.\nCommon threats include:\n\nTime-varying confounders\nChanges in sample composition\nSpillovers and general equilibrium effects\nEndogenous policy timing\nFunctional form dependence\n\nIdentifying and discussing these threats is a central component of applied work.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#estimation-choices",
+    "href": "chapters/ch24-empirical-design-checklist.html#estimation-choices",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.7 Estimation Choices",
+    "text": "24.7 Estimation Choices\nOnce identification is established, estimation choices should follow logically.\nResearchers should be explicit about:\n\nWhy a particular estimator is used\nWhich comparisons drive identification\nHow units and time periods are weighted\nSensitivity to alternative specifications\n\nEstimation should support identification, not replace it.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#inference",
+    "href": "chapters/ch24-empirical-design-checklist.html#inference",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.8 Inference",
+    "text": "24.8 Inference\nValid inference requires aligning standard errors with the source of identifying variation.\nKey issues include:\n\nAppropriate clustering level\nNumber of clusters\nSerial correlation\nFinite-sample concerns\n\nInference choices should be justified with reference to the empirical design.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#diagnostics-and-falsification",
+    "href": "chapters/ch24-empirical-design-checklist.html#diagnostics-and-falsification",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.9 Diagnostics and Falsification",
+    "text": "24.9 Diagnostics and Falsification\nCredible empirical work includes diagnostics that probe the identifying assumptions.\nCommon tools include:\n\nPlacebo tests\nEvent-study analyses\nBalance and pre-trend tests\nSensitivity and robustness checks\n\nThese exercises strengthen the interpretation of causal estimates.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#interpretation-and-external-validity",
+    "href": "chapters/ch24-empirical-design-checklist.html#interpretation-and-external-validity",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.10 Interpretation and External Validity",
+    "text": "24.10 Interpretation and External Validity\nEmpirical results should be interpreted in light of the design.\nImportant questions include:\n\nTo whom does the estimated effect apply?\nWhich margins of variation identify the effect?\nHow policy-relevant is the estimate?\nWhat limits external validity?\n\nClear interpretation prevents overgeneralization.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#a-one-page-empirical-design-checklist",
+    "href": "chapters/ch24-empirical-design-checklist.html#a-one-page-empirical-design-checklist",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.11 A One-Page Empirical Design Checklist",
+    "text": "24.11 A One-Page Empirical Design Checklist\nBefore finalizing an empirical analysis, a researcher should be able to answer the following questions:\n\nWhat is the causal question and estimand?\nWhat is the source of identifying variation?\nWhich assumptions are required?\nWhat threatens identification?\nWhy is the chosen estimator appropriate?\nHow is inference conducted?\nHow should the results be interpreted?\n\nIf any of these questions cannot be answered clearly, the empirical design should be reconsidered.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ch24-empirical-design-checklist.html#concluding-remarks",
+    "href": "chapters/ch24-empirical-design-checklist.html#concluding-remarks",
+    "title": "24  Empirical Design Checklist: From Research Question to Credible Causal Inference",
+    "section": "24.12 Concluding Remarks",
+    "text": "24.12 Concluding Remarks\nApplied econometrics is fundamentally about design.\nCareful attention to identification, assumptions, and interpretation is more important than the choice of estimator. This checklist provides a general framework for disciplined empirical work and serves as a bridge to more advanced causal methods beyond Difference-in-Differences.",
+    "crumbs": [
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Empirical Design Checklist: From Research Question to Credible Causal Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html",
+    "href": "chapters/25-regression-discontinuity-designs.html",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "",
+    "text": "25.1 Purpose and Intuition of RDD\nRegression discontinuity designs (RDD) exploit situations in which treatment assignment is determined by whether an observed running variable crosses a known cutoff. Units just above and just below the cutoff are assumed to be comparable in all respects except for treatment status.\nThe core idea of RDD is that, in a sufficiently small neighborhood around the cutoff, the assignment mechanism mimics randomization. While treatment is not randomly assigned in the population at large, it is as good as random for units whose value of the running variable lies arbitrarily close to the threshold.\nAs a result, discontinuities in the conditional expectation of the outcome at the cutoff can be interpreted as causal treatment effects.\nFormally, let \\(X_i\\) denote the running variable and let \\(c\\) denote the cutoff. Treatment assignment depends on whether the running variable crosses this threshold. The estimand of interest is the discontinuity in the conditional expectation of the outcome:\n\\[\n\\tau = \\lim_{x \\downarrow c} E[Y_i \\mid X_i = x]\n      - \\lim_{x \\uparrow c} E[Y_i \\mid X_i = x].\n\\]\nThis estimand captures a local average treatment effect at the cutoff rather than a population-wide effect. The local nature of identification is a defining feature of RDD and has important implications for interpretation and external validity.\nRDD is particularly attractive in applied work because the source of identification is transparent. Unlike regression adjustment, which relies on functional form assumptions, or difference-in-differences designs, which require parallel trends, RDD relies on a single and conceptually clear condition: in the absence of treatment, the outcome would evolve smoothly through the cutoff.",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html#sharp-and-fuzzy-regression-discontinuity-designs",
+    "href": "chapters/25-regression-discontinuity-designs.html#sharp-and-fuzzy-regression-discontinuity-designs",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "25.2 Sharp and Fuzzy Regression Discontinuity Designs",
+    "text": "25.2 Sharp and Fuzzy Regression Discontinuity Designs\nRegression discontinuity designs come in two closely related variants, depending on how treatment assignment responds to crossing the cutoff: sharp RDD and fuzzy RDD. The distinction is crucial for both identification and estimation.\n\n25.2.1 Sharp Regression Discontinuity\n[ D_i = {X_i c}. ]\nIn a sharp RDD, the probability of treatment jumps from zero to one at the cutoff. Under continuity of potential outcomes, the causal effect at the threshold is given by the discontinuity in the outcome regression:\n[ = {x c} E[Y_i X_i = x] - {x c} E[Y_i X_i = x]. ]\nThis estimand captures a local treatment effect at the cutoff.\n\n\n25.2.2 Fuzzy Regression Discontinuity\nIn many applications, crossing the cutoff affects the probability of treatment without perfectly determining it.\n[ = . ]\nThis estimand identifies a local average treatment effect for compliers at the cutoff. NA",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html#graphical-analysis",
+    "href": "chapters/25-regression-discontinuity-designs.html#graphical-analysis",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "25.3 Graphical Analysis",
+    "text": "25.3 Graphical Analysis\nGraphical analysis is a central component of any regression discontinuity design. Before conducting formal estimation, researchers should visually inspect the relationship between the outcome variable and the running variable around the cutoff.\nThe purpose of RD plots is not to estimate treatment effects precisely, but to assess the plausibility of the identifying assumptions and to make the source of identification transparent.\nIn a credible RDD, the conditional expectation of the outcome should evolve smoothly with the running variable on either side of the cutoff, while exhibiting a visible discontinuity at the threshold.",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html#estimation-and-bandwidth-choice",
+    "href": "chapters/25-regression-discontinuity-designs.html#estimation-and-bandwidth-choice",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "25.4 Estimation and Bandwidth Choice",
+    "text": "25.4 Estimation and Bandwidth Choice\nWhile graphical analysis provides intuition and a valuable credibility check, causal inference in regression discontinuity designs requires formal estimation. The key challenge is to estimate the discontinuity in the conditional expectation of the outcome at the cutoff while balancing bias and variance.\nRDD estimation is inherently local. Observations far from the cutoff may improve precision but risk introducing bias due to misspecification of the functional form. Observations very close to the cutoff are more comparable but yield noisier estimates. The choice of bandwidth reflects this fundamental trade-off.\n\n25.4.1 Local Polynomial Estimation\nThe standard approach to RDD estimation is local polynomial regression, estimated separately on each side of the cutoff. In practice, local linear regression is often preferred due to its favorable boundary properties.\nLet (Y_i) denote the outcome and (X_i) the running variable with cutoff (c). A local linear RDD estimator solves:\n[ {,} {i: X_i &lt; c} K!() (Y_i - - (X_i - c))^2 ]\nand analogously on the right side of the cutoff. The estimated treatment effect is given by the difference in the fitted intercepts at the cutoff.\n\n\n25.4.2 Bandwidth Choice: Bias–Variance Trade-off\nThe bandwidth (h) determines how local the comparison is.\n\nSmall bandwidths reduce bias but increase variance.\nLarge bandwidths reduce variance but risk bias from functional form misspecification.\n\nGraphical analysis helps guide reasonable bandwidth ranges, but formal methods are needed for principled selection.\n\n\n25.4.3 Data-Driven Bandwidth Selection\nModern RDD practice relies on data-driven bandwidth selectors that minimize asymptotic mean squared error. Among the most widely used are the methods proposed by Imbens and Kalyanaraman (2012) and Calonico, Cattaneo, and Titiunik (2014).\nThese procedures automatically choose bandwidths that balance bias and variance and are implemented in standard software packages.\n\n\n25.4.4 Reporting and Transparency\nGood practice in RDD estimation includes reporting the chosen bandwidth and the method used to select it, presenting robustness checks across bandwidths, pairing numerical estimates with graphical evidence, and clearly stating the local nature of the estimand.\nRDD estimates are local by construction. Their credibility rests not on complexity, but on transparency.",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html#validity-checks-and-manipulation-tests",
+    "href": "chapters/25-regression-discontinuity-designs.html#validity-checks-and-manipulation-tests",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "25.5 Validity Checks and Manipulation Tests",
+    "text": "25.5 Validity Checks and Manipulation Tests\nThe credibility of a regression discontinuity design hinges on the plausibility of its identifying assumptions. While RDDs are often viewed as transparent and intuitive, they require careful diagnostic checks to rule out alternative explanations for observed discontinuities.\nThe key identifying assumption is that, in the absence of treatment, the conditional expectation of the outcome and other relevant variables would evolve smoothly through the cutoff. Validity checks in RDD aim to assess whether this assumption is likely to hold in the data.\n\n25.5.1 Manipulation of the Running Variable\nA primary threat to validity arises if individuals can precisely manipulate the running variable in order to sort around the cutoff. If such manipulation occurs, units just above and just below the threshold may no longer be comparable.\nOne common diagnostic is to examine the density of the running variable around the cutoff. A discontinuity in the density suggests strategic sorting and undermines the credibility of the design.\n\n\n25.5.2 Continuity of Covariates\nAnother important validity check involves testing for discontinuities in predetermined covariates at the cutoff. Since these variables should not be affected by treatment, any systematic jumps may indicate violations of the identifying assumptions.\nIn a credible RDD, baseline characteristics should evolve smoothly through the threshold, mirroring the continuity required of the outcome in the absence of treatment.\n\n\n25.5.3 Placebo and Falsification Tests\nPlacebo tests provide an additional diagnostic by estimating discontinuities at cutoffs where no treatment is assigned. Significant effects at placebo thresholds cast doubt on the interpretation of the main RDD estimate.\nSimilarly, researchers may test for treatment effects in periods or outcomes that should not be affected by the intervention. Failure to find such effects strengthens the credibility of the design.\n\n\n25.5.4 Limitations of Validity Checks\nWhile validity checks are informative, they cannot conclusively prove identification. Absence of evidence of manipulation or discontinuities in covariates does not guarantee that the identifying assumptions hold.\nFor this reason, validity checks should be viewed as complementary evidence, to be interpreted alongside substantive knowledge of the institutional context and the graphical and statistical evidence presented earlier.",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html#interpretation-and-external-validity",
+    "href": "chapters/25-regression-discontinuity-designs.html#interpretation-and-external-validity",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "25.6 Interpretation and External Validity",
+    "text": "25.6 Interpretation and External Validity\nRegression discontinuity designs identify causal effects at the cutoff of the running variable. As a result, the estimated treatment effect is inherently local and applies only to units whose value of the running variable lies in a neighborhood around the threshold.\nThis local nature of identification has important implications for interpretation. RDD estimates should not be interpreted as average treatment effects for the entire population, but rather as effects for individuals who are marginal with respect to treatment assignment.\n\n25.6.1 Local Nature of the Estimand\nThe RDD estimand captures the causal effect for units at the cutoff. These units may differ systematically from those farther away from the threshold, limiting the external validity of the findings.\nIn some applications, however, individuals near the cutoff are of particular policy relevance. For example, when eligibility rules are defined by thresholds, policymakers are often interested precisely in the effects for marginal recipients.\n\n\n25.6.2 External Validity and Generalization\nThe limited external validity of RDD does not imply that the design is uninformative. Instead, it highlights the importance of careful interpretation and contextual knowledge.\nResearchers may strengthen external validity by combining RDD evidence with results from other designs, by estimating effects at multiple cutoffs, or by studying heterogeneous treatment effects across subgroups.\n\n\n25.6.3 Policy Interpretation\nRDD results are often well suited for policy evaluation, as they directly speak to the consequences of marginal changes in eligibility or assignment rules.\nHowever, extrapolating RDD estimates beyond the cutoff requires strong assumptions and should be undertaken with caution. Transparency about what is identified—and what is not—is essential for credible policy analysis.\n\n\n25.6.4 Summary\nRegression discontinuity designs offer a powerful and transparent framework for causal inference when treatment assignment is governed by a known threshold. Their credibility rests on local identification, careful estimation, and thorough validity checks.\nWhen interpreted appropriately, RDDs provide compelling evidence on causal effects at policy-relevant margins, even if their conclusions do not automatically generalize to the broader population.",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/25-regression-discontinuity-designs.html#empirical-example-program-eligibility-and-test-score-cutoffs",
+    "href": "chapters/25-regression-discontinuity-designs.html#empirical-example-program-eligibility-and-test-score-cutoffs",
+    "title": "25  Regression Discontinuity Designs",
+    "section": "25.7 Empirical Example: Program Eligibility and Test Score Cutoffs",
+    "text": "25.7 Empirical Example: Program Eligibility and Test Score Cutoffs\nTo illustrate the mechanics and interpretation of regression discontinuity designs, we consider a stylized empirical example in which eligibility for a program is determined by a cutoff in a test score.\nSuppose students are eligible for an educational intervention if their standardized test score exceeds a known threshold. Let the test score serve as the running variable, with treatment assignment determined by whether the score crosses the cutoff.\nThe outcome of interest may be a subsequent academic achievement measure, such as grade point average, test performance in a later period, or educational attainment.\n\n25.7.1 Design and Assignment Mechanism\nEligibility for the program is determined by a known cutoff in the test score. Students with scores at or above the threshold are offered treatment, while those below are not.\nNear the cutoff, students just above and just below the threshold are expected to be similar in observed and unobserved characteristics, except for their treatment status. Under the continuity assumption, differences in outcomes at the cutoff can be attributed to the causal effect of program participation.\nThis setting naturally lends itself to a sharp regression discontinuity design if eligibility perfectly determines participation, or to a fuzzy design if take-up is incomplete.\n\n\n25.7.2 What the RDD Estimates\nThe regression discontinuity estimand in this setting captures the causal effect of program eligibility for students whose test scores lie in a neighborhood around the cutoff.\nImportantly, this effect applies to marginal students near the threshold and should not be interpreted as the average effect for all program participants. The empirical example therefore reinforces the local nature of identification emphasized earlier in the chapter.\n\n\n25.7.3 Graphical Evidence (Interactive Preview)\nGraphical evidence plays a central role in understanding and communicating regression discontinuity designs. In this empirical example, the primary diagnostic tool is a plot of the outcome variable against the running variable, with special attention paid to observations near the cutoff.\nAn RD plot visually displays whether the conditional expectation of the outcome evolves smoothly on either side of the threshold while exhibiting a discontinuous jump at the cutoff. Such a pattern is consistent with the identifying assumptions of the design.\nIn practice, raw scatterplots are often supplemented with binned averages and local polynomial fits estimated separately on each side of the cutoff. These graphical elements help reduce noise and clarify the underlying relationship without imposing strong global functional form assumptions.\nFor the purposes of this chapter, the graphical analysis is presented conceptually. In the accompanying interactive handout, readers will be able to adjust key elements of the RD plot—such as the bandwidth, bin width, and polynomial order—and observe how the visual evidence responds to these choices.\nThis interactive exploration reinforces two core insights. First, RDD evidence is inherently local: conclusions are driven by observations near the cutoff. Second, graphical results are sensitive to tuning parameters, underscoring the importance of transparency and robustness in applied work.\nThe graphical analysis should be interpreted as a complement to formal estimation rather than as a standalone source of inference.\n\n\n25.7.4 Estimation Results (Empirical Illustration)\nWe now briefly illustrate how formal estimation complements the graphical evidence in this empirical example. The regression discontinuity estimate is obtained using local polynomial regression with a data-driven bandwidth selection procedure.\nConsistent with the graphical patterns, the estimated treatment effect indicates a positive and statistically meaningful discontinuity at the cutoff. The magnitude of the effect is economically relevant for students near the eligibility threshold, reinforcing the interpretation of the design as identifying a local causal effect.\nTo assess robustness, estimates can be computed using alternative bandwidth choices and polynomial orders. In this example, the qualitative conclusions remain stable across a range of reasonable specifications, although point estimates and standard errors vary, reflecting the inherent bias–variance trade-off discussed earlier.\nImportantly, these estimates should be interpreted in light of the design’s identifying assumptions and validity checks. The numerical results do not stand alone; they gain credibility from the alignment between graphical evidence, institutional knowledge, and diagnostic tests.\nIn the interactive handout, readers will be able to modify estimation choices—such as the bandwidth and kernel—and observe how the estimated discontinuity responds to these changes in real time.\n\n\n25.7.5 Validity Checks (Empirical Illustration)\nTo assess the credibility of the regression discontinuity design in this empirical example, several standard validity checks are considered. These diagnostics are designed to evaluate whether the identifying assumptions discussed earlier are plausible in the data.\nFirst, the distribution of the running variable is examined around the cutoff to assess potential manipulation. In a credible design, the density of test scores should evolve smoothly through the threshold, with no visible discontinuity that would suggest strategic sorting.\nSecond, predetermined covariates—such as prior academic performance or demographic characteristics—are analyzed for discontinuities at the cutoff. The absence of systematic jumps in these variables supports the assumption that students just above and below the threshold are comparable.\nThird, placebo tests are conducted by estimating discontinuities at alternative cutoffs where no treatment is assigned. Finding no significant effects at these placebo thresholds strengthens confidence that the observed discontinuity at the true cutoff reflects a causal effect of program eligibility.\nTaken together, these checks provide supporting evidence for the validity of the design. While no single diagnostic can conclusively establish identification, the consistency of results across multiple tests enhances the credibility of the empirical findings.\nIn the interactive handout, these validity checks can be explored dynamically, allowing readers to visualize density plots, covariate continuity, and placebo estimates under different specifications.\n\n\n25.7.6 Transition to the Next Chapter\nRegression discontinuity designs exploit deterministic assignment rules to achieve credible causal identification at policy-relevant thresholds. Their strength lies in transparent assumptions and local comparisons near a cutoff.\nThe next chapter extends the discussion of quasi-experimental methods to settings in which treatment assignment varies over time rather than across a threshold. While the identifying assumptions differ, the central challenge remains the same: isolating causal effects in observational data using institutional structure and careful design.",
+    "crumbs": [
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Regression Discontinuity Designs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/26-event-studies-and-dynamic-treatment-effects.html",
+    "href": "chapters/26-event-studies-and-dynamic-treatment-effects.html",
+    "title": "26  Event Studies and Dynamic Treatment Effects",
+    "section": "",
+    "text": "26.1 Motivation and Intuition\nDifference-in-differences methods are often used to estimate average treatment effects before and after a policy intervention. While such estimates are informative, they implicitly impose strong restrictions on how treatment effects evolve over time.\nIn many empirical settings, treatment effects are not instantaneous and constant. Instead, they may emerge gradually, grow or fade over time, or even exhibit anticipation effects before the formal implementation of a policy. Event studies provide a flexible framework for examining these dynamic treatment effects.\nThe central idea of an event study is to align units in time relative to a common event, such as the adoption of a policy or the onset of a treatment. Outcomes are then analyzed as a function of event time, rather than calendar time, allowing researchers to trace the evolution of treatment effects before and after the event.\nThis dynamic perspective serves two important purposes. First, it enables researchers to assess the plausibility of identifying assumptions by examining pre-treatment trends. Second, it allows for a richer interpretation of treatment effects, distinguishing short-run impacts from longer-run adjustments.\nEvent studies therefore extend the difference-in-differences framework by replacing a single average effect with a sequence of time-specific effects. This shift from static to dynamic analysis is essential in settings where responses unfold over time and where policy relevance depends on understanding adjustment paths rather than only average impacts.",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Event Studies and Dynamic Treatment Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/26-event-studies-and-dynamic-treatment-effects.html#event-time-framework",
+    "href": "chapters/26-event-studies-and-dynamic-treatment-effects.html#event-time-framework",
+    "title": "26  Event Studies and Dynamic Treatment Effects",
+    "section": "26.2 Event-Time Framework",
+    "text": "26.2 Event-Time Framework\nEvent studies reframe the analysis of treatment effects by indexing time relative to the occurrence of a specific event rather than by calendar time. This transformation allows researchers to compare units at comparable stages before and after treatment, even when the timing of treatment varies across units.\nFormally, event time is defined as the difference between the current period and the period in which the event occurs. Negative values correspond to pre-treatment periods, zero denotes the period of treatment onset, and positive values represent post-treatment periods. One period—typically the last pre-treatment period—is omitted as a reference category to normalize the effects.\nEach event-time coefficient measures the average difference in outcomes between treated and control units at a given relative time, conditional on the chosen normalization. As a result, the sequence of coefficients traces out the dynamic response of the outcome variable to the treatment.\nThis framework highlights an important distinction between calendar time and event time. While calendar time captures aggregate shocks affecting all units simultaneously, event time isolates the evolution of outcomes relative to treatment adoption. By separating these dimensions, event studies provide a clearer picture of treatment dynamics.\nThe event-time framework also makes explicit the assumptions required for identification. In particular, the absence of systematic pre-treatment differences across event times underlies the interpretation of post-treatment coefficients as causal effects. These assumptions are examined in detail in the following sections. ## Identification Assumptions\nThe credibility of event-study estimates rests on a set of identifying assumptions that extend those underlying standard difference-in-differences designs. While the dynamic framework offers greater flexibility, it also makes these assumptions more explicit and, in some cases, more demanding.\nThe first key assumption is parallel trends in event time. In the absence of treatment, outcomes for treated and control units are assumed to evolve similarly at each relative time period. This assumption implies that differences observed prior to treatment reflect common trends rather than anticipatory responses or differential dynamics.\nClosely related is the no anticipation assumption. Units are assumed not to adjust their behavior in response to knowledge of future treatment before the treatment actually occurs. Violations of this assumption may manifest as systematic deviations in pre-treatment event-time coefficients and complicate the interpretation of post-treatment effects.\nEvent studies make these assumptions empirically assessable. By estimating coefficients for multiple pre-treatment periods, researchers can visually and statistically examine whether outcomes diverge prior to treatment. Flat or statistically insignificant pre-treatment coefficients are often interpreted as supporting evidence for the identifying assumptions.\nHowever, it is important to emphasize that the absence of pre-trends does not guarantee identification. Event-study estimates may still be biased if treatment timing is correlated with unobserved shocks or if treatment effects are heterogeneous over time. These concerns are especially relevant in settings with staggered adoption, where standard two-way fixed effects estimators may produce misleading dynamic patterns.\nTaken together, identification in event studies relies on careful institutional reasoning, transparent diagnostics, and cautious interpretation. The dynamic structure strengthens credibility when assumptions are plausible, but it also exposes violations that would remain hidden in static specifications.",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Event Studies and Dynamic Treatment Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/26-event-studies-and-dynamic-treatment-effects.html#identification-assumptions",
+    "href": "chapters/26-event-studies-and-dynamic-treatment-effects.html#identification-assumptions",
+    "title": "26  Event Studies and Dynamic Treatment Effects",
+    "section": "26.3 Identification Assumptions",
+    "text": "26.3 Identification Assumptions\nThe validity of event-study estimates hinges on a set of identifying assumptions that extend those underlying standard difference-in-differences designs. While the event-time framework offers greater flexibility in modeling dynamic treatment effects, it also makes these assumptions more transparent—and, in some cases, more demanding.\n\n26.3.1 Parallel Trends in Event Time\nThe core identifying assumption is a form of parallel trends expressed in event time. In the absence of treatment, outcomes of treated and control units are assumed to evolve similarly at each relative time period. This assumption implies that any systematic differences observed after treatment can be attributed to the treatment itself, rather than to pre-existing or diverging trends.\nUnlike static difference-in-differences, event studies allow this assumption to be partially assessed. By estimating coefficients for multiple pre-treatment periods, researchers can examine whether outcomes diverge prior to treatment. Statistically insignificant and economically small pre-treatment coefficients are often interpreted as supportive evidence for parallel trends.\nHowever, the absence of detectable pre-trends should not be interpreted as definitive proof. Limited statistical power, noisy outcomes, or short pre-treatment windows may mask violations of the assumption.\n\n\n26.3.2 No Anticipation\nA closely related assumption is the absence of anticipation effects. Units are assumed not to adjust their behavior in response to knowledge of future treatment before the treatment actually occurs. If agents anticipate treatment and respond in advance, estimated pre-treatment coefficients may reflect behavioral adjustments rather than violations of parallel trends.\n\n\n26.3.3 Heterogeneous Treatment Effects and Staggered Adoption\nIn settings with staggered treatment adoption, traditional two-way fixed effects event-study estimators impose strong restrictions on the structure of treatment effects. In particular, they implicitly assume that treatment effects are homogeneous across cohorts and over time. When this assumption fails, estimated dynamic coefficients may be difficult to interpret and may even reflect non-convex averages of underlying cohort-specific effects.\nRecent work has shown that these issues can lead to misleading dynamic patterns in event-study plots, even when standard identifying assumptions appear to hold (Sun and Abraham 2021; Callaway and Sant’Anna 2021).\n\n\n26.3.4 Composition of Control Groups\nEvent-study estimates compare treated units at a given event time to a control group consisting of units not yet treated or never treated. As event time progresses, the composition of this control group may change. Identification requires that these changes do not introduce systematic differences unrelated to treatment.\nThis concern is especially relevant in long panels with staggered adoption, where later-treated units serve as controls for earlier-treated units. If treatment timing is correlated with unobserved shocks, event-study estimates may be biased even in the absence of pre-treatment trends.\n\n\n26.3.5 Summary\nEvent studies make the identifying assumptions of difference-in-differences explicit and empirically assessable. While this transparency is a major strength of the approach, it also places greater responsibility on the researcher to justify assumptions using both data and institutional context. Careful interpretation of dynamic coefficients is therefore essential, particularly in settings with heterogeneous treatment effects and staggered policy adoption.",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Event Studies and Dynamic Treatment Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/26-event-studies-and-dynamic-treatment-effects.html#estimation-and-implementation",
+    "href": "chapters/26-event-studies-and-dynamic-treatment-effects.html#estimation-and-implementation",
+    "title": "26  Event Studies and Dynamic Treatment Effects",
+    "section": "26.4 Estimation and Implementation",
+    "text": "26.4 Estimation and Implementation\nHaving laid out the conceptual framework and identifying assumptions underlying event studies, we now turn to practical issues of estimation and implementation. While the basic idea is straightforward—regressing outcomes on a set of event-time indicators—the choice of estimator, normalization, and inference procedures plays a crucial role in the interpretation of results.\n\n26.4.1 Baseline Event-Study Specification\n\\[\nY_{it} = \\alpha_i + \\lambda_t + \\sum_{k \\neq -1} \\beta_k \\, \\mathbb{1}\\{t - T_i = k\\} + \\\\varepsilon_{it}\n\\]\nwhere (T_i) denotes the period of treatment adoption for unit (i), and (k) indexes time relative to the event. One event-time indicator—typically the last pre-treatment period—is omitted as a reference category.\nEach coefficient (_k) captures the average difference in outcomes between treated and control units (k) periods relative to treatment, conditional on unit and time fixed effects. The sequence of coefficients traces out the dynamic treatment response.\n\n\n26.4.2 Choice of Reference Period and Normalization\nThe normalization of event-time coefficients is not innocuous. Omitting the final pre-treatment period is common, as it facilitates interpretation of pre-treatment coefficients as deviations from the immediate pre-treatment baseline. Alternative normalizations are possible, but they should be clearly stated and consistently applied.\nResearchers should avoid overinterpreting the coefficient at event time zero. This coefficient reflects the effect during the treatment adoption period, which may be only partially exposed to treatment, depending on institutional timing.\n\n\n26.4.3 Window Length and Binning\nIn practice, event studies often impose a finite window around the event. Very distant pre- or post-treatment periods may be sparsely populated, leading to imprecise estimates. A common approach is to bin extreme event times into a single indicator (e.g., “five or more periods after treatment”).\nWhile binning improves precision, it also imposes restrictions on treatment dynamics. The choice of window length should balance statistical power with substantive relevance.\n\n\n26.4.4 Inference and Standard Errors\nAs with difference-in-differences designs, inference in event studies must account for serial correlation and clustering. Standard errors are typically clustered at the unit level, reflecting the panel structure of the data.\nWhen treatment is assigned at a higher level of aggregation—such as regions or firms—clustering should reflect the level of treatment variation. Failure to do so can result in severely understated standard errors.\n\n\n26.4.5 Event Studies in the Presence of Staggered Adoption\nIn settings with staggered treatment adoption, conventional two-way fixed effects event-study estimators can produce misleading estimates when treatment effects are heterogeneous across cohorts or over time. Recent estimators explicitly address this issue by constructing cohort-specific comparisons and aggregating them in a transparent way.\nModern approaches, such as those proposed by Sun and Abraham (2021) and Callaway and Sant’Anna (2021), retain the intuitive appeal of event studies while avoiding the negative weighting problems inherent in traditional specifications. These methods are discussed in detail in the following chapter.\n\n\n26.4.6 Interpretation and Best Practices\nEvent-study plots are powerful diagnostic and communication tools, but they require careful interpretation. Researchers should focus on overall patterns rather than individual coefficients, pay close attention to pre-treatment dynamics, and clearly communicate uncertainty.\nBest practice involves combining event-study evidence with institutional knowledge, robustness checks, and alternative estimators. When used thoughtfully, event studies provide rich insights into the timing and evolution of causal effects.",
+    "crumbs": [
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Event Studies and Dynamic Treatment Effects</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/27-synthetic-control-methods.html",
+    "href": "chapters/27-synthetic-control-methods.html",
+    "title": "27  Synthetic Control Methods",
+    "section": "",
+    "text": "27.1 Motivation and Intuition\nMany policy interventions affect a single aggregate unit (a country, a region, or a large institution) at a well-defined point in time.\nIn such settings, standard difference-in-differences methods are often unconvincing because there is only one treated unit and no obvious comparison group.\nThe synthetic control method (SCM) addresses this problem by constructing a data-driven comparison unit as a weighted average of untreated units.\nThe weights are chosen so that the synthetic control closely reproduces the treated unit�s pre-treatment outcomes and characteristics.\nIf such a combination exists before treatment, SCM assumes it provides a credible counterfactual after treatment.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Synthetic Control Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/27-synthetic-control-methods.html#motivation-and-intuition",
+    "href": "chapters/27-synthetic-control-methods.html#motivation-and-intuition",
+    "title": "27  Synthetic Control Methods",
+    "section": "",
+    "text": "Instead of asking which single control unit is comparable to the treated unit, SCM asks whether a combination of control units can approximate it.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Synthetic Control Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/27-synthetic-control-methods.html#the-synthetic-control-framework",
+    "href": "chapters/27-synthetic-control-methods.html#the-synthetic-control-framework",
+    "title": "27  Synthetic Control Methods",
+    "section": "27.2 The Synthetic Control Framework",
+    "text": "27.2 The Synthetic Control Framework\nConsider a panel with units indexed by \\(i = 1, \\dots, N\\) and periods \\(t = 1, \\dots, T\\).\nUnit \\(i = 1\\) is exposed to a treatment starting at time \\(T_0\\), while all other units remain untreated.\nLet \\(Y_{it}(0)\\) denote the potential outcome without treatment, and \\(Y_{it}(1)\\) denote the potential outcome with treatment.\nThe observed outcome is:\n\\[\nY_{it} = D_{it} Y_{it}(1) + (1 - D_{it}) Y_{it}(0)\n\\]\nwhere \\(D_{it} = 1\\) if unit \\(i\\) is treated at time \\(t\\), and \\(D_{it} = 0\\) otherwise.\nThe SCM estimator constructs a synthetic control as a weighted average of untreated units:\n\\[\n\\hat{Y}_{1t}(0) = \\sum_{j = 2}^{N} w_j Y_{jt}\n\\]\nwhere the weights satisfy:\n\\[\nw_j \\ge 0 \\quad \\text{and} \\quad \\sum_{j = 2}^{N} w_j = 1\n\\]\nThe weights are chosen to minimize the distance between the treated unit and the synthetic control in the pre-treatment period.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Synthetic Control Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/27-synthetic-control-methods.html#identification-assumptions",
+    "href": "chapters/27-synthetic-control-methods.html#identification-assumptions",
+    "title": "27  Synthetic Control Methods",
+    "section": "27.3 Identification Assumptions",
+    "text": "27.3 Identification Assumptions\nSCM relies on a different identifying logic than difference-in-differences.\nThe central assumption is that the treated unit can be approximated by a convex combination of untreated units in the absence of treatment.\nIf pre-treatment outcomes are well matched, SCM assumes that the same combination would continue to track the treated unit after treatment.\nFormally, SCM assumes that:\n\\[\nY_{1t}(0) \\approx \\sum_{j = 2}^N w_j Y_{jt}(0), \\quad \\text{for } t \\le T_0\n\\]\nUnlike difference-in-differences, SCM does not rely on parallel trends. Identification is assessed visually through pre-treatment fit.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Synthetic Control Methods</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/27-synthetic-control-methods.html#estimation-and-implementation",
+    "href": "chapters/27-synthetic-control-methods.html#estimation-and-implementation",
+    "title": "27  Synthetic Control Methods",
+    "section": "27.4 Estimation and Implementation",
+    "text": "27.4 Estimation and Implementation\nThis section describes how the synthetic control estimator is constructed in practice. While the identifying logic relies on pre-treatment fit, the actual implementation requires several modelling choices that can materially affect results.\n\n27.4.1 Choice of Predictor Variables\nThe first step in implementing the synthetic control method is the selection of predictor variables. These typically include:\n\nPre-treatment values of the outcome variable,\nTime-invariant covariates,\nAggregates or averages of pre-treatment outcomes.\n\nThe goal is to ensure that the synthetic control closely reproduces the treated unit�s characteristics and outcome dynamics prior to treatment. In practice, pre-treatment outcomes often play a dominant role, as they implicitly summarize many unobserved factors.\n\n\n27.4.2 Pre-treatment Outcome Matching\nLet the pre-treatment period consist of times:\n\\[\nt = 1, \\dots, T_0 - 1\n\\]\nThe quality of a synthetic control is primarily judged by how closely it tracks the treated unit during this period. A good pre-treatment fit provides evidence that the treated unit lies within the convex hull of the donor pool.\nPoor pre-treatment fit signals that no weighted combination of control units can approximate the treated unit in the absence of treatment. In such cases, SCM estimates should be interpreted with caution.\n\n\n27.4.3 Weight Selection and the Optimization Problem\nThe synthetic control weights are chosen to minimize the discrepancy between the treated unit and the weighted average of control units in the pre-treatment period.\nFormally, the weights solve an optimization problem that trades off matching on covariates and matching on pre-treatment outcomes. The solution assigns larger weights to control units that more closely resemble the treated unit prior to treatment.\nA key feature of SCM is that the weights are constrained to be non-negative and to sum to one. As a result, the synthetic control is a convex combination of observed units and does not extrapolate beyond the support of the data.\n\n\n27.4.4 The Donor Pool\nThe donor pool consists of all untreated units that are eligible to contribute to the synthetic control. Its composition is crucial for credible estimation.\nIncluding units that are fundamentally different from the treated unit can degrade pre-treatment fit. Conversely, excluding relevant control units may limit the ability to construct a good synthetic match.\nIn applied work, researchers often experiment with alternative donor pools as a robustness check. Transparent reporting of donor pool choices is therefore an important component of empirical SCM studies.\n\n\n27.4.5 Assessing Pre-treatment Fit\nUnlike regression-based methods, SCM does not rely on formal goodness-of-fit statistics. Instead, pre-treatment fit is typically assessed visually by comparing the treated unit and its synthetic control over time.\nA close pre-treatment match is a necessary condition for credible post-treatment counterfactuals. When the synthetic control fails to reproduce pre-treatment trends, post-treatment differences should not be interpreted as causal effects.\n\n\n27.4.6 Placebo and Falsification Tests\nBecause SCM typically involves a single treated unit, conventional statistical inference is not available. Instead, researchers rely on placebo and falsification tests to assess the credibility of estimated effects.\nA common approach is the ‘in-space placebo test’, where the treatment is reassigned to each control unit one at a time. For each placebo unit, a synthetic control is constructed using the remaining units, and the resulting post-treatment gaps are compared to the gap observed for the treated unit.\nIf the treatment effect estimated for the treated unit is unusually large relative to the distribution of placebo effects, this provides evidence that the result is not driven by chance.\n\n\n\n27.4.7 In-Time Placebo Tests\nAnother falsification strategy involves shifting the treatment date to a pre-treatment period. The idea is to test whether the SCM procedure detects ‘effects’ when no treatment has actually occurred.\nIf large post-treatment gaps appear when the placebo treatment date is set well before the true intervention, this casts doubt on the validity of the design. Credible applications typically show small and unstable gaps in these in-time placebo exercises.\n\n\n\n27.4.8 Interpreting Magnitudes and Persistence\nSCM estimates should be interpreted as ‘path-wise treatment effects’, not as average treatment effects. The magnitude, timing, and persistence of the post-treatment gap all matter for interpretation.\nShort-lived or highly volatile effects may indicate anticipation, transitory shocks, or model misspecification. In contrast, persistent and stable divergences between the treated unit and its synthetic control are more consistent with sustained causal effects.\n\n\n\n27.4.9 Sensitivity to Donor Pool and Predictors\nResults from SCM can be sensitive to the choice of donor pool and the set of predictors used to construct the synthetic control.\nResearchers should examine whether estimated effects remain similar when: - certain donor units are excluded, - alternative predictor sets are used, - or the pre-treatment window is modified.\nRobust findings typically exhibit qualitative stability across reasonable design choices.\n\n\n\n27.4.10 When Synthetic Control Methods Are Appropriate\nSCM is most suitable in settings where: - the number of treated units is small, - the intervention occurs at a clearly defined point in time, - rich pre-treatment data are available, - and untreated units provide plausible counterfactual trajectories.\nWhen these conditions are not met, alternative methods such as difference-in-differences or event study designs may be more appropriate.\n\n\n\n27.4.11 Limitations and Common Pitfalls\nDespite its appeal, SCM has important limitations. Poor pre-treatment fit, limited donor pools, and extrapolation beyond the support of the data can undermine credibility.\nIn addition, SCM does not automatically address spillovers, interference between units, or time-varying unobserved confounders. These issues must be considered carefully in empirical applications.\n\n\n\n27.4.12 Summary\nSynthetic control methods provide a transparent and intuitive framework for causal inference in comparative case studies. Their credibility hinges on pre-treatment fit, thoughtful design choices, and careful interpretation of placebo tests.\nWhen used appropriately, SCM can yield compelling evidence in settings where traditional regression-based approaches are less convincing.",
+    "crumbs": [
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Synthetic Control Methods</span>"
+    ]
+  }
+]

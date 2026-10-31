@@ -1,0 +1,113 @@
+---
+title: "Micro Case 3D: Invalid and Multiple Instruments"
+author: "Ethan Cross, PhD"
+date: "January 18, 2026"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  comment = NA,
+  fig.align = "center"
+)
+```
+
+## 1 Introduction
+
+This micro case illustrates the risks associated with using multiple
+instruments when some of them may be invalid. While adding instruments
+can increase precision, invalid instruments can reintroduce bias into
+IV estimators.
+
+## 2 Data Generating Process
+
+We simulate a setting with one valid instrument and one invalid instrument.
+The invalid instrument directly affects the outcome, violating the
+exclusion restriction.
+
+```{r dgp}
+set.seed(123)
+
+n <- 3000
+
+u <- rnorm(n)
+
+# Instruments
+z1 <- rbinom(n, 1, 0.5)  # valid
+z2 <- rbinom(n, 1, 0.5)  # invalid
+
+# Treatment assignment
+treat <- 0.8 * z1 + 0.6 * u + rnorm(n)
+treat <- as.integer(treat > median(treat))
+
+# Potential outcomes
+y0 <- 5 + u + 1.5 * z2 + rnorm(n)  # z2 violates exclusion
+y1 <- y0 + 2
+
+# Observed outcome
+y <- y0 + treat * (y1 - y0)
+
+case3D <- data.frame(y, treat, z1, z2, u, y0, y1)
+```
+
+## 3 OLS Benchmark
+
+```{r ols}
+ols <- lm(y ~ treat, data = case3D)
+summary(ols)
+```
+
+## 4 IV with a Valid Instrument
+
+Using only the valid instrument recovers the causal effect.
+
+```{r iv-valid}
+library(AER)
+iv_valid <- ivreg(y ~ treat | z1, data = case3D)
+summary(iv_valid)
+```
+
+## 5 IV with Multiple Instruments (One Invalid)
+
+We now include both instruments, one of which violates the exclusion
+restriction.
+
+```{r iv-invalid}
+iv_invalid <- ivreg(y ~ treat | z1 + z2, data = case3D)
+summary(iv_invalid)
+```
+
+## 6 Overidentification Test
+
+
+**Note.**  
+The Sargan test is based on a chi-square distribution and therefore does not have
+a denominator degrees of freedom (unlike F-tests), which is why `df2` is reported
+as `NA`.
+
+The Sargan test evaluates whether the instruments are jointly valid.
+Rejection suggests at least one invalid instrument, but non-rejection
+does not guarantee validity.
+
+```{r overid-test}
+# Overidentification diagnostics (Sargan / Hansen)
+summary(iv_invalid, diagnostics = TRUE)
+```
+
+## 7 Interpretation
+
+Adding invalid instruments can bias IV estimates, even when the model is
+overidentified. Overidentification tests are useful diagnostics, but they
+cannot confirm instrument validity.
+
+## 8 Conclusion
+
+This case demonstrates that more instruments are not necessarily better.
+Instrument validity is more important than instrument quantity.
+

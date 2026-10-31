@@ -1,0 +1,175 @@
+# Synthetic Control Methods
+
+## Motivation and Intuition
+
+Many policy interventions affect a single aggregate unit (a country, a region, or a large institution) at a well-defined point in time.
+
+In such settings, standard difference-in-differences methods are often unconvincing because there is only one treated unit and no obvious comparison group.
+
+The synthetic control method (SCM) addresses this problem by constructing a data-driven comparison unit as a weighted average of untreated units.
+
+The weights are chosen so that the synthetic control closely reproduces the treated unit’s pre-treatment outcomes and characteristics.
+
+> Instead of asking which single control unit is comparable to the treated unit, SCM asks whether a combination of control units can approximate it.
+
+If such a combination exists before treatment, SCM assumes it provides a credible counterfactual after treatment.
+
+## The Synthetic Control Framework
+
+Consider a panel with units indexed by $i = 1, \dots, N$ and periods $t = 1, \dots, T$.
+
+Unit $i = 1$ is exposed to a treatment starting at time $T_0$, while all other units remain untreated.
+
+Let $Y_{it}(0)$ denote the potential outcome without treatment, and $Y_{it}(1)$ denote the potential outcome with treatment.
+
+The observed outcome is:
+
+$$
+Y_{it} = D_{it} Y_{it}(1) + (1 - D_{it}) Y_{it}(0)
+$$
+
+where $D_{it} = 1$ if unit $i$ is treated at time $t$, and $D_{it} = 0$ otherwise.
+
+The SCM estimator constructs a synthetic control as a weighted average of untreated units:
+
+$$
+\hat{Y}_{1t}(0) = \sum_{j = 2}^{N} w_j Y_{jt}
+$$
+
+where the weights satisfy:
+
+$$
+w_j \ge 0 \quad \text{and} \quad \sum_{j = 2}^{N} w_j = 1
+$$
+
+The weights are chosen to minimize the distance between the treated unit and the synthetic control in the pre-treatment period.
+
+## Identification Assumptions
+
+SCM relies on a different identifying logic than difference-in-differences.
+
+The central assumption is that the treated unit can be approximated by a convex combination of untreated units in the absence of treatment.
+
+If pre-treatment outcomes are well matched, SCM assumes that the same combination would continue to track the treated unit after treatment.
+
+Formally, SCM assumes that:
+
+$$
+Y_{1t}(0) \approx \sum_{j = 2}^N w_j Y_{jt}(0), \quad \text{for } t \le T_0
+$$
+
+Unlike difference-in-differences, SCM does not rely on parallel trends. Identification is assessed visually through pre-treatment fit.
+
+## Estimation and Implementation
+
+This section describes how the synthetic control estimator is constructed in practice. While the identifying logic relies on pre-treatment fit, the actual implementation requires several modelling choices that can materially affect results.
+
+### Choice of Predictor Variables
+
+The first step in implementing the synthetic control method is the selection of predictor variables. These typically include:
+
+- Pre-treatment values of the outcome variable,
+- Time-invariant covariates,
+- Aggregates or averages of pre-treatment outcomes.
+
+The goal is to ensure that the synthetic control closely reproduces the treated unit’s characteristics and outcome dynamics prior to treatment. In practice, pre-treatment outcomes often play a dominant role, as they implicitly summarize many unobserved factors.
+
+### Pre-treatment Outcome Matching
+
+Let the pre-treatment period consist of times:
+
+$$
+t = 1, \dots, T_0 - 1
+$$
+
+The quality of a synthetic control is primarily judged by how closely it tracks the treated unit during this period. A good pre-treatment fit provides evidence that the treated unit lies within the convex hull of the donor pool.
+
+Poor pre-treatment fit signals that no weighted combination of control units can approximate the treated unit in the absence of treatment. In such cases, SCM estimates should be interpreted with caution.
+
+### Weight Selection and the Optimization Problem
+
+The synthetic control weights are chosen to minimize the discrepancy between the treated unit and the weighted average of control units in the pre-treatment period.
+
+Formally, the weights solve an optimization problem that trades off matching on covariates and matching on pre-treatment outcomes. The solution assigns larger weights to control units that more closely resemble the treated unit prior to treatment.
+
+A key feature of SCM is that the weights are constrained to be non-negative and to sum to one. As a result, the synthetic control is a convex combination of observed units and does not extrapolate beyond the support of the data.
+
+### The Donor Pool
+
+The donor pool consists of all untreated units that are eligible to contribute to the synthetic control. Its composition is crucial for credible estimation.
+
+Including units that are fundamentally different from the treated unit can degrade pre-treatment fit. Conversely, excluding relevant control units may limit the ability to construct a good synthetic match.
+
+In applied work, researchers often experiment with alternative donor pools as a robustness check. Transparent reporting of donor pool choices is therefore an important component of empirical SCM studies.
+
+### Assessing Pre-treatment Fit
+
+Unlike regression-based methods, SCM does not rely on formal goodness-of-fit statistics. Instead, pre-treatment fit is typically assessed visually by comparing the treated unit and its synthetic control over time.
+
+A close pre-treatment match is a necessary condition for credible post-treatment counterfactuals. When the synthetic control fails to reproduce pre-treatment trends, post-treatment differences should not be interpreted as causal effects.
+
+### Placebo and Falsification Tests
+
+Because SCM typically involves a single treated unit, conventional statistical inference is not available. Instead, researchers rely on placebo and falsification tests to assess the credibility of estimated effects.
+
+A common approach is the 'in-space placebo test', where the treatment is reassigned to each control unit one at a time. For each placebo unit, a synthetic control is constructed using the remaining units, and the resulting post-treatment gaps are compared to the gap observed for the treated unit.
+
+If the treatment effect estimated for the treated unit is unusually large relative to the distribution of placebo effects, this provides evidence that the result is not driven by chance.
+
+---
+
+### In-Time Placebo Tests
+
+Another falsification strategy involves shifting the treatment date to a pre-treatment period. The idea is to test whether the SCM procedure detects 'effects' when no treatment has actually occurred.
+
+If large post-treatment gaps appear when the placebo treatment date is set well before the true intervention, this casts doubt on the validity of the design. Credible applications typically show small and unstable gaps in these in-time placebo exercises.
+
+---
+
+### Interpreting Magnitudes and Persistence
+
+SCM estimates should be interpreted as 'path-wise treatment effects', not as average treatment effects. The magnitude, timing, and persistence of the post-treatment gap all matter for interpretation.
+
+Short-lived or highly volatile effects may indicate anticipation, transitory shocks, or model misspecification. In contrast, persistent and stable divergences between the treated unit and its synthetic control are more consistent with sustained causal effects.
+
+---
+
+### Sensitivity to Donor Pool and Predictors
+
+Results from SCM can be sensitive to the choice of donor pool and the set of predictors used to construct the synthetic control.
+
+Researchers should examine whether estimated effects remain similar when:
+- certain donor units are excluded,
+- alternative predictor sets are used,
+- or the pre-treatment window is modified.
+
+Robust findings typically exhibit qualitative stability across reasonable design choices.
+
+---
+
+### When Synthetic Control Methods Are Appropriate
+
+SCM is most suitable in settings where:
+- the number of treated units is small,
+- the intervention occurs at a clearly defined point in time,
+- rich pre-treatment data are available,
+- and untreated units provide plausible counterfactual trajectories.
+
+When these conditions are not met, alternative methods such as difference-in-differences or event study designs may be more appropriate.
+
+---
+
+### Limitations and Common Pitfalls
+
+Despite its appeal, SCM has important limitations. Poor pre-treatment fit, limited donor pools, and extrapolation beyond the support of the data can undermine credibility.
+
+In addition, SCM does not automatically address spillovers, interference between units, or time-varying unobserved confounders. These issues must be considered carefully in empirical applications.
+
+---
+
+### Summary
+
+Synthetic control methods provide a transparent and intuitive framework for causal inference in comparative case studies. Their credibility hinges on pre-treatment fit, thoughtful design choices, and careful interpretation of placebo tests.
+
+When used appropriately, SCM can yield compelling evidence in settings where traditional regression-based approaches are less convincing.
+

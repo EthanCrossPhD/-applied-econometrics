@@ -1,0 +1,134 @@
+---
+title: "Micro Case 3C: LATE vs ATE"
+author: "Ethan Cross, PhD"
+date: "January 18, 2026"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  comment = NA,
+  fig.align = "center"
+)
+```
+
+## 1 Introduction
+
+This micro case illustrates what instrumental variables actually identify when
+treatment effects are heterogeneous. While IV estimators are often interpreted
+as estimating the average treatment effect (ATE), in general they identify the
+Local Average Treatment Effect (LATE).
+
+## 2 Data Generating Process
+
+We simulate a population consisting of never-takers, compliers, and always-takers.
+The instrument affects treatment assignment only for compliers, satisfying
+monotonicity and exclusion restrictions.
+
+```{r dgp}
+set.seed(123)
+
+n <- 3000
+u <- rnorm(n)
+
+type <- sample(
+  c("never", "complier", "always"),
+  size = n,
+  replace = TRUE,
+  prob = c(0.3, 0.4, 0.3)
+)
+
+z <- rbinom(n, 1, 0.5)
+
+treat <- ifelse(
+  type == "never", 0,
+  ifelse(type == "always", 1, z)
+)
+
+y0 <- 5 + u + rnorm(n)
+tau <- ifelse(type == "complier", 4, 1)
+y1 <- y0 + tau
+
+y <- y0 + treat * (y1 - y0)
+
+case3C <- data.frame(y, treat, z, type, y0, y1, tau)
+```
+
+## 3 True ATE vs True LATE
+
+```{r true-effects}
+ATE  <- mean(case3C$y1 - case3C$y0)
+LATE <- mean(case3C$tau[case3C$type == "complier"])
+
+c(ATE = ATE, LATE = LATE)
+```
+
+## 4 OLS Benchmark
+
+```{r ols}
+ols <- lm(y ~ treat, data = case3C)
+summary(ols)
+```
+
+## 5 IV Estimation
+
+```{r iv-wald}
+wald <- cov(case3C$y, case3C$z) / cov(case3C$treat, case3C$z)
+wald
+```
+
+```{r iv-2sls}
+library(AER)
+iv <- ivreg(y ~ treat | z, data = case3C)
+summary(iv)
+```
+
+## 6 Who Are the Compliers?
+
+
+### 6.1 Compliance Types in the Population
+
+```{r compliance-plot}
+type_counts <- table(case3C$type)
+barplot(
+  type_counts / sum(type_counts),
+  col = c("gray70", "steelblue", "gray40"),
+  main = "Compliance Types in the Population",
+  ylab = "Share"
+)
+```
+
+```{r compliers}
+p1 <- mean(case3C$treat[case3C$z == 1])
+p0 <- mean(case3C$treat[case3C$z == 0])
+
+c(
+  Share_Compliers = p1 - p0,
+  True_Share_Compliers = mean(case3C$type == "complier")
+)
+```
+
+## 7 Policy Interpretation
+
+
+**Policy note.**  
+The IV estimate identifies the effect of treatment for *compliers*—individuals
+whose treatment status is changed by the instrument. This Local Average Treatment
+Effect (LATE) need not coincide with the Average Treatment Effect (ATE) relevant
+for large-scale policy interventions, especially when treatment effects are
+heterogeneous.
+
+The IV estimate should be interpreted as the effect of treatment for those whose
+treatment status is changed by the instrument.
+
+## 8 Conclusion
+
+This case shows that IV estimators identify the Local Average Treatment Effect (LATE)
+when treatment effects are heterogeneous.
+

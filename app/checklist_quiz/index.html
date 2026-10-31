@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Applied Econometrics Studio</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#timer {
+  font-weight: bold;
+  color: #b71c1c;
+}
+</style>
+</head>
+
+<body>
+
+<div id="start">
+  <h1>Applied Econometrics Studio</h1>
+  <p>Select mode:</p>
+  <button onclick="start('learning')">🎓 Learning</button>
+  <button onclick="start('exam')">📝 Exam</button>
+  <button onclick="start('referee')">🧑‍⚖️ Referee</button>
+</div>
+
+<div id="app" style="display:none;">
+
+  <div id="topbar">
+    <h2 id="modeTitle"></h2>
+    <div id="timer"></div>
+  </div>
+
+  <h3>Scenario</h3>
+  <p id="scenarioText"></p>
+
+  <p><strong>Q1.</strong> Is the parallel trends assumption plausible?</p>
+
+  <label><input type="radio" name="q1" value="yes"> Yes</label><br>
+  <label><input type="radio" name="q1" value="no"> No</label><br>
+  <label><input type="radio" name="q1" value="unclear"> Cannot be assessed</label><br><br>
+
+  <button onclick="submit()">Submit</button>
+
+  <div id="refereeBox" style="display:none; margin-top:20px;">
+    <h3>Referee Verdict</h3>
+    <label><input type="radio" name="verdict" value="accept"> Accept</label><br>
+    <label><input type="radio" name="verdict" value="revise"> Revise</label><br>
+    <label><input type="radio" name="verdict" value="reject"> Reject</label><br><br>
+
+    <p>Main identification concern:</p>
+    <textarea id="concern" rows="4" cols="60"></textarea>
+  </div>
+
+</div>
+
+<script>
+// ===== MODE =====
+function getMode() {
+  var q = window.location.search;
+  if (q.indexOf("mode=learning") !== -1) return "learning";
+  if (q.indexOf("mode=exam") !== -1) return "exam";
+  if (q.indexOf("mode=referee") !== -1) return "referee";
+  return null;
+}
+
+function start(mode) {
+
+  if (mode === "exam") {
+    if (!confirm("This is a timed exam. You will receive one scenario. Continue?")) {
+      return;
+    }
+  }
+
+  window.location.search = "?mode=" + mode;
+}
+
+var MODE = getMode();
+
+// ===== SCENARIOS =====
+var LEARNING = [
+  { text:"A policy is introduced in 2010 with similar pre-treatment trends.", expected:"yes" },
+  { text:"A reform is announced in 2010 and implemented in 2012, with early adjustments.", expected:"no" }
+];
+
+var EXAM = [
+  { text:"A policy is implemented in 2010 with similar pre-policy trends.", expected:"yes" },
+  { text:"A reform announced in 2009 is implemented in 2011; treated units adjust early.", expected:"no" }
+];
+
+var REFEREE = [
+  { text:"Parallel trends hold, but control regions may be affected by spillovers." }
+];
+
+var scenario = null;
+
+// ===== INIT =====
+if (MODE === null) {
+  document.getElementById("start").style.display = "block";
+} else {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  initApp();
+}
+
+function initApp() {
+
+  document.getElementById("modeTitle").textContent =
+    "MODE: " + MODE.toUpperCase();
+
+  // ===== LEARNING =====
+  if (MODE === "learning") {
+    scenario = LEARNING[Math.floor(Math.random() * LEARNING.length)];
+  }
+
+  // ===== EXAM (LOCKED) =====
+  if (MODE === "exam") {
+
+    if (sessionStorage.getItem("examScenario")) {
+      scenario = JSON.parse(sessionStorage.getItem("examScenario"));
+    } else {
+      scenario = EXAM[Math.floor(Math.random() * EXAM.length)];
+      sessionStorage.setItem("examScenario", JSON.stringify(scenario));
+    }
+
+    startTimer(20 * 60);
+  }
+
+  // ===== REFEREE =====
+  if (MODE === "referee") {
+    scenario = REFEREE[Math.floor(Math.random() * REFEREE.length)];
+    document.getElementById("refereeBox").style.display = "block";
+    startTimer(30 * 60);
+  }
+
+  document.getElementById("scenarioText").textContent = scenario.text;
+}
+
+// ===== TIMER =====
+function startTimer(seconds) {
+  var remaining = seconds;
+  var timerEl = document.getElementById("timer");
+
+  function tick() {
+    var min = Math.floor(remaining / 60);
+    var sec = remaining % 60;
+    timerEl.textContent =
+      "⏱ Time left: " + min + ":" + (sec < 10 ? "0" : "") + sec;
+    remaining--;
+    if (remaining >= 0) setTimeout(tick, 1000);
+  }
+  tick();
+}
+
+// ===== SUBMIT =====
+function submit() {
+
+  if (MODE !== "referee") {
+    var radios = document.getElementsByName("q1");
+    var answer = null;
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) answer = radios[i].value;
+    }
+    if (!answer) {
+      alert("Please select an answer.");
+      return;
+    }
+    alert("Submitted.");
+  }
+
+  if (MODE === "referee") {
+    alert("Referee report submitted.");
+  }
+}
+</script>
+
+</body>
+</html>

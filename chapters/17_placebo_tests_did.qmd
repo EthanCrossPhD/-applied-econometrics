@@ -1,0 +1,98 @@
+---
+title: "Difference-in-Differences: Placebo and Falsification Tests"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Motivation
+
+Difference-in-differences estimates rely on identifying assumptions that cannot be directly tested.
+Placebo and falsification tests provide indirect evidence on whether a DiD design is credible.
+
+The key idea is simple: if we detect treatment effects where none should exist, the research design is likely invalid.
+
+## Time-Placebo Tests
+
+A time-placebo test assigns the treatment to a period before the actual intervention.
+Under a valid parallel trends assumption, the estimated placebo effect should be close to zero.
+
+## Simulated Panel Data
+
+```{r}
+#| warning: false
+#| message: false
+
+library(dplyr)
+
+set.seed(42)
+
+n_units <- 60
+time_periods <- -5:5
+
+panel_data <- expand.grid(
+  id = 1:n_units,
+  time = time_periods
+) %>%
+  mutate(
+    treated = ifelse(id <= n_units / 2, 1, 0),
+    true_treatment_time = 0,
+    outcome = 3 + 0.4 * time +
+      treated * ifelse(time >= 0, 2, 0) +
+      rnorm(n(), sd = 0.6)
+  )
+```
+
+## Correct DiD Specification
+
+We first estimate the DiD model using the correct treatment timing.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(fixest)
+
+panel_data <- panel_data %>%
+  mutate(post = ifelse(time >= 0, 1, 0))
+
+did_correct <- feols(
+  outcome ~ treated * post | id + time,
+  data = panel_data
+)
+
+did_correct
+```
+
+## Time-Placebo DiD
+
+We now assign the treatment to an earlier (placebo) period.
+
+```{r}
+#| warning: false
+#| message: false
+
+panel_data <- panel_data %>%
+  mutate(placebo_post = ifelse(time >= -3, 1, 0))
+
+did_placebo <- feols(
+  outcome ~ treated * placebo_post | id + time,
+  data = panel_data
+)
+
+did_placebo
+```
+
+## Interpretation
+
+In a credible design, the placebo DiD coefficient should be statistically insignificant and close to zero.
+
+A significant placebo effect indicates a violation of the parallel trends assumption or other design flaws.
+
+## Relation to Event Studies
+
+Placebo tests are closely related to event-study diagnostics.
+Both examine whether treatment effects appear before the actual intervention.
+
+

@@ -1,0 +1,42 @@
+# Heteroskedasticity
+
+::: {.callout-tip}
+### Learning Objectives
+- Understand what heteroskedasticity is and why it arises in practice
+- Recognize how heteroskedasticity affects statistical inference
+- Learn how robust standard errors address heteroskedasticity
+:::
+
+::: {.callout-important}
+### Key Takeaways
+- Heteroskedasticity does not bias OLS coefficients
+- Standard errors are incorrect under heteroskedasticity if not adjusted
+- Robust standard errors provide valid inference in many applications
+:::
+
+::: {.callout-warning}
+### Common Pitfalls
+- Believing heteroskedasticity biases coefficient estimates
+- Ignoring heteroskedasticity when conducting hypothesis tests
+- Treating robust standard errors as a solution to model misspecification
+:::
+
+## Motivation
+
+Why heteroskedasticity matters in applied econometrics.
+
+## Model
+
+Formal setup and identifying assumptions.
+
+## Interpretation
+
+How to interpret estimates in practice.
+
+## Empirical example
+
+```{r, fig-heteroskedasticity, fig.cap="Heteroskedasticity in regression errors", fig.width=7, fig.height=5}
+source("app_ch7_heteroskedasticity.R")
+```
+
+

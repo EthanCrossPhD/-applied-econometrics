@@ -1,0 +1,122 @@
+---
+title: "Difference-in-Differences: Summary and Decision Tree"
+---
+
+##  Purpose of This Chapter
+
+This chapter summarizes the core lessons from the Difference-in-Differences (DiD) block and provides a practical decision tree for choosing an appropriate DiD estimator in applied work.
+
+Rather than introducing new estimators, the goal is to help researchers map their empirical design to the correct identification strategy and avoid common pitfalls, especially in settings with multiple time periods and staggered treatment adoption.
+
+---
+
+## What Difference-in-Differences Identifies
+
+Difference-in-Differences does not identify a generic treatment effect. Instead, it identifies average causal effects under specific comparison structures.
+
+At its core, DiD relies on comparing changes over time between treated units and an appropriate control group.
+
+The key identifying assumption is a version of the parallel trends assumption: in the absence of treatment, treated and control units would have followed the same outcome evolution.
+
+Who is used as a control group and when the comparison is made determines which causal parameter is identified.
+
+---
+
+## Key Design Dimensions in DiD
+
+Before choosing an estimator, an applied researcher should answer four design questions.
+
+### Number of Time Periods
+- Two periods only
+- More than two periods
+
+### Treatment Timing
+- All treated units receive treatment at the same time
+- Treatment adoption is staggered across units
+
+### Treatment Effect Heterogeneity
+- Constant treatment effects
+- Effects vary across cohorts or over time
+
+### Anticipation and Dynamics
+- No anticipation
+- Possible anticipation effects
+- Dynamic treatment effects
+
+These features determine whether standard two-way fixed effects estimators are valid.
+
+---
+
+## The DiD Decision Tree
+
+### Step 1: Is the design 2×2?
+
+One treated group, one control group, one pre-treatment period, and one post-treatment period.
+
+Yes → Canonical DiD or TWFE is appropriate.  
+No → Proceed to Step 2.
+
+---
+
+### Step 2: Are there multiple time periods with staggered treatment adoption?
+
+Yes → Standard TWFE is generally invalid due to forbidden comparisons. Proceed to Step 3.  
+No → TWFE may still be valid under strong homogeneity assumptions.
+
+---
+
+### Step 3: Do treatment effects vary across cohorts or over time?
+
+Yes → Use modern DiD estimators:
+- Callaway and Sant’Anna (2021)
+- Sun and Abraham (2021)
+
+No → TWFE may approximate an average effect, but caution is required.
+
+---
+
+### Step 4: Is an event-study interpretation desired?
+
+Yes → Use interaction-weighted event-study estimators (Sun and Abraham).  
+No → Use aggregated group-time effects (Callaway and Sant’Anna).
+
+---
+
+## Recommended Estimators by Design
+
+| Design Feature | Recommended Estimator | Key Reference |
+|---------------|----------------------|---------------|
+| Canonical 2×2 | TWFE / DiD | Card & Krueger (1994) |
+| Staggered adoption | Not TWFE | Goodman-Bacon (2021) |
+| Staggered + heterogeneity | Callaway–Sant’Anna | Callaway & Sant’Anna (2021) |
+| Dynamic effects | Sun–Abraham | Sun & Abraham (2021) |
+
+---
+
+## Common Mistakes in Applied DiD
+
+1. Using TWFE with staggered adoption without justification.
+2. Interpreting TWFE event studies as causal dynamics.
+3. Relying on placebo tests alone.
+4. Ignoring treatment timing.
+
+---
+
+## A Practical Workflow for Applied Work
+
+1. Explicitly describe treatment timing.
+2. Classify the design using the decision tree.
+3. Choose an estimator consistent with the design.
+4. Assess identifying assumptions.
+5. Report clearly which causal parameter is estimated.
+
+---
+
+## Concluding Remarks
+
+Modern Difference-in-Differences methods emphasize a simple principle:
+
+Identification comes from design, not from regression mechanics.
+
+Matching the estimator to the empirical design is essential for credible causal inference.
+

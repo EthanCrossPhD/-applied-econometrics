@@ -1,0 +1,95 @@
+---
+title: "Difference-in-Differences: Staggered Adoption and TWFE Bias"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Motivation
+
+Many empirical settings feature staggered adoption, where different units receive treatment at different points in time.
+The standard two-way fixed effects (TWFE) DiD estimator is commonly applied in such settings.
+
+However, recent research shows that TWFE may produce biased and misleading estimates under staggered treatment timing.
+
+## Simulated Panel with Staggered Treatment
+
+```{r}
+#| warning: false
+#| message: false
+
+library(dplyr)
+
+set.seed(123)
+
+n_units <- 90
+time_periods <- 1:12
+
+panel <- expand.grid(
+  id = 1:n_units,
+  time = time_periods
+) %>%
+  mutate(
+    treat_time = case_when(
+      id <= 30 ~ 5,
+      id <= 60 ~ 8,
+      TRUE ~ Inf
+    ),
+    treated = ifelse(time >= treat_time, 1, 0),
+    outcome = 2 + 0.3 * time +
+      2 * treated +
+      rnorm(n(), sd = 0.7)
+  )
+```
+
+## Two-Way Fixed Effects DiD
+
+We estimate the standard TWFE DiD regression using unit and time fixed effects.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(fixest)
+
+twfe <- feols(
+  outcome ~ treated | id + time,
+  data = panel
+)
+
+twfe
+```
+
+## Why TWFE Can Be Misleading
+
+With staggered adoption, treated units serve as controls for later-treated units.
+As a result, the TWFE estimator implicitly compares already-treated units to newly treated units.
+
+This can induce negative or inappropriate weights, even when treatment effects are homogeneous.
+
+## Intuition: Forbidden Comparisons
+
+Comparisons between treated and not-yet-treated units are valid.
+Comparisons where treated units act as controls for other treated units are not.
+
+TWFE does not distinguish between these comparisons.
+
+## Implications
+
+Event-study plots based on TWFE may also be misleading in staggered settings.
+
+This motivates the use of modern DiD estimators designed for staggered adoption.
+
+
+## Looking Ahead
+
+The limitations of the two-way fixed effects estimator in staggered adoption settings raise an important question:
+how should difference-in-differences be implemented when treatment timing varies across units?
+
+Recent methodological advances propose alternative estimators that explicitly account for treatment timing
+and avoid the forbidden comparisons implicit in TWFE.
+
+The next chapter introduces these modern difference-in-differences estimators and shows how they resolve
+the problems highlighted here.
+

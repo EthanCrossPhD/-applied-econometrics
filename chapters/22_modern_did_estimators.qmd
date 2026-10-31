@@ -1,0 +1,123 @@
+---
+title: "Modern Difference-in-Differences Estimators"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Motivation
+
+The problems of the two-way fixed effects estimator under staggered adoption motivate alternative approaches
+to difference-in-differences that explicitly account for treatment timing.
+
+These modern estimators construct comparisons only between treated and not-yet-treated units,
+thereby avoiding the forbidden comparisons embedded in TWFE.
+
+In this chapter, we introduce two influential approaches:
+
+- Callaway and Sant’Anna (2021)
+- Sun and Abraham (2021)
+
+## Data Generating Process
+
+We use the same staggered adoption setting as in the previous chapter to highlight the contrast with TWFE.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(dplyr)
+
+set.seed(123)
+
+n_units <- 90
+time_periods <- 1:12
+
+panel <- expand.grid(
+  id = 1:n_units,
+  time = time_periods
+) %>%
+  mutate(
+    treat_time = case_when(
+      id <= 30 ~ 5,
+      id <= 60 ~ 8,
+      TRUE ~ Inf
+    ),
+    treated = ifelse(time >= treat_time, 1, 0),
+    outcome = 2 + 0.3 * time +
+      2 * treated +
+      rnorm(n(), sd = 0.7)
+  )
+```
+
+## Callaway and Sant’Anna (2021)
+
+The estimator proposed by Callaway and Sant’Anna constructs group-time average treatment effects,
+comparing treated units only to units that are not yet treated.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(did)
+
+cs_att <- att_gt(
+  yname = "outcome",
+  tname = "time",
+  idname = "id",
+  gname = "treat_time",
+  data = panel,
+  control_group = "notyettreated"
+)
+
+summary(cs_att)
+```
+
+We can aggregate these group-time effects into an overall average treatment effect.
+
+```{r}
+#| warning: false
+#| message: false
+
+agg_cs <- aggte(cs_att, type = "simple")
+summary(agg_cs)
+```
+
+## Sun and Abraham (2021)
+
+Sun and Abraham propose an interaction-weighted event-study estimator that isolates clean comparisons
+between treated and not-yet-treated units.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(fixest)
+
+sa <- feols(
+  outcome ~ sunab(treat_time, time) | id + time,
+  data = panel
+)
+
+sa
+```
+
+## Comparison with TWFE
+
+Unlike the standard TWFE estimator, both approaches explicitly respect treatment timing
+and exclude comparisons between already-treated units.
+
+As a result, the estimated treatment effects align with the true data generating process.
+
+## Practical Guidance
+
+- Use TWFE only in canonical two-group, two-period settings.
+- In staggered adoption designs, prefer modern DiD estimators.
+- Always make treatment timing explicit.
+
+## Conclusion
+
+Modern difference-in-differences estimators resolve the fundamental problems of TWFE
+in staggered adoption settings and have become the standard tools in applied work.
+

@@ -1,0 +1,55 @@
+
+
+project:
+  output-dir: docs
+  type: book
+  execute-dir: project
+
+book:
+  title: "Applied Econometrics"
+  subtitle: "From OLS to Modern Difference-in-Differences"
+  author: "Ethan Cross, PhD"
+  date: today
+  chapters:
+    - index.qmd
+    - chapters/01_simple_ols.qmd
+    - chapters/02_multiple_ols.qmd
+    - chapters/03_functional_forms.qmd
+    - chapters/04_heteroskedasticity.qmd
+    - chapters/05_autocorrelation.qmd
+    - chapters/06_panel_fixed_effects.qmd
+    - chapters/07_instrumental_variables.qmd
+    - chapters/08_difference_in_differences.qmd
+    - chapters/09_inference.qmd
+    - chapters/11_real_data_case1_wages.qmd
+    - chapters/12_real_data_case2_macro_panel.qmd
+    - chapters/13_micro_case3A_simulation.qmd
+    - chapters/13_micro_case3B_weak_iv.qmd
+    - chapters/13_micro_case3C_late.qmd
+    - chapters/13_micro_case3D_invalid_instruments.qmd
+    - chapters/14_diff_in_diff_intro.qmd
+    - chapters/15_diff_in_diff_canonical.qmd
+    - chapters/16_event_study.qmd
+    - chapters/17_placebo_tests_did.qmd
+    - chapters/21_staggered_adoption_twfe.qmd
+    - chapters/22_modern_did_estimators.qmd
+    - chapters/ch23-did-summary-decision-tree.qmd
+    - chapters/ch24-empirical-design-checklist.qmd
+    - chapters/25-regression-discontinuity-designs.qmd
+    - chapters/26-event-studies-and-dynamic-treatment-effects.qmd
+    - chapters/27-synthetic-control-methods.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme: cosmo
+    code-fold: true
+
+execute:
+  execute-dir: project
+  echo: false
+  warning: false
+  message: false

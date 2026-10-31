@@ -1,0 +1,40 @@
+# Functional Forms
+
+::: {.callout-tip}
+### Learning Objectives
+- Understand why functional form choices matter for empirical results
+- Interpret coefficients in linear, log-linear, and nonlinear models
+- Recognize when transformations improve model fit and interpretation
+:::
+
+::: {.callout-important}
+### Key Takeaways
+- Different functional forms can imply very different economic interpretations
+- Logarithmic transformations often stabilize variance and simplify interpretation
+- Model fit and economic theory should jointly guide functional form choices
+:::
+
+::: {.callout-warning}
+### Common Pitfalls
+- Choosing functional forms solely based on statistical fit
+- Misinterpreting coefficients after nonlinear transformations
+- Ignoring economic theory when specifying functional relationships
+:::
+
+## Motivation
+
+Why functional forms matter in applied econometrics.
+
+## Model
+
+Formal setup and identifying assumptions.
+
+## Interpretation
+
+How to interpret estimates in practice.
+
+## Empirical example
+
+```{r, fig-functional-forms, fig.cap="Alternative functional form specifications", fig.width=7, fig.height=5}
+source("app_ch6_functional_forms.R")
+``` 

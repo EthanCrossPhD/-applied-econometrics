@@ -1,0 +1,116 @@
+# Event Studies and Dynamic Treatment Effects
+
+## Motivation and Intuition
+
+Difference-in-differences methods are often used to estimate average treatment effects before and after a policy intervention. While such estimates are informative, they implicitly impose strong restrictions on how treatment effects evolve over time.
+
+In many empirical settings, treatment effects are not instantaneous and constant. Instead, they may emerge gradually, grow or fade over time, or even exhibit anticipation effects before the formal implementation of a policy. Event studies provide a flexible framework for examining these dynamic treatment effects.
+
+The central idea of an event study is to align units in time relative to a common event, such as the adoption of a policy or the onset of a treatment. Outcomes are then analyzed as a function of event time, rather than calendar time, allowing researchers to trace the evolution of treatment effects before and after the event.
+
+This dynamic perspective serves two important purposes. First, it enables researchers to assess the plausibility of identifying assumptions by examining pre-treatment trends. Second, it allows for a richer interpretation of treatment effects, distinguishing short-run impacts from longer-run adjustments.
+
+Event studies therefore extend the difference-in-differences framework by replacing a single average effect with a sequence of time-specific effects. This shift from static to dynamic analysis is essential in settings where responses unfold over time and where policy relevance depends on understanding adjustment paths rather than only average impacts.
+
+
+## Event-Time Framework
+
+Event studies reframe the analysis of treatment effects by indexing time relative to the occurrence of a specific event rather than by calendar time. This transformation allows researchers to compare units at comparable stages before and after treatment, even when the timing of treatment varies across units.
+
+Formally, event time is defined as the difference between the current period and the period in which the event occurs. Negative values correspond to pre-treatment periods, zero denotes the period of treatment onset, and positive values represent post-treatment periods. One period—typically the last pre-treatment period—is omitted as a reference category to normalize the effects.
+
+Each event-time coefficient measures the average difference in outcomes between treated and control units at a given relative time, conditional on the chosen normalization. As a result, the sequence of coefficients traces out the dynamic response of the outcome variable to the treatment.
+
+This framework highlights an important distinction between calendar time and event time. While calendar time captures aggregate shocks affecting all units simultaneously, event time isolates the evolution of outcomes relative to treatment adoption. By separating these dimensions, event studies provide a clearer picture of treatment dynamics.
+
+The event-time framework also makes explicit the assumptions required for identification. In particular, the absence of systematic pre-treatment differences across event times underlies the interpretation of post-treatment coefficients as causal effects. These assumptions are examined in detail in the following sections.
+## Identification Assumptions
+
+The credibility of event-study estimates rests on a set of identifying assumptions that extend those underlying standard difference-in-differences designs. While the dynamic framework offers greater flexibility, it also makes these assumptions more explicit and, in some cases, more demanding.
+
+The first key assumption is parallel trends in event time. In the absence of treatment, outcomes for treated and control units are assumed to evolve similarly at each relative time period. This assumption implies that differences observed prior to treatment reflect common trends rather than anticipatory responses or differential dynamics.
+
+Closely related is the no anticipation assumption. Units are assumed not to adjust their behavior in response to knowledge of future treatment before the treatment actually occurs. Violations of this assumption may manifest as systematic deviations in pre-treatment event-time coefficients and complicate the interpretation of post-treatment effects.
+
+Event studies make these assumptions empirically assessable. By estimating coefficients for multiple pre-treatment periods, researchers can visually and statistically examine whether outcomes diverge prior to treatment. Flat or statistically insignificant pre-treatment coefficients are often interpreted as supporting evidence for the identifying assumptions.
+
+However, it is important to emphasize that the absence of pre-trends does not guarantee identification. Event-study estimates may still be biased if treatment timing is correlated with unobserved shocks or if treatment effects are heterogeneous over time. These concerns are especially relevant in settings with staggered adoption, where standard two-way fixed effects estimators may produce misleading dynamic patterns.
+
+Taken together, identification in event studies relies on careful institutional reasoning, transparent diagnostics, and cautious interpretation. The dynamic structure strengthens credibility when assumptions are plausible, but it also exposes violations that would remain hidden in static specifications.
+
+## Identification Assumptions
+
+The validity of event-study estimates hinges on a set of identifying assumptions that extend those underlying standard difference-in-differences designs. While the event-time framework offers greater flexibility in modeling dynamic treatment effects, it also makes these assumptions more transparent—and, in some cases, more demanding.
+
+### Parallel Trends in Event Time
+
+The core identifying assumption is a form of parallel trends expressed in event time. In the absence of treatment, outcomes of treated and control units are assumed to evolve similarly at each relative time period. This assumption implies that any systematic differences observed after treatment can be attributed to the treatment itself, rather than to pre-existing or diverging trends.
+
+Unlike static difference-in-differences, event studies allow this assumption to be partially assessed. By estimating coefficients for multiple pre-treatment periods, researchers can examine whether outcomes diverge prior to treatment. Statistically insignificant and economically small pre-treatment coefficients are often interpreted as supportive evidence for parallel trends.
+
+However, the absence of detectable pre-trends should not be interpreted as definitive proof. Limited statistical power, noisy outcomes, or short pre-treatment windows may mask violations of the assumption.
+
+### No Anticipation
+
+A closely related assumption is the absence of anticipation effects. Units are assumed not to adjust their behavior in response to knowledge of future treatment before the treatment actually occurs. If agents anticipate treatment and respond in advance, estimated pre-treatment coefficients may reflect behavioral adjustments rather than violations of parallel trends.
+
+### Heterogeneous Treatment Effects and Staggered Adoption
+
+In settings with staggered treatment adoption, traditional two-way fixed effects event-study estimators impose strong restrictions on the structure of treatment effects. In particular, they implicitly assume that treatment effects are homogeneous across cohorts and over time. When this assumption fails, estimated dynamic coefficients may be difficult to interpret and may even reflect non-convex averages of underlying cohort-specific effects.
+
+Recent work has shown that these issues can lead to misleading dynamic patterns in event-study plots, even when standard identifying assumptions appear to hold (Sun and Abraham 2021; Callaway and Sant’Anna 2021).
+
+### Composition of Control Groups
+
+Event-study estimates compare treated units at a given event time to a control group consisting of units not yet treated or never treated. As event time progresses, the composition of this control group may change. Identification requires that these changes do not introduce systematic differences unrelated to treatment.
+
+This concern is especially relevant in long panels with staggered adoption, where later-treated units serve as controls for earlier-treated units. If treatment timing is correlated with unobserved shocks, event-study estimates may be biased even in the absence of pre-treatment trends.
+
+### Summary
+
+Event studies make the identifying assumptions of difference-in-differences explicit and empirically assessable. While this transparency is a major strength of the approach, it also places greater responsibility on the researcher to justify assumptions using both data and institutional context. Careful interpretation of dynamic coefficients is therefore essential, particularly in settings with heterogeneous treatment effects and staggered policy adoption.
+
+## Estimation and Implementation
+
+Having laid out the conceptual framework and identifying assumptions underlying event studies, we now turn to practical issues of estimation and implementation. While the basic idea is straightforward—regressing outcomes on a set of event-time indicators—the choice of estimator, normalization, and inference procedures plays a crucial role in the interpretation of results.
+
+### Baseline Event-Study Specification
+
+$$
+Y_{it} = \alpha_i + \lambda_t + \sum_{k \neq -1} \beta_k \, \mathbb{1}\{t - T_i = k\} + \\varepsilon_{it}
+$$
+
+where \(T_i\) denotes the period of treatment adoption for unit \(i\), and \(k\) indexes time relative to the event. One event-time indicator—typically the last pre-treatment period—is omitted as a reference category.
+
+Each coefficient \(\beta_k\) captures the average difference in outcomes between treated and control units \(k\) periods relative to treatment, conditional on unit and time fixed effects. The sequence of coefficients traces out the dynamic treatment response.
+
+### Choice of Reference Period and Normalization
+
+The normalization of event-time coefficients is not innocuous. Omitting the final pre-treatment period is common, as it facilitates interpretation of pre-treatment coefficients as deviations from the immediate pre-treatment baseline. Alternative normalizations are possible, but they should be clearly stated and consistently applied.
+
+Researchers should avoid overinterpreting the coefficient at event time zero. This coefficient reflects the effect during the treatment adoption period, which may be only partially exposed to treatment, depending on institutional timing.
+
+### Window Length and Binning
+
+In practice, event studies often impose a finite window around the event. Very distant pre- or post-treatment periods may be sparsely populated, leading to imprecise estimates. A common approach is to bin extreme event times into a single indicator (e.g., “five or more periods after treatment”).
+
+While binning improves precision, it also imposes restrictions on treatment dynamics. The choice of window length should balance statistical power with substantive relevance.
+
+### Inference and Standard Errors
+
+As with difference-in-differences designs, inference in event studies must account for serial correlation and clustering. Standard errors are typically clustered at the unit level, reflecting the panel structure of the data.
+
+When treatment is assigned at a higher level of aggregation—such as regions or firms—clustering should reflect the level of treatment variation. Failure to do so can result in severely understated standard errors.
+
+### Event Studies in the Presence of Staggered Adoption
+
+In settings with staggered treatment adoption, conventional two-way fixed effects event-study estimators can produce misleading estimates when treatment effects are heterogeneous across cohorts or over time. Recent estimators explicitly address this issue by constructing cohort-specific comparisons and aggregating them in a transparent way.
+
+Modern approaches, such as those proposed by Sun and Abraham (2021) and Callaway and Sant’Anna (2021), retain the intuitive appeal of event studies while avoiding the negative weighting problems inherent in traditional specifications. These methods are discussed in detail in the following chapter.
+
+### Interpretation and Best Practices
+
+Event-study plots are powerful diagnostic and communication tools, but they require careful interpretation. Researchers should focus on overall patterns rather than individual coefficients, pay close attention to pre-treatment dynamics, and clearly communicate uncertainty.
+
+Best practice involves combining event-study evidence with institutional knowledge, robustness checks, and alternative estimators. When used thoughtfully, event studies provide rich insights into the timing and evolution of causal effects.
+

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Applied Econometrics Studio</title>
+
+<style>
+body {
+
+.aes-header {
+  text-align: center;
+  margin: 0.8em 0 0.6em 0;
+  opacity: 0.85;
+}
+
+.aes-header h1 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 0.15em;
+  color: #666;
+}
+
+.aes-subtitle {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.mode-desc {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 0.4em;
+}
+
+.aes-footer {
+  text-align: center;
+  font-size: 0.7em;
+  color: #aaa;
+  margin-top: 1.5em;
+}
+
+
+  text-align: center;
+  margin: 0.8em 0 0.6em 0;
+  opacity: 0.85;
+}
+
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 0.15em;
+  color: #666;
+}
+
+  font-size: 0.8em;
+  color: #888;
+}
+
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 0.4em;
+}
+
+  text-align: center;
+  font-size: 0.7em;
+  color: #aaa;
+  margin-top: 1.5em;
+}
+
+
+  text-align: center;
+  margin: 0.6em 0 0.4em 0;
+  opacity: 0.75;
+}
+
+  font-size: 1.1em;
+  font-weight: 400;
+  margin-bottom: 0.1em;
+  color: rgba(180, 180, 180, 0.9);
+}
+
+  font-size: 0.75em;
+  color: rgba(170, 170, 170, 0.8);
+}
+
+  font-size: 0.75em;
+  color: rgba(160, 160, 160, 0.8);
+  margin-bottom: 0.35em;
+}
+
+  text-align: center;
+  font-size: 0.65em;
+  color: rgba(150, 150, 150, 0.7);
+  margin-top: 1.2em;
+}
+
+
+  text-align: center;
+  margin: 0.8em 0 0.6em 0;
+  opacity: 0.85;
+}
+
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 0.15em;
+  color: #666;
+}
+
+  font-size: 0.8em;
+  color: #888;
+}
+
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 0.4em;
+}
+
+  text-align: center;
+  font-size: 0.7em;
+  color: #aaa;
+  margin-top: 1.5em;
+}
+
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+.center {
+  text-align: center;
+  margin-top: 60px;
+}
+button {
+  padding: 12px 22px;
+  margin: 10px;
+  font-size: 16px;
+}
+.learning { background:#e8f5e9; }
+.exam { background:#fff3e0; }
+.referee { background:#ede7f6; }
+
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#timer {
+  font-weight: bold;
+  color: #b71c1c;
+}
+.correct { color: green; }
+.incorrect { color: red; }
+
+.referee-box {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px dashed #666;
+}
+textarea { width:100%; height:80px; }
+</style>
+</head>
+
+<body>
+
+<!-- START SCREEN -->
+<div id="start" class="center">
+  <h1>Applied Econometrics Studio</h1>
+  <p>Select mode:</p>
+  <button class="learning" onclick="startMode('learning')">🎓 Learning</button>
+  <button class="exam" onclick="startMode('exam')">📝 Exam</button>
+  <button class="referee" onclick="startMode('referee')">🧑‍⚖️ Referee</button>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none;">
+
+  <div id="topbar">
+    <h2 id="modeTitle"></h2>
+    <div id="timer"></div>
+  </div>
+
+  <h3>Scenario</h3>
+  <p id="scenarioText"></p>
+
+  <p><strong>Q.</strong> Is the parallel trends assumption plausible?</p>
+  <label><input type="radio" name="q1" value="yes"> Yes</label><br>
+  <label><input type="radio" name="q1" value="no"> No</label><br>
+  <label><input type="radio" name="q1" value="unclear"> Cannot be assessed</label><br><br>
+
+  <button onclick="submit()">Submit</button>
+
+  <div id="result"></div>
+
+  <div id="refereeBox" class="referee-box" style="display:none;">
+    <h3>Referee Verdict</h3>
+    <label><input type="radio" name="verdict" value="accept"> Accept</label><br>
+    <label><input type="radio" name="verdict" value="revise"> Revise</label><br>
+    <label><input type="radio" name="verdict" value="reject"> Reject</label><br><br>
+    <p>Main identification concern:</p>
+    <textarea id="concern"></textarea>
+  </div>
+
+</div>
+
+<script>
+// ================= START MODE =================
+function startMode(mode) {
+  if (mode === "exam") {
+    if (!confirm("This is a timed exam. You will receive one scenario. Continue?")) {
+      return;
+    }
+  }
+  sessionStorage.clear();
+  window.location.search = "?mode=" + mode;
+}
+
+// ================= MODE =================
+function getMode() {
+  var q = window.location.search;
+  if (q.indexOf("mode=learning") !== -1) return "learning";
+  if (q.indexOf("mode=exam") !== -1) return "exam";
+  if (q.indexOf("mode=referee") !== -1) return "referee";
+  return null;
+}
+
+var MODE = getMode();
+
+// ================= SCENARIOS =================
+var SCENARIOS = [
+  {
+    id:"S1",
+    text:"A policy is implemented in 2010 with similar pre-policy trends.",
+    expected:"yes",
+    expl:"Stable pre-treatment dynamics support parallel trends."
+  },
+  {
+    id:"S2",
+    text:"A reform is announced in 2009 and implemented in 2011; treated units adjust early.",
+    expected:"no",
+    expl:"Anticipation effects violate the DiD timing assumption."
+  },
+  {
+    id:"S3",
+    text:"A nationwide policy has heterogeneous regional effects.",
+    expected:"unclear",
+    expl:"Without a clean control group, parallel trends cannot be assessed."
+  },
+  {
+    id:"S4",
+    text:"A program induces migration and changing population composition.",
+    expected:"no",
+    expl:"Composition changes undermine identification."
+  }
+];
+
+var scenario = null;
+
+// ================= INIT =================
+if (MODE === null) {
+  document.getElementById("start").style.display = "block";
+} else {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  initApp();
+}
+
+function initApp() {
+
+  document.getElementById("modeTitle").textContent =
+    "MODE: " + MODE.toUpperCase();
+
+  if (MODE === "learning") {
+    scenario = SCENARIOS[Math.floor(Math.random() * SCENARIOS.length)];
+  }
+
+  if (MODE === "exam") {
+    if (sessionStorage.getItem("examScenario")) {
+      scenario = JSON.parse(sessionStorage.getItem("examScenario"));
+    } else {
+      scenario = SCENARIOS[Math.floor(Math.random() * SCENARIOS.length)];
+      sessionStorage.setItem("examScenario", JSON.stringify(scenario));
+    }
+    startTimer(20 * 60);
+  }
+
+  if (MODE === "referee") {
+    scenario = SCENARIOS[Math.floor(Math.random() * SCENARIOS.length)];
+    document.getElementById("refereeBox").style.display = "block";
+    startTimer(30 * 60);
+  }
+
+  document.getElementById("scenarioText").textContent = scenario.text;
+}
+
+// ================= TIMER =================
+function startTimer(seconds) {
+  var remaining = seconds;
+  var timerEl = document.getElementById("timer");
+
+  function tick() {
+    var min = Math.floor(remaining / 60);
+    var sec = remaining % 60;
+    timerEl.textContent =
+      "⏱ Time left: " + min + ":" + (sec < 10 ? "0" : "") + sec;
+    remaining--;
+    if (remaining >= 0) setTimeout(tick, 1000);
+  }
+  tick();
+}
+
+// ================= SUBMIT =================
+function submit() {
+
+  if (MODE !== "referee") {
+
+    var radios = document.getElementsByName("q1");
+    var answer = null;
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) answer = radios[i].value;
+    }
+
+    if (!answer) {
+      alert("Please select an answer.");
+      return;
+    }
+
+    if (MODE === "learning") {
+      if (answer === scenario.expected) {
+        document.getElementById("result").innerHTML =
+          "<p class='correct'>✅ Correct.</p><p>" + scenario.expl + "</p>";
+      } else {
+        document.getElementById("result").innerHTML =
+          "<p class='incorrect'>❌ Not correct.</p>" +
+          "<p><strong>Correct answer:</strong> " + scenario.expected.toUpperCase() +
+          "</p><p>" + scenario.expl + "</p>";
+      }
+    }
+
+    if (MODE === "exam") {
+      var score = (answer === scenario.expected) ? 1 : 0;
+      alert("Exam submitted. Score: " + score + " / 1");
+      sessionStorage.clear();
+    }
+  }
+
+  if (MODE === "referee") {
+    var verdict = "none";
+    var v = document.getElementsByName("verdict");
+    for (var j = 0; j < v.length; j++) {
+      if (v[j].checked) verdict = v[j].value;
+    }
+    var concern = document.getElementById("concern").value;
+    alert(
+      "Referee report submitted.\nVerdict: " +
+      verdict.toUpperCase()
+    );
+  }
+}
+</script>
+
+
+<footer class="aes-footer">
+  Applied Econometrics Studio — Teaching Edition · Pilot version
+</footer>
+
+</body>
+</html>

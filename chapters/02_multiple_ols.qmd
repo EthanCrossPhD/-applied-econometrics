@@ -1,0 +1,46 @@
+# Multiple OLS
+
+::: {.callout-tip}
+### Learning Objectives
+- Understand how multiple regressors affect coefficient interpretation
+- Interpret coefficients as partial effects holding other variables constant
+- Recognize sources of omitted variable bias
+:::
+
+::: {.callout-important}
+### Key Takeaways
+- Multiple regression isolates the marginal effect of each regressor
+- Coefficient estimates depend on which controls are included
+- Adding relevant covariates can substantially change estimated effects
+:::
+
+::: {.callout-warning}
+### Common Pitfalls
+- Interpreting coefficients without conditioning on included controls
+- Assuming more controls always improve causal interpretation
+- Ignoring multicollinearity among regressors
+:::
+
+## Motivation
+
+Why multiple OLS matter in applied econometrics.
+
+## Model
+
+Formal setup and identifying assumptions.
+
+## Interpretation
+
+How to interpret estimates in practice.
+
+## Empirical example
+
+```{r, fig-multiple-ols-fit, fig.cap="Multiple regression fitted relationships", fig.width=7, fig.height=5}
+source("app_ch4_multiple_ols.R")
+
+```{r, tbl-multiple-ols-coef}
+knitr::kable(
+  summary(model)$coefficients,
+  caption = "Multiple OLS coefficient estimates",
+  digits = 3
+)

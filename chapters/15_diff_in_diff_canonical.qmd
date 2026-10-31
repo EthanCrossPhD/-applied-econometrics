@@ -1,0 +1,178 @@
+---
+title: "Difference-in-Differences: Canonical 2×2"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Setup
+
+We consider the canonical difference-in-differences setup with:
+- two groups (treated and control)
+- two time periods (before and after treatment)
+
+Treatment affects only the treated group in the post-treatment period.
+
+## The DiD Estimator
+
+The DiD estimator is defined as:
+
+$$
+\text{DiD} = (\bar Y_{T,post} - \bar Y_{T,pre}) - (\bar Y_{C,post} - \bar Y_{C,pre})
+$$
+
+## Graphical Illustration
+
+```{r}
+#| fig-cap: "Canonical 2×2 DiD: treatment affects only the treated group after intervention"
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+# Canonical 2x2 DiD data with treatment effect
+did_data <- data.frame(
+  time = rep(c(0, 1), times = 2),
+  group = rep(c("Control", "Treated"), each = 2),
+  outcome = c(5, 6, 6, 9)
+)
+
+ggplot(did_data, aes(x = time, y = outcome, color = group)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2.5) +
+  scale_x_continuous(
+    breaks = c(0, 1),
+    labels = c("Before", "After")
+  ) +
+  labs(
+    x = "Time",
+    y = "Outcome",
+    color = "Group"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+
+
+
+
+
+
+## The 2×2 Table and Manual DiD Calculation
+
+We now compute the difference-in-differences estimator using group means.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(dplyr)
+library(tidyr)
+library(knitr)
+
+did_data <- data.frame(
+  time = rep(c(0, 1), times = 2),
+  group = rep(c("Control", "Treated"), each = 2),
+  outcome = c(5, 6, 6, 9)
+)
+
+means <- did_data %>%
+  mutate(time = ifelse(time == 0, "Before", "After")) %>%
+  group_by(group, time) %>%
+  summarise(mean_outcome = mean(outcome), .groups = "drop")
+
+table_2x2 <- pivot_wider(
+  means,
+  names_from = time,
+  values_from = mean_outcome
+)
+
+knitr::kable(table_2x2, digits = 2)
+
+delta_treated <- table_2x2$After[table_2x2$group == "Treated"] -
+                  table_2x2$Before[table_2x2$group == "Treated"]
+
+delta_control <- table_2x2$After[table_2x2$group == "Control"] -
+                  table_2x2$Before[table_2x2$group == "Control"]
+
+did_estimate <- delta_treated - delta_control
+did_estimate
+```
+
+The difference-in-differences estimate is therefore **2**.
+
+## Inference in Difference-in-Differences
+
+```{r}
+#| results: hide
+#| echo: false
+#| warning: false
+#| message: false
+
+did_data <- data.frame(
+  outcome = c(5, 6, 6, 9),
+  treated = c(0, 0, 1, 1),
+  post = c(0, 1, 0, 1)
+)
+
+did_data$interaction <- did_data$treated * did_data$post
+
+coef(lm(outcome ~ treated + post + interaction, data = did_data))
+```
+
+
+In the canonical 2×2 design, the DiD regression is fully saturated.
+As a result, the treatment effect is exactly identified, but standard errors are not defined.
+
+This illustrates an important point: in the 2×2 case, difference-in-differences is an algebraic identity rather than a statistical model.
+
+Meaningful inference requires additional units or time periods, which we consider in later sections.
+
+## Parallel Trends Assumption
+
+The key identifying assumption underlying difference-in-differences is the parallel trends assumption.
+
+In the absence of treatment, the average outcomes of the treated and control groups would have followed the same time trend.
+
+Formally, the assumption requires:
+
+$$
+E[Y_{0t}^T - Y_{0,t-1}^T] = E[Y_{0t}^C - Y_{0,t-1}^C]
+$$
+
+where $Y_{0t}$ denotes the potential outcome without treatment.
+
+This assumption is fundamentally untestable, but its plausibility can be assessed using pre-treatment data.
+
+### Graphical Illustration of Parallel Trends
+
+```{r}
+#| fig-cap: "Parallel trends before treatment and divergence after treatment"
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+pt_data <- data.frame(
+  time = rep(-2:1, times = 2),
+  group = rep(c("Control", "Treated"), each = 4),
+  outcome = c(4, 5, 6, 7, 5, 6, 7, 10)
+)
+
+ggplot(pt_data, aes(x = time, y = outcome, color = group)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2.5) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(x = "Time", y = "Outcome", color = "Group") +
+  theme_minimal(base_size = 12)
+```
+
+
+
+
+

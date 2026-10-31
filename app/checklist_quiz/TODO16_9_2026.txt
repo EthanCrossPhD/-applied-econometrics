@@ -1,0 +1,151 @@
+Sada je slika 100% jasna — imaš TRI produkta:
+Produkt 1 — Knjiga (BESPLATNO / lead magnet)
+Quarto publish → online odmah, Google indexira, studenti nalaze organički
+
+Produkt 2 — Ultimate DiD App (PLAĆENO $49)
+Standalone web app koji nađemo sutra u clone folderu
+
+Produkt 3 — Full Studio Bundle (PLAĆENO $149-299)
+Knjiga + svi apps zajedno za Lab/Institutional tier
+
+
+
+
+
+TODO za sutra
+FAZA 1 — Inventura (15 min)
+☐ Otvori Ultimate DiD app — pokaži što ima iznutra
+☐ Je li HTML/JS ili R/Python?
+☐ Što točno radi — CS, SA, Bacon, HonestDiD ili samo CS?
+
+FAZA 2 — Didaktička linija (core posao)
+☐ Bacondecomp lab (novi HTML)
+  → vizualno razbije TWFE na 2×2 parove
+  → student vidi težine i zašto TWFE laže
+
+☐ HonestDiD lab (novi HTML)  
+  → slider za granicu kršenja parallel trends
+  → student vidi robustnost identifikacije
+
+☐ Quiz scenariji — proširiti index.html
+  → s 4 na 15-20 scenarija
+  → dodati Q2, Q3 (ne samo parallel trends)
+  → popraviti broken CSS
+
+FAZA 3 — Integracija (kraj dana)
+☐ Sve labove testirati zajedno
+☐ Odlučiti konačnu strukturu mapa
+☐ Baciti checklist_quiz i teacher.html
+
+NE DIRAMO SUTRA
+✗ Electron bundling
+✗ License key
+✗ Quarto render problem
+✗ Streamlit
+
+Jedna rečenica za sutra ujutro:
+Prvo Ultimate DiD — pa gradimo Bacon i HonestDiD u istom vizualnom stilu kao ostale labove. 🎯
+
+
+
+Arhitekturna odluka — razmisli ovako:
+Opcija A — Bundle unutar Ultimate DiD
+Ultimate DiD.exe
+├── Kalkulator (Upload → Run → Export)   ← već radi
+└── /labs tab (Teaching)                 ← dodajemo
+
+PRO: jedan exe, jedan installer, jedan license
+CON: miješaš dvije publike u jednom alatu
+CON: nastavnik plaća $49 — dobiva i kalkulator i labove
+     istraživač plaća $49 — dobiva labove koji ga ne zanimaju
+
+Opcija B — Standalone DiD Teaching Tool
+Ultimate DiD.exe        → istraživači / nastavnici ($49)
+DiD Teaching Tool.exe   → institucije / kursevi ($149+)
+
+PRO: čista separacija publike
+PRO: različite cijene, različiti value proposition
+PRO: Teaching Tool može biti per-seat licenca
+CON: dva Electron projekta za održavati
+
+Moja preporuka — Opcija B ✅
+Razlog je jedan: publika je drugačija.
+
+Ultimate DiD    → "Trebam rezultate za paper"
+Teaching Tool   → "Trebam naučiti studente što CS radi"
+
+Institucija koja kupuje Teaching Tool za 30 studenata ne želi da studenti imaju pristup istraživačkom kalkulatoru. I obratno — istraživač ne želi plaćati za labove.
+
+Praktično — nije dupli posao:
+did-teaching/  →  buildamo HTML labove (to radimo ionako)
+               →  jedan package.json + main.js
+               →  electron-builder → Teaching Tool.exe
+
+Ultimate DiD   →  ne diramo ništa, već radi
+
+Kreiraš dva proizvoda, gradiš samo jedan novi. 🎯
+
+Krećemo s labovima — exe dolazi na kraju sam od sebe. Počinjemo s bacon_decomp?
+
+10:11 AM
+
+
+prije nego nastavimo da li će se moći na curseri objaviti (naročito ovaj DiD Teaching Tool.exe
+
+10:16 AM
+
+Claude-Sonnet-4.6
+
+
+
+
+
+Thinking
+Coursera — direktan odgovor
+Coursera nije opcija za tebe. Razlog je strukturalan:
+
+Coursera radi samo s institucijama i partnerima (Google, Stanford, IBM) — ne prima independent instructors za vlastite kurseve. Niti možeš distribuirati .exe unutar Coursera tečaja jer platforma nema taj workflow.
+
+Gdje onda distribuiraš?
+TEACHING TOOL (exe)          →  Gumroad ili vlastita stranica
+├── $49  Ultimate DiD         →  direktan download + license key
+└── $149 Teaching Bundle      →  exe + knjiga + lab pristup
+
+KURS (video + HTML labovi)   →  Udemy ili Teachable
+├── Udemy   → audience discovery, ali oni kontroliraju cijenu
+└── Teachable/Podia → ti kontroliraš cijenu (0% fee)
+
+KNJIGA (besplatno)           →  GitHub Pages + Quarto
+                             →  link iz svakog kanala
+
+Preporučena strategija:
+basic
+1. Knjiga  →  GitHub Pages (besplatno, SEO, lead magnet)
+2. Kurs    →  Udemy (discovery) + Teachable (premium, tvoja cijena)
+3. exe     →  Gumroad (jednostavno) ili vlastita stranica
+4. Institucije → direktno, email, per-seat licenca
+
+Udemy + Gumroad je najbrži start — Udemy ti donosi studente, Gumroad prodaje exe bez posrednika. Krećemo s labovima? 🎯
+
+Learn more:
+
+Developer Agreement
+Terms of Use
+Terms of Use
+Terms of Use
+Terms of Use
+Terms of Use
+Terms of Use
+Terms of Use
+Terms of Use
+Terms of Use
+Coursera Business Model
+From Zero to IPO — Class Central
+Can creators cash in on Coursera? A review of how much money you can make
+Become a Channel Partner & Grow
+edstellar.com
+Best Online Course Platforms 2026
+Udemy Alternatives for Course Creators in 2026
+Best Udemy Alternatives & Competitors (2026)
+Top 10 Coursera Alternatives 2026 (Verified Pricing)
+7 Best Coursera Alternatives in 2026 (Honest Comparison)
