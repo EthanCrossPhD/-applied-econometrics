@@ -21,8 +21,6 @@ APP_OD_INDIJCA.txt
 README_INTERNAL.md
 Rplots.pdf
 backend/tmp_*.json
-13_micro_case3*.html
-13_micro_case3*_files/
 patch_case2_add_figure.R
 patch_case2_add_robustness_lag.R
 patch_case2_fix_figcap.R
@@ -51,3 +49,6 @@ app_ch7_heteroskedasticity.R
 app_ch8_autocorrelation.R
 app_ch9_iv.R
 app_chapter3_pseudo_gui.R
+
+/.quarto/
+**/*.quarto_ipynb
