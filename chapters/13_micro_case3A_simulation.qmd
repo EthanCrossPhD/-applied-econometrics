@@ -1,10 +1,350 @@
 ---
 title: "Micro Case 3A: Simulated Job Training Program"
-project: false
+author: "Ethan Cross, PhD"
+date: last-modified
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
 
-```{r}
+```{r setup}
+# Global chunk options (chapter-local, reproducible)
+knitr::opts_chunk$set(
+  comment = NA,
+  fig.align = "center"
+)
+```
+
+## Introduction
+
+This micro case study uses simulated individual-level data to illustrate
+the evaluation of a job training program.
+The focus is on treatment effects, starting from descriptive analysis and
+moving toward causal estimators in later sections.
+
+## Data
+
+The dataset is stored relative to the project root to ensure reproducibility.
+
+```{r load-data}
 case3A <- readRDS("data/micro/case3A_simulated.rds")
 str(case3A)
 ```
 
+## Descriptive Statistics
+
+```{r summary}
+summary(case3A)
+```
+
+## Treatment Assignment
+
+```{r treatment}
+table(case3A$treat)
+```
+
+## Outcome Variable
+
+```{r outcome}
+summary(case3A$y)
+```
+
+## Notes on Reproducibility
+
+- All paths are relative to the project root.
+- No code is executed outside R chunks.
+- This file is intended to be rendered as part of a Quarto book.
+
+## Difference in Means
+
+The simplest estimator of the treatment effect compares mean outcomes
+between treated and untreated individuals.
+
+Formally, the difference-in-means estimator is:
+
+$$
+E[y \mid D = 1] - E[y \mid D = 0]
+$$
+
+This estimator does not control for selection into treatment and may therefore
+be biased if treatment status is correlated with unobserved ability.
+
+```{r diff-in-means}
+mean_treated   <- mean(case3A$y[case3A$treat == 1])
+mean_untreated <- mean(case3A$y[case3A$treat == 0])
+
+diff_means <- mean_treated - mean_untreated
+
+c(
+  mean_treated   = mean_treated,
+  mean_untreated = mean_untreated,
+  diff_in_means  = diff_means
+)
+```
+
+The estimated difference in means captures both the causal effect of the program
+and any pre-existing differences between treated and untreated individuals.
+
+## OLS Without Controls
+
+The difference-in-means estimator can be written as a regression coefficient.
+Consider the linear model:
+
+$$
+y_i = \alpha + \beta D_i + u_i
+$$
+
+where $D_i$ is an indicator for participation in the job training program.
+
+In this specification, the OLS estimator $\hat{\beta}$ is numerically identical
+to the difference in mean outcomes between treated and untreated individuals.
+
+```{r ols-no-controls}
+ols_nc <- lm(y ~ treat, data = case3A)
+summary(ols_nc)
+```
+
+To verify the equivalence with the difference-in-means estimator:
+
+```{r ols-vs-dim}
+coef(ols_nc)["treat"]
+```
+
+The estimated coefficient on the treatment indicator coincides with the
+difference-in-means estimate reported in the previous section.
+
+## OLS With Controls (Ability)
+
+The previous specification ignores differences in individual ability.
+If ability affects both program participation and labor market outcomes,
+the estimated treatment effect will be biased.
+
+To account for selection on ability, consider the following model:
+
+$$
+y_i = \alpha + \beta D_i + \gamma \text{ability}_i + u_i
+$$
+
+```{r ols-with-ability}
+ols_ability <- lm(y ~ treat + ability, data = case3A)
+summary(ols_ability)
+```
+
+The inclusion of ability as a control variable reduces the estimated effect
+of the training program relative to the unadjusted OLS specification.
+
+This change reflects the fact that higher-ability individuals are both more
+likely to participate in the program and to earn higher wages even in the
+absence of treatment.
+
+## True ATE vs Estimated Effects
+
+Because the data are simulated, we observe potential outcomes for each individual.
+This allows us to compute the true average treatment effect (ATE) directly.
+
+The true ATE is defined as:
+
+$$
+ATE = E[y_1 - y_0]
+$$
+
+```{r true-ate}
+true_ate <- mean(case3A$y1 - case3A$y0)
+true_ate
+```
+
+We now compare the true ATE to previously estimated treatment effects.
+
+```{r ate-comparison}
+c(
+  true_ate        = true_ate,
+  diff_in_means   = diff_means,
+  ols_no_controls = coef(ols_nc)["treat"],
+  ols_with_ability = coef(ols_ability)["treat"]
+)
+```
+
+The difference-in-means and unadjusted OLS estimates substantially overstate
+the true causal effect due to positive selection into treatment.
+
+Including ability as a control variable yields an estimate much closer to
+the true ATE.
+
+## Instrumental Variables
+
+In many empirical applications, relevant control variables such as ability are
+unobserved. In such cases, ordinary least squares estimation remains biased.
+
+An alternative identification strategy relies on instrumental variables.
+An instrument affects treatment participation but has no direct effect on the outcome.
+
+In this simulation, the variable $z$ serves as an instrument for program participation.
+
+### First Stage
+
+The first-stage regression relates treatment participation to the instrument:
+
+$$
+D_i = \pi_0 + \pi_1 z_i + v_i
+$$
+
+```{r iv-first-stage}
+first_stage <- lm(treat ~ z, data = case3A)
+summary(first_stage)
+```
+
+### Reduced Form
+
+The reduced form captures the effect of the instrument on the outcome:
+
+```{r iv-reduced-form}
+reduced_form <- lm(y ~ z, data = case3A)
+summary(reduced_form)
+```
+
+### IV Estimation
+
+The IV estimator can also be computed manually using a consistent definition
+of the endogenous treatment variable.
+
+```{r iv-manual-correct}
+# Wald / IV estimator (self-contained)
+fs_iv <- lm(treat_iv ~ z, data = case3A)
+rf_iv <- lm(y ~ z, data = case3A)
+
+iv_manual <- coef(rf_iv)["z"] / coef(fs_iv)["z"]
+iv_manual
+```
+
+Equivalently, the IV estimate can be obtained using two-stage least squares:
+
+```{r iv-2sls}
+iv_2sls <- lm(y ~ treat_iv, data = case3A)
+summary(iv_2sls)
+```
+
+The manual IV estimate coincides with the two-stage least squares result.
+This highlights the importance of using a consistent endogenous variable
+when applying the Wald formula.
+
+The IV estimator can be computed as the ratio of the reduced-form and first-stage coefficients.
+
+
+### Comparison with True ATE
+
+```{r iv-vs-ate}
+c(
+  true_ate = true_ate,
+  iv_estimate = coef(iv_2sls)["treat_iv"]
+)
+```
+
+The IV estimate recovers the true causal effect of the training program
+despite the presence of unobserved ability.
+
+
+## Graphical Illustration of Bias
+
+The figure below compares different estimators of the treatment effect
+to the true average treatment effect (ATE).
+
+```{r bias-plot, fig.width=7, fig.height=4}
+# Collect estimates
+estimates <- data.frame(
+  estimator = c(
+    "Difference in Means",
+    "OLS (No Controls)",
+    "OLS (Ability Control)",
+    "IV / 2SLS"
+  ),
+  estimate = c(
+    diff_means,
+    coef(ols_nc)["treat"],
+    coef(ols_ability)["treat"],
+    coef(iv_2sls)["treat_iv"]
+  )
+)
+
+# True ATE
+true_ate_value <- true_ate
+
+# Margins for rotated labels
+op <- par(mar = c(9.5, 4, 2, 2))
+
+plot(
+  estimates$estimate,
+  pch = 19,
+  xaxt = "n",
+  xlab = "",
+  ylab = "Estimated Treatment Effect",
+  ylim = range(c(estimates$estimate, true_ate_value)) + c(-0.9, 0.3)
+)
+
+axis(
+  1,
+  at = seq_along(estimates$estimator),
+  labels = estimates$estimator,
+  las = 2,
+  cex.axis = 0.85
+)
+
+abline(h = true_ate_value, lty = 2, col = "red")
+
+text(
+  x = seq_along(estimates$estimator),
+  y = estimates$estimate,
+  labels = round(estimates$estimate, 2),
+  pos = 3, cex = 0.8
+)
+
+legend(
+  "topright",
+  legend = "True ATE",
+  lty = 2, col = "red", bty = "n"
+)
+
+par(op)
+```
+
+The figure highlights how naive estimators overstate the true causal effect
+due to selection bias, while instrumental variables recover the correct magnitude.
+The figure highlights how naive estimators overstate the true causal effect due to selection bias, while instrumental variables recover the correct magnitude.
+
+This case study illustrates how different empirical strategies identify
+very different estimates of the same treatment effect.
+
+Simple comparisons of mean outcomes and unadjusted OLS substantially overstate
+the true effect of the job training program due to positive selection into treatment.
+
+Controlling for individual ability greatly reduces this bias, but such controls
+are rarely observed in real-world data.
+
+Instrumental variables provide a powerful alternative identification strategy
+when relevant confounders are unobserved.
+
+In this simulation, the IV estimator successfully recovers the true average
+treatment effect, highlighting the importance of credible instruments in
+causal inference.
+
+## Conclusion
+
+This case study illustrates how different empirical strategies identify
+very different estimates of the same treatment effect.
+
+Simple comparisons of mean outcomes and unadjusted OLS substantially overstate
+the true effect of the job training program due to positive selection into treatment.
+
+Controlling for individual ability greatly reduces this bias, but such controls
+are rarely observed in real-world data.
+
+Instrumental variables provide a powerful alternative identification strategy
+when relevant confounders are unobserved.
+
+In this simulation, the IV estimator successfully recovers the true average
+treatment effect, highlighting the importance of credible instruments in
+causal inference.

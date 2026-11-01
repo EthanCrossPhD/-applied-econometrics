@@ -644,7 +644,127 @@
     "href": "chapters/13_micro_case3A_simulation.html",
     "title": "13  Micro Case 3A: Simulated Job Training Program",
     "section": "",
-    "text": "'data.frame':   2000 obs. of  8 variables:\n $ y       : num  12.6 12.5 9.2 10.2 14.6 ...\n $ y_iv    : num  12.6 14.5 11.2 10.2 14.6 ...\n $ treat   : int  1 0 0 0 1 0 1 1 0 1 ...\n $ treat_iv: int  1 1 1 0 1 0 0 0 0 0 ...\n $ z       : int  0 1 1 1 1 0 0 0 0 0 ...\n $ ability : num  0.586 0.709 -0.109 -0.453 0.606 ...\n $ y0      : num  10.6 12.5 9.2 10.2 12.6 ...\n $ y1      : num  12.6 14.5 11.2 12.2 14.6 ...",
+    "text": "13.1 Introduction\nThis micro case study uses simulated individual-level data to illustrate the evaluation of a job training program. The focus is on treatment effects, starting from descriptive analysis and moving toward causal estimators in later sections.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#data",
+    "href": "chapters/13_micro_case3A_simulation.html#data",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.2 Data",
+    "text": "13.2 Data\nThe dataset is stored relative to the project root to ensure reproducibility.\n\n\nCode\ncase3A &lt;- readRDS(\"data/micro/case3A_simulated.rds\")\nstr(case3A)\n\n\n'data.frame':   2000 obs. of  8 variables:\n $ y       : num  12.6 12.5 9.2 10.2 14.6 ...\n $ y_iv    : num  12.6 14.5 11.2 10.2 14.6 ...\n $ treat   : int  1 0 0 0 1 0 1 1 0 1 ...\n $ treat_iv: int  1 1 1 0 1 0 0 0 0 0 ...\n $ z       : int  0 1 1 1 1 0 0 0 0 0 ...\n $ ability : num  0.586 0.709 -0.109 -0.453 0.606 ...\n $ y0      : num  10.6 12.5 9.2 10.2 12.6 ...\n $ y1      : num  12.6 14.5 11.2 12.2 14.6 ...",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#descriptive-statistics",
+    "href": "chapters/13_micro_case3A_simulation.html#descriptive-statistics",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.3 Descriptive Statistics",
+    "text": "13.3 Descriptive Statistics\n\n\nCode\nsummary(case3A)\n\n\n       y               y_iv            treat           treat_iv     \n Min.   : 2.673   Min.   : 2.673   Min.   :0.0000   Min.   :0.0000  \n 1st Qu.: 8.981   1st Qu.: 9.239   1st Qu.:0.0000   1st Qu.:0.0000  \n Median :10.861   Median :11.201   Median :0.0000   Median :1.0000  \n Mean   :10.958   Mean   :11.196   Mean   :0.4735   Mean   :0.5925  \n 3rd Qu.:12.941   3rd Qu.:13.202   3rd Qu.:1.0000   3rd Qu.:1.0000  \n Max.   :18.751   Max.   :18.751   Max.   :1.0000   Max.   :1.0000  \n       z             ability                y0               y1        \n Min.   :0.0000   Min.   :-3.334675   Min.   : 2.673   Min.   : 4.673  \n 1st Qu.:0.0000   1st Qu.:-0.663600   1st Qu.: 8.547   1st Qu.:10.547  \n Median :0.0000   Median : 0.015319   Median :10.019   Median :12.019  \n Mean   :0.4905   Mean   : 0.007903   Mean   :10.011   Mean   :12.011  \n 3rd Qu.:1.0000   3rd Qu.: 0.680289   3rd Qu.:11.487   3rd Qu.:13.487  \n Max.   :1.0000   Max.   : 3.330733   Max.   :16.751   Max.   :18.751",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#treatment-assignment",
+    "href": "chapters/13_micro_case3A_simulation.html#treatment-assignment",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.4 Treatment Assignment",
+    "text": "13.4 Treatment Assignment\n\n\nCode\ntable(case3A$treat)\n\n\n\n   0    1 \n1053  947",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#outcome-variable",
+    "href": "chapters/13_micro_case3A_simulation.html#outcome-variable",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.5 Outcome Variable",
+    "text": "13.5 Outcome Variable\n\n\nCode\nsummary(case3A$y)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  2.673   8.981  10.861  10.958  12.941  18.751",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#notes-on-reproducibility",
+    "href": "chapters/13_micro_case3A_simulation.html#notes-on-reproducibility",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.6 Notes on Reproducibility",
+    "text": "13.6 Notes on Reproducibility\n\nAll paths are relative to the project root.\nNo code is executed outside R chunks.\nThis file is intended to be rendered as part of a Quarto book.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#difference-in-means",
+    "href": "chapters/13_micro_case3A_simulation.html#difference-in-means",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.7 Difference in Means",
+    "text": "13.7 Difference in Means\nThe simplest estimator of the treatment effect compares mean outcomes between treated and untreated individuals.\nFormally, the difference-in-means estimator is:\n\\[\nE[y \\mid D = 1] - E[y \\mid D = 0]\n\\]\nThis estimator does not control for selection into treatment and may therefore be biased if treatment status is correlated with unobserved ability.\n\n\nCode\nmean_treated   &lt;- mean(case3A$y[case3A$treat == 1])\nmean_untreated &lt;- mean(case3A$y[case3A$treat == 0])\n\ndiff_means &lt;- mean_treated - mean_untreated\n\nc(\n  mean_treated   = mean_treated,\n  mean_untreated = mean_untreated,\n  diff_in_means  = diff_means\n)\n\n\n  mean_treated mean_untreated  diff_in_means \n     12.922176       9.191867       3.730309 \n\n\nThe estimated difference in means captures both the causal effect of the program and any pre-existing differences between treated and untreated individuals.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#ols-without-controls",
+    "href": "chapters/13_micro_case3A_simulation.html#ols-without-controls",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.8 OLS Without Controls",
+    "text": "13.8 OLS Without Controls\nThe difference-in-means estimator can be written as a regression coefficient. Consider the linear model:\n\\[\ny_i = \\alpha + \\beta D_i + u_i\n\\]\nwhere \\(D_i\\) is an indicator for participation in the job training program.\nIn this specification, the OLS estimator \\(\\hat{\\beta}\\) is numerically identical to the difference in mean outcomes between treated and untreated individuals.\n\n\nCode\nols_nc &lt;- lm(y ~ treat, data = case3A)\nsummary(ols_nc)\n\n\n\nCall:\nlm(formula = y ~ treat, data = case3A)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-6.5190 -1.3448  0.0007  1.3663  6.0653 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  9.19187    0.06299  145.91   &lt;2e-16 ***\ntreat        3.73031    0.09155   40.75   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.044 on 1998 degrees of freedom\nMultiple R-squared:  0.4539,    Adjusted R-squared:  0.4536 \nF-statistic:  1660 on 1 and 1998 DF,  p-value: &lt; 2.2e-16\n\n\nTo verify the equivalence with the difference-in-means estimator:\n\n\nCode\ncoef(ols_nc)[\"treat\"]\n\n\n   treat \n3.730309 \n\n\nThe estimated coefficient on the treatment indicator coincides with the difference-in-means estimate reported in the previous section.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#ols-with-controls-ability",
+    "href": "chapters/13_micro_case3A_simulation.html#ols-with-controls-ability",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.9 OLS With Controls (Ability)",
+    "text": "13.9 OLS With Controls (Ability)\nThe previous specification ignores differences in individual ability. If ability affects both program participation and labor market outcomes, the estimated treatment effect will be biased.\nTo account for selection on ability, consider the following model:\n\\[\ny_i = \\alpha + \\beta D_i + \\gamma \\text{ability}_i + u_i\n\\]\n\n\nCode\nols_ability &lt;- lm(y ~ treat + ability, data = case3A)\nsummary(ols_ability)\n\n\n\nCall:\nlm(formula = y ~ treat + ability, data = case3A)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.3189 -0.6371 -0.0170  0.6371  2.7317 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  9.96683    0.03081  323.46   &lt;2e-16 ***\ntreat        2.06055    0.04709   43.76   &lt;2e-16 ***\nability      1.98232    0.02342   84.63   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.9547 on 1997 degrees of freedom\nMultiple R-squared:  0.8809,    Adjusted R-squared:  0.8808 \nF-statistic:  7388 on 2 and 1997 DF,  p-value: &lt; 2.2e-16\n\n\nThe inclusion of ability as a control variable reduces the estimated effect of the training program relative to the unadjusted OLS specification.\nThis change reflects the fact that higher-ability individuals are both more likely to participate in the program and to earn higher wages even in the absence of treatment.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#true-ate-vs-estimated-effects",
+    "href": "chapters/13_micro_case3A_simulation.html#true-ate-vs-estimated-effects",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.10 True ATE vs Estimated Effects",
+    "text": "13.10 True ATE vs Estimated Effects\nBecause the data are simulated, we observe potential outcomes for each individual. This allows us to compute the true average treatment effect (ATE) directly.\nThe true ATE is defined as:\n\\[\nATE = E[y_1 - y_0]\n\\]\n\n\nCode\ntrue_ate &lt;- mean(case3A$y1 - case3A$y0)\ntrue_ate\n\n\n[1] 2\n\n\nWe now compare the true ATE to previously estimated treatment effects.\n\n\nCode\nc(\n  true_ate        = true_ate,\n  diff_in_means   = diff_means,\n  ols_no_controls = coef(ols_nc)[\"treat\"],\n  ols_with_ability = coef(ols_ability)[\"treat\"]\n)\n\n\n              true_ate          diff_in_means  ols_no_controls.treat \n              2.000000               3.730309               3.730309 \nols_with_ability.treat \n              2.060552 \n\n\nThe difference-in-means and unadjusted OLS estimates substantially overstate the true causal effect due to positive selection into treatment.\nIncluding ability as a control variable yields an estimate much closer to the true ATE.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#instrumental-variables",
+    "href": "chapters/13_micro_case3A_simulation.html#instrumental-variables",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.11 Instrumental Variables",
+    "text": "13.11 Instrumental Variables\nIn many empirical applications, relevant control variables such as ability are unobserved. In such cases, ordinary least squares estimation remains biased.\nAn alternative identification strategy relies on instrumental variables. An instrument affects treatment participation but has no direct effect on the outcome.\nIn this simulation, the variable \\(z\\) serves as an instrument for program participation.\n\n13.11.1 First Stage\nThe first-stage regression relates treatment participation to the instrument:\n\\[\nD_i = \\pi_0 + \\pi_1 z_i + v_i\n\\]\n\n\nCode\nfirst_stage &lt;- lm(treat ~ z, data = case3A)\nsummary(first_stage)\n\n\n\nCall:\nlm(formula = treat ~ z, data = case3A)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-0.474 -0.474 -0.473  0.526  0.527 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 0.4730128  0.0156491  30.226   &lt;2e-16 ***\nz           0.0009934  0.0223444   0.044    0.965    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4995 on 1998 degrees of freedom\nMultiple R-squared:  9.892e-07, Adjusted R-squared:  -0.0004995 \nF-statistic: 0.001976 on 1 and 1998 DF,  p-value: 0.9645\n\n\n\n\n13.11.2 Reduced Form\nThe reduced form captures the effect of the instrument on the outcome:\n\n\nCode\nreduced_form &lt;- lm(y ~ z, data = case3A)\nsummary(reduced_form)\n\n\n\nCall:\nlm(formula = y ~ z, data = case3A)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-8.2671 -1.9700 -0.1082  1.9815  7.8329 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 10.91816    0.08664 126.014   &lt;2e-16 ***\nz            0.08156    0.12371   0.659     0.51    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.766 on 1998 degrees of freedom\nMultiple R-squared:  0.0002175, Adjusted R-squared:  -0.0002829 \nF-statistic: 0.4347 on 1 and 1998 DF,  p-value: 0.5098\n\n\n\n\n13.11.3 IV Estimation\nThe IV estimator can also be computed manually using a consistent definition of the endogenous treatment variable.\n\n\nCode\n# Wald / IV estimator (self-contained)\nfs_iv &lt;- lm(treat_iv ~ z, data = case3A)\nrf_iv &lt;- lm(y ~ z, data = case3A)\n\niv_manual &lt;- coef(rf_iv)[\"z\"] / coef(fs_iv)[\"z\"]\niv_manual\n\n\n        z \n0.2740515 \n\n\nEquivalently, the IV estimate can be obtained using two-stage least squares:\n\n\nCode\niv_2sls &lt;- lm(y ~ treat_iv, data = case3A)\nsummary(iv_2sls)\n\n\n\nCall:\nlm(formula = y ~ treat_iv, data = case3A)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.7740 -1.8447  0.0632  1.8388  7.7584 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   9.7675     0.0905  107.93   &lt;2e-16 ***\ntreat_iv      2.0096     0.1176   17.09   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.584 on 1998 degrees of freedom\nMultiple R-squared:  0.1276,    Adjusted R-squared:  0.1271 \nF-statistic: 292.2 on 1 and 1998 DF,  p-value: &lt; 2.2e-16\n\n\nThe manual IV estimate coincides with the two-stage least squares result. This highlights the importance of using a consistent endogenous variable when applying the Wald formula.\nThe IV estimator can be computed as the ratio of the reduced-form and first-stage coefficients.\n\n\n13.11.4 Comparison with True ATE\n\n\nCode\nc(\n  true_ate = true_ate,\n  iv_estimate = coef(iv_2sls)[\"treat_iv\"]\n)\n\n\n            true_ate iv_estimate.treat_iv \n             2.00000              2.00962 \n\n\nThe IV estimate recovers the true causal effect of the training program despite the presence of unobserved ability.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#graphical-illustration-of-bias",
+    "href": "chapters/13_micro_case3A_simulation.html#graphical-illustration-of-bias",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.12 Graphical Illustration of Bias",
+    "text": "13.12 Graphical Illustration of Bias\nThe figure below compares different estimators of the treatment effect to the true average treatment effect (ATE).\n\n\nCode\n# Collect estimates\nestimates &lt;- data.frame(\n  estimator = c(\n    \"Difference in Means\",\n    \"OLS (No Controls)\",\n    \"OLS (Ability Control)\",\n    \"IV / 2SLS\"\n  ),\n  estimate = c(\n    diff_means,\n    coef(ols_nc)[\"treat\"],\n    coef(ols_ability)[\"treat\"],\n    coef(iv_2sls)[\"treat_iv\"]\n  )\n)\n\n# True ATE\ntrue_ate_value &lt;- true_ate\n\n# Margins for rotated labels\nop &lt;- par(mar = c(9.5, 4, 2, 2))\n\nplot(\n  estimates$estimate,\n  pch = 19,\n  xaxt = \"n\",\n  xlab = \"\",\n  ylab = \"Estimated Treatment Effect\",\n  ylim = range(c(estimates$estimate, true_ate_value)) + c(-0.9, 0.3)\n)\n\naxis(\n  1,\n  at = seq_along(estimates$estimator),\n  labels = estimates$estimator,\n  las = 2,\n  cex.axis = 0.85\n)\n\nabline(h = true_ate_value, lty = 2, col = \"red\")\n\ntext(\n  x = seq_along(estimates$estimator),\n  y = estimates$estimate,\n  labels = round(estimates$estimate, 2),\n  pos = 3, cex = 0.8\n)\n\nlegend(\n  \"topright\",\n  legend = \"True ATE\",\n  lty = 2, col = \"red\", bty = \"n\"\n)\n\n\n\n\n\n\n\n\n\nCode\npar(op)\n\n\nThe figure highlights how naive estimators overstate the true causal effect due to selection bias, while instrumental variables recover the correct magnitude. The figure highlights how naive estimators overstate the true causal effect due to selection bias, while instrumental variables recover the correct magnitude.\nThis case study illustrates how different empirical strategies identify very different estimates of the same treatment effect.\nSimple comparisons of mean outcomes and unadjusted OLS substantially overstate the true effect of the job training program due to positive selection into treatment.\nControlling for individual ability greatly reduces this bias, but such controls are rarely observed in real-world data.\nInstrumental variables provide a powerful alternative identification strategy when relevant confounders are unobserved.\nIn this simulation, the IV estimator successfully recovers the true average treatment effect, highlighting the importance of credible instruments in causal inference.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/13_micro_case3A_simulation.html#conclusion",
+    "href": "chapters/13_micro_case3A_simulation.html#conclusion",
+    "title": "13  Micro Case 3A: Simulated Job Training Program",
+    "section": "13.13 Conclusion",
+    "text": "13.13 Conclusion\nThis case study illustrates how different empirical strategies identify very different estimates of the same treatment effect.\nSimple comparisons of mean outcomes and unadjusted OLS substantially overstate the true effect of the job training program due to positive selection into treatment.\nControlling for individual ability greatly reduces this bias, but such controls are rarely observed in real-world data.\nInstrumental variables provide a powerful alternative identification strategy when relevant confounders are unobserved.\nIn this simulation, the IV estimator successfully recovers the true average treatment effect, highlighting the importance of credible instruments in causal inference.",
     "crumbs": [
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Micro Case 3A: Simulated Job Training Program</span>"
     ]
