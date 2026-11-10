@@ -1,4 +1,4 @@
----
+ï»¿---
 title: "Regression Discontinuity Designs"
 ---
 
@@ -160,7 +160,7 @@ Researchers may strengthen external validity by combining RDD evidence with resu
 
 RDD results are often well suited for policy evaluation, as they directly speak to the consequences of marginal changes in eligibility or assignment rules.
 
-However, extrapolating RDD estimates beyond the cutoff requires strong assumptions and should be undertaken with caution. Transparency about what is identified—and what is not—is essential for credible policy analysis.
+However, extrapolating RDD estimates beyond the cutoff requires strong assumptions and should be undertaken with caution. Transparency about what is identified â€” and what is not â€” is essential for credible policy analysis.
 
 ### Summary
 
@@ -198,7 +198,7 @@ An RD plot visually displays whether the conditional expectation of the outcome 
 
 In practice, raw scatterplots are often supplemented with binned averages and local polynomial fits estimated separately on each side of the cutoff. These graphical elements help reduce noise and clarify the underlying relationship without imposing strong global functional form assumptions.
 
-For the purposes of this chapter, the graphical analysis is presented conceptually. In the accompanying interactive handout, readers will be able to adjust key elements of the RD plot—such as the bandwidth, bin width, and polynomial order—and observe how the visual evidence responds to these choices.
+For the purposes of this chapter, the graphical analysis is presented conceptually. In the accompanying interactive handout, readers will be able to adjust key elements of the RD plot â€” such as the bandwidth, bin width, and polynomial order â€” and observe how the visual evidence responds to these choices.
 
 This interactive exploration reinforces two core insights. First, RDD evidence is inherently local: conclusions are driven by observations near the cutoff. Second, graphical results are sensitive to tuning parameters, underscoring the importance of transparency and robustness in applied work.
 
@@ -210,11 +210,11 @@ We now briefly illustrate how formal estimation complements the graphical eviden
 
 Consistent with the graphical patterns, the estimated treatment effect indicates a positive and statistically meaningful discontinuity at the cutoff. The magnitude of the effect is economically relevant for students near the eligibility threshold, reinforcing the interpretation of the design as identifying a local causal effect.
 
-To assess robustness, estimates can be computed using alternative bandwidth choices and polynomial orders. In this example, the qualitative conclusions remain stable across a range of reasonable specifications, although point estimates and standard errors vary, reflecting the inherent bias–variance trade-off discussed earlier.
+To assess robustness, estimates can be computed using alternative bandwidth choices and polynomial orders. In this example, the qualitative conclusions remain stable across a range of reasonable specifications, although point estimates and standard errors vary, reflecting the inherent biasâ€“variance trade-off discussed earlier.
 
-Importantly, these estimates should be interpreted in light of the design’s identifying assumptions and validity checks. The numerical results do not stand alone; they gain credibility from the alignment between graphical evidence, institutional knowledge, and diagnostic tests.
+Importantly, these estimates should be interpreted in light of the design's identifying assumptions and validity checks. The numerical results do not stand alone; they gain credibility from the alignment between graphical evidence, institutional knowledge, and diagnostic tests.
 
-In the interactive handout, readers will be able to modify estimation choices—such as the bandwidth and kernel—and observe how the estimated discontinuity responds to these changes in real time.
+In the interactive handout, readers will be able to modify estimation choices â€” such as the bandwidth and kernel â€” and observe how the estimated discontinuity responds to these changes in real time.
 
 ### Validity Checks (Empirical Illustration)
 
@@ -222,7 +222,7 @@ To assess the credibility of the regression discontinuity design in this empiric
 
 First, the distribution of the running variable is examined around the cutoff to assess potential manipulation. In a credible design, the density of test scores should evolve smoothly through the threshold, with no visible discontinuity that would suggest strategic sorting.
 
-Second, predetermined covariates—such as prior academic performance or demographic characteristics—are analyzed for discontinuities at the cutoff. The absence of systematic jumps in these variables supports the assumption that students just above and below the threshold are comparable.
+Second, predetermined covariates â€” such as prior academic performance or demographic characteristics â€” are analyzed for discontinuities at the cutoff. The absence of systematic jumps in these variables supports the assumption that students just above and below the threshold are comparable.
 
 Third, placebo tests are conducted by estimating discontinuities at alternative cutoffs where no treatment is assigned. Finding no significant effects at these placebo thresholds strengthens confidence that the observed discontinuity at the true cutoff reflects a causal effect of program eligibility.
 
