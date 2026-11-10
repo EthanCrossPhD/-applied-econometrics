@@ -28,7 +28,9 @@ Regression discontinuity designs come in two closely related variants, depending
 
 ### Sharp Regression Discontinuity
 
-$`nD_i = \mathbf{1}\{X_i \ge c\}.`n$
+$$
+D_i = \mathbf{1}\{X_i \ge c\}.
+$$
 
 In a sharp RDD, the probability of treatment jumps from zero to one at the cutoff. Under continuity of potential outcomes, the causal effect at the threshold is given by the discontinuity in the outcome regression:
 

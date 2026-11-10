@@ -389,7 +389,9 @@ window.Quarto = {
 <p>Regression discontinuity designs come in two closely related variants, depending on how treatment assignment responds to crossing the cutoff: <strong>sharp RDD</strong> and <strong>fuzzy RDD</strong>. The distinction is crucial for both identification and estimation.</p>
 <section id="sharp-regression-discontinuity" class="level3" data-number="25.2.1">
 <h3 data-number="25.2.1" class="anchored" data-anchor-id="sharp-regression-discontinuity"><span class="header-section-number">25.2.1</span> Sharp Regression Discontinuity</h3>
-<p><span class="math inline">\(`nD_i = \mathbf{1}\{X_i \ge c\}.`n\)</span></p>
+<p><span class="math display">\[
+D_i = \mathbf{1}\{X_i \ge c\}.
+\]</span></p>
 <p>In a sharp RDD, the probability of treatment jumps from zero to one at the cutoff. Under continuity of potential outcomes, the causal effect at the threshold is given by the discontinuity in the outcome regression:</p>
 <p><span class="math display">\[
 \tau = \lim_{x \downarrow c} E[Y_i \mid X_i = x]
