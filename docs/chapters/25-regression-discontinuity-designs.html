@@ -391,13 +391,24 @@ window.Quarto = {
 <h3 data-number="25.2.1" class="anchored" data-anchor-id="sharp-regression-discontinuity"><span class="header-section-number">25.2.1</span> Sharp Regression Discontinuity</h3>
 <p><span class="math inline">\(`nD_i = \mathbf{1}\{X_i \ge c\}.`n\)</span></p>
 <p>In a sharp RDD, the probability of treatment jumps from zero to one at the cutoff. Under continuity of potential outcomes, the causal effect at the threshold is given by the discontinuity in the outcome regression:</p>
-<p>[ = <em>{x c} E[Y_i X_i = x] - </em>{x c} E[Y_i X_i = x]. ]</p>
+<p><span class="math display">\[
+\tau = \lim_{x \downarrow c} E[Y_i \mid X_i = x]
+      - \lim_{x \uparrow c} E[Y_i \mid X_i = x].
+\]</span></p>
 <p>This estimand captures a local treatment effect at the cutoff.</p>
 </section>
 <section id="fuzzy-regression-discontinuity" class="level3" data-number="25.2.2">
 <h3 data-number="25.2.2" class="anchored" data-anchor-id="fuzzy-regression-discontinuity"><span class="header-section-number">25.2.2</span> Fuzzy Regression Discontinuity</h3>
 <p>In many applications, crossing the cutoff affects the probability of treatment without perfectly determining it.</p>
-<p>[ = . ]</p>
+<p><span class="math display">\[
+\tau = \frac{
+\lim_{x \downarrow c} E[Y_i \mid X_i = x]
+- \lim_{x \uparrow c} E[Y_i \mid X_i = x]
+}{
+\lim_{x \downarrow c} E[D_i \mid X_i = x]
+- \lim_{x \uparrow c} E[D_i \mid X_i = x]
+}.
+\]</span></p>
 <p>This estimand identifies a local average treatment effect for compliers at the cutoff. NA</p>
 </section>
 </section>
@@ -415,7 +426,12 @@ window.Quarto = {
 <h3 data-number="25.4.1" class="anchored" data-anchor-id="local-polynomial-estimation"><span class="header-section-number">25.4.1</span> Local Polynomial Estimation</h3>
 <p>The standard approach to RDD estimation is local polynomial regression, estimated separately on each side of the cutoff. In practice, local linear regression is often preferred due to its favorable boundary properties.</p>
 <p>Let (Y_i) denote the outcome and (X_i) the running variable with cutoff (c). A local linear RDD estimator solves:</p>
-<p>[ <em>{</em>,<em>} </em>{i: X_i &lt; c} K!() (Y_i - <em>- </em>(X_i - c))^2 ]</p>
+<p><span class="math display">\[
+\min_{\alpha_\ell,\beta_\ell}
+\sum_{i: X_i &lt; c}
+K\!\left(\frac{X_i - c}{h}\right)
+\left(Y_i - \alpha_\ell - \beta_\ell (X_i - c)\right)^2
+\]</span></p>
 <p>and analogously on the right side of the cutoff. The estimated treatment effect is given by the difference in the fitted intercepts at the cutoff.</p>
 </section>
 <section id="bandwidth-choice-biasvariance-trade-off" class="level3" data-number="25.4.2">
