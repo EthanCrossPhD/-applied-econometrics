@@ -1,4 +1,4 @@
-
+﻿
 
 project:
   output-dir: docs
@@ -44,6 +44,7 @@ bibliography: references.bib
 format:
   html:
     toc: true
+    html-math-method: mathjax
     number-sections: true
     theme: cosmo
     code-fold: true
@@ -53,3 +54,4 @@ execute:
   echo: false
   warning: false
   message: false
+
