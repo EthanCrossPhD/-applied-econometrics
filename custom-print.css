@@ -1,0 +1,11 @@
+﻿@media print {
+  #quarto-search,
+  .quarto-search-button,
+  button[aria-label="Search"],
+  .aa-DetachedSearchButtonPlaceholder,
+  .navbar-toggler,
+  #quarto-sidebar,
+  .sidebar-navigation {
+    display: none !important;
+  }
+}

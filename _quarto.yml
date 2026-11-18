@@ -1,6 +1,4 @@
-﻿
-
-project:
+﻿project:
   output-dir: docs
   type: book
   execute-dir: project
@@ -48,10 +46,17 @@ format:
     number-sections: true
     theme: cosmo
     code-fold: true
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    keep-tex: false
+    filters:
+      - strip-html.lua
 
 execute:
   execute-dir: project
   echo: false
   warning: false
   message: false
-
+  freeze: true
